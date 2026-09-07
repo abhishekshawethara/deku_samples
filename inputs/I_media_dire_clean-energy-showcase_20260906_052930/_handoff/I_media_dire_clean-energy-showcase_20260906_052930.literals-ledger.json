@@ -1,0 +1,1303 @@
+{
+  "_schema": "literals-ledger-v1",
+  "literals": [
+    {
+      "value": "visitor@example.com",
+      "class": "account",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "visitor2@example.com",
+      "class": "account",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "deku-demo-pw-2026",
+      "class": "credential",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "/company",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/technology",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/edge",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/team",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "/solutions",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "/compare",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "/calculator",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "/investors/room",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/investors",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/news",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/careers",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/contact",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/faq",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "/account",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "/signin",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/signup",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "/api/health",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/auth/signup",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "/api/auth/login",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/solutions",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/saves",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/compare",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/searches",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/enquiries",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/access-request",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/documents",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/stories",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/jobs",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/applications",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/calculator",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/team",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/offices",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/faqs",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api/accounts/me",
+      "class": "endpoint",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "received",
+      "class": "status",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "answered",
+      "class": "status",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "closed",
+      "class": "status",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "pending",
+      "class": "status",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "approved",
+      "class": "status",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "declined",
+      "class": "status",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "reviewing",
+      "class": "status",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "250",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "750",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "8000",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "450",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "100",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "251",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2000",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "4000",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "800",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "360000",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "900000",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1800000",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1080000",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2400",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "260",
+      "class": "number",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "oil-and-gas",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "chemicals",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "transport",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "steel",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "mining",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "data-centres",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "communities",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "desalination",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Oil and Gas",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Chemicals",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Transport",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Steel",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Mining",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Data Centres",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Communities",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Desalination",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Ada Moreau",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Ken Adeyemi",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "ENQ-7K2M9QD4",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "ENQ-5R8X1CJ2",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "IAR-4H7N2PQ8",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "IAR-9T3V6BLM",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Hydrogen sites",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "investor-deck-2026",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "technology-dossier",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "licensing-roadmap",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Investor Deck 2026",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Technology Dossier",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Licensing Roadmap",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "reactor-systems-engineer",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "licensing-lead",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "operations-trainer",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Reactor Systems Engineer",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Licensing Lead",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Operations Trainer",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Rotterdam",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Chicago",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Tokyo",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "first-module-order",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "helium-loop-milestone",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "steel-partnership",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "licensing-step-cleared",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "academy-first-cohort",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "desalination-study",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "helium-supply-signed",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "First module order signed",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "mira-halvorsen",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "tobias-ruiz",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "anneke-vos",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "daniel-okoye",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Mira Halvorsen",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Tobias Ruiz",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Anneke Vos",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Daniel Okoye",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "heat-and-power",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "hydrogen",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "electricity",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "up to 250 C",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "250 to 550 C",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "550 to 750 C",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "single-module",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "multi-module",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "Investor relations",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Careers",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Suppliers",
+      "class": "seed_record",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "ENQ-",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "IAR-",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "Enquiry received:",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Investor access requested:",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "Application received:",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "save_token",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "modules_required",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "annual_clean_energy_gwh",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "annual_co2_avoided_tonnes",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "output_kind",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "temperature_band",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py"
+      ]
+    },
+    {
+      "value": "deployment",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "module_count",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "test_showcase.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Authorization: Bearer",
+      "class": "scheme",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "DATABASE_URL",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "SMTP_HOST",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "SMTP_PORT",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "SMTP_USER",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "SMTP_PASS",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "APP_PUBLIC_URL",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "APP_PUBLIC_PORT",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "DB_ADMIN_URL",
+      "class": "env_var",
+      "verifier_only": true,
+      "carriers": [
+        "task.toml"
+      ]
+    },
+    {
+      "value": "EMAIL_INBOX_API_URL",
+      "class": "env_var",
+      "verifier_only": true,
+      "carriers": [
+        "task.toml"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "number": "R1",
+    "criterion": "Headings across the showcase routes are set in a heavy grotesque against body copy in a plainer face.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "ui_visual",
+    "evaluation_target": "user_facing_message",
+    "importance": "important",
+    "score": 3,
+    "evaluation_rule": "A GROTESQUE is a sans-serif face with an even stroke. Answer yes when headings on the company route, the technology route and the team route read as a heavier, more structural face than the running text under them. Answer no when headings and running text read as one face at one thickness."
+  },
+  {
+    "number": "R2",
+    "criterion": "The solutions explorer packs its cards tighter than the company route packs its sections.",
+    "is_positive": true,
+    "type": "instruction following",
+    "dimension": "ux_flow",
+    "evaluation_target": "user_facing_message",
+    "importance": "important",
+    "score": 3,
+    "evaluation_rule": "Answer yes when a full filtered set of solution cards fits one screen while the company route leaves generous space around each block. Answer no when the two routes share one spacing rhythm."
+  },
+  {
+    "number": "R3",
+    "criterion": "A filter result on the solutions explorer lands at once, with the focus ring as the one animated element.",
+    "is_positive": true,
+    "type": "instruction following",
+    "dimension": "motion",
+    "evaluation_target": "user_facing_message",
+    "importance": "somewhat_important",
+    "score": 1,
+    "evaluation_rule": "Answer yes when choosing a filter replaces the grid immediately, with no fade, slide or stagger, while a focused control still animates its ring. Answer no when the grid eases, fades or staggers into place."
+  },
+  {
+    "number": "R4",
+    "criterion": "The reactor on the home route tracks the scroll position in both directions.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "instruction_following",
+    "evaluation_target": "user_facing_message",
+    "importance": "critically_important",
+    "score": 5,
+    "evaluation_rule": "Answer yes when scrolling down opens the reactor progressively and scrolling back up returns it through the same stages to whole. Answer no when the sequence runs on a timer once triggered, leaving the reactor mid-stage on the way back up."
+  },
+  {
+    "number": "R5",
+    "criterion": "Links on the company route, the newsroom, the account route all carry one blue hue with a deeper shade of that hue under the pointer.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "ui_visual",
+    "evaluation_target": "user_facing_message",
+    "importance": "important",
+    "score": 3,
+    "evaluation_rule": "Answer yes when links on the company route, the newsroom and the account route all read as one blue, deepening on hover. Answer no when links appear in two unrelated hues, or when the hover state changes hue rather than shade."
+  },
+  {
+    "number": "R6",
+    "criterion": "A single section of the home route sits on a near-black ground.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "instruction_following",
+    "evaluation_target": "user_facing_message",
+    "importance": "critically_important",
+    "score": 5,
+    "evaluation_rule": "Answer yes when one section of the home route inverts to near-black for the unmatched-heat statement while every other section on every route stays light. Answer no when the site inverts in more than one place, or when the home route stays light throughout. The inversion is the single darkest beat on the whole site."
+  },
+  {
+    "number": "R7",
+    "criterion": "The reactor diagram on the technology route renders as drawn shapes rather than as a fetched picture.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "functionality",
+    "evaluation_target": "user_facing_message",
+    "importance": "critically_important",
+    "score": 5,
+    "evaluation_rule": "Answer yes when the logo, the reactor, the technical diagrams and the team portraits all render as vector shapes or generated gradients that stay sharp when the page is zoomed. Answer no when any of them renders as a raster image that blurs on zoom."
+  },
+  {
+    "number": "R8",
+    "criterion": "Every control on the solutions explorer is reachable from the keyboard with a visible focus ring.",
+    "is_positive": true,
+    "type": "instruction following",
+    "dimension": "accessibility",
+    "evaluation_target": "user_facing_message",
+    "importance": "somewhat_important",
+    "score": 1,
+    "evaluation_rule": "Answer yes when tabbing through the explorer filters, the save control and the modals reaches each one in turn with a ring that is easy to see. Answer no when tabbing skips a control or leaves the focused element unmarked."
+  },
+  {
+    "number": "R9",
+    "criterion": "The layout holds at a phone width, a tablet width and a desktop width.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "responsiveness",
+    "evaluation_target": "user_facing_message",
+    "importance": "somewhat_important",
+    "score": 1,
+    "evaluation_rule": "Answer yes when the explorer, the account route and the home route each reflow cleanly at the three widths with no horizontal scrollbar. Answer no when any width produces overlapping content or a sideways scroll."
+  },
+  {
+    "number": "R10",
+    "criterion": "The fixed top bar carries the logo lockup, the route labels and one Get in Touch action.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "ui_visual",
+    "evaluation_target": "user_facing_message",
+    "importance": "somewhat_important",
+    "score": 1,
+    "evaluation_rule": "Answer yes when a slim bar across the top of every route holds the stacked-band logo beside the company name, the route labels and a single Get in Touch action. Answer no when the bar is missing one of the three, or when navigation sits in a side rail instead."
+  },
+  {
+    "number": "R11",
+    "criterion": "The first load holds a plain white cover until the reactor is ready to draw.",
+    "is_positive": true,
+    "type": "task completion",
+    "dimension": "functionality",
+    "evaluation_target": "user_facing_message",
+    "importance": "important",
+    "score": 3,
+    "evaluation_rule": "Answer yes when a first visit shows a white cover carrying a progress readout that lifts once the first screen is ready. Answer no when the first screen appears half-drawn, or when the cover lifts before the reactor can render."
+  },
+  {
+    "number": "R12",
+    "criterion": "Every empty list on the account route states what is absent.",
+    "is_positive": true,
+    "type": "instruction following",
+    "dimension": "ux_flow",
+    "evaluation_target": "user_facing_message",
+    "importance": "important",
+    "score": 3,
+    "evaluation_rule": "Answer yes when an account with no saves, no searches and no applications sees a message on each list naming what is missing and offering a way onward. Answer no when an empty list renders as blank space."
+  }
+]

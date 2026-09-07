@@ -1,0 +1,122 @@
+_schema: if-overlay-v1
+constraints:
+- id: IF-1
+  category: format
+  statement: An enquiry reference is the pinned prefix followed by eight uppercase letters
+    or digits, and no two enquiries share one.
+  src: '`ENQ-` plus 8 uppercase letters and digits'
+  evaluator: pytest
+  target: test_showcase.py::test_an_enquiry_mints_a_reference_and_is_stored_received
+  polarity: positive
+- id: IF-2
+  category: format
+  statement: An access request reference takes the same eight-character shape under its
+    own prefix.
+  src: with an `IAR-` reference of the same shape
+  evaluator: pytest
+  target: test_showcase.py::test_an_access_request_starts_pending_with_a_reference
+  polarity: positive
+- id: IF-3
+  category: format
+  statement: The enquiry acknowledgement subject opens with the pinned prefix, a single
+    space, then the reference the enquiry was minted under.
+  src: begins `Enquiry received:` then a space and the reference
+  evaluator: pytest
+  target: test_showcase.py::test_an_enquiry_reaches_the_enquirer_with_its_reference
+  polarity: positive
+- id: IF-4
+  category: scope
+  statement: Every private row is owned by one account, so no list and no addressed row
+    reaches a second account.
+  src: application belongs to one account
+  evaluator: pytest
+  target: test_showcase.py::test_one_account_never_reads_another_saved_list
+  polarity: positive
+- id: IF-5
+  category: scope
+  statement: One account holds one investor access request, whatever state that request
+    is in.
+  src: An account holds at most one access request
+  evaluator: pytest
+  target: test_showcase.py::test_a_second_access_request_updates_the_first
+  polarity: positive
+- id: IF-6
+  category: scope
+  statement: One account holds one application per job, so a repeat submission cannot
+    double-count an applicant.
+  src: An account holds at most one application per job
+  evaluator: pytest
+  target: test_showcase.py::test_applying_twice_to_one_job_updates_the_row
+  polarity: positive
+- id: IF-7
+  category: tool_use
+  statement: The rows the application reports live in the PostgreSQL instance the
+    environment provides, never in a second store the application brought with it.
+  src: the only backing services available in this environment are PostgreSQL and Mailpit
+  evaluator: pytest
+  target: test_showcase.py::test_content_is_served_from_the_store_not_the_build
+  polarity: negative
+- id: IF-8
+  category: tool_use
+  statement: Mail leaves over ordinary SMTP through the environment values the brief
+    names, rather than through a vendor client.
+  src: Mail goes over real SMTP to Mailpit at `SMTP_HOST` and `SMTP_PORT`
+  evaluator: pytest
+  target: test_showcase.py::test_an_enquiry_reaches_the_enquirer_with_its_reference
+  polarity: positive
+- id: IF-9
+  category: ordering
+  statement: The claim happens inside the sign-in request that presents the token, so
+    the token is empty the moment the account holds the saves.
+  src: signing in with it moves those saves onto the account and empties it
+  evaluator: pytest
+  target: test_showcase.py::test_claiming_a_save_token_empties_it
+  polarity: positive
+- id: IF-10
+  category: ordering
+  statement: The module count is settled first and the energy figure is derived from
+    it, never from the megawatt need the visitor typed.
+  src: The energy figure follows the modules built, never the need asked for
+  evaluator: pytest
+  target: test_showcase.py::test_the_energy_figure_follows_the_modules_built
+  polarity: positive
+- id: IF-11
+  category: output_shape
+  statement: A list endpoint answers with a JSON array at the top level rather than an
+    object wrapping one.
+  src: List endpoints return a JSON array at the top level.
+  evaluator: pytest
+  target: test_showcase.py::test_solution_list_returns_every_solution_with_its_fields
+  polarity: positive
+- id: IF-12
+  category: output_shape
+  statement: The solutions list carries the total-count header on every response,
+    including one that matched nothing.
+  src: under the header `X-Total-Count` carrying the count of matches
+  evaluator: pytest
+  target: test_showcase.py::test_solution_list_carries_the_match_count_header
+  polarity: positive
+- id: IF-13
+  category: output_shape
+  statement: A caller with no approved request meets the answer an address that never
+    existed gives, so the two cannot be told apart.
+  src: meets the answer a room that never existed gives
+  evaluator: pytest
+  target: test_showcase.py::test_the_document_room_is_denied_to_a_pending_account
+  polarity: positive
+- id: IF-14
+  category: negative
+  statement: No action beyond the three named transitions puts a message on the mail
+    server.
+  src: No other action sends mail.
+  evaluator: pytest
+  target: test_showcase.py::test_saving_and_calculating_send_no_mail
+  polarity: negative
+- id: IF-15
+  category: negative
+  statement: No surface of the running product accepts a file from the visitor.
+  src: no object store, no file upload
+  evaluator: probe
+  target: workflows.yaml::newsroom_and_careers_are_browsed_and_applied_to
+  polarity: negative
+not_applicable: {}

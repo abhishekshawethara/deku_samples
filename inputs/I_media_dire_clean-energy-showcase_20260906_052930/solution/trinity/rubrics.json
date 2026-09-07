@@ -1,0 +1,200 @@
+{
+  "banner": "GENERATED SECTION. DO NOT HAND-EDIT.",
+  "source_of_truth": "solution/trinity/grounding.yaml",
+  "task": "deku/clean-energy-showcase",
+  "schema": [
+    "id",
+    "dimension",
+    "weight",
+    "evaluation_target",
+    "criterion",
+    "judgment",
+    "evidence",
+    "mode"
+  ],
+  "compiled_weight_share": 1.0,
+  "items": [
+    {
+      "id": "R1",
+      "dimension": "functionality",
+      "weight": 15,
+      "evaluation_target": "database-row",
+      "criterion": "The pinned filter pair leaves exactly the two hydrogen solutions.",
+      "judgment": "A request for the hydrogen output at the top temperature band returns the transport solution and the steel solution, and reports two matches in the count header.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R2",
+      "dimension": "functionality",
+      "weight": 10,
+      "evaluation_target": "database-row",
+      "criterion": "One account holds at most one saved row per solution, under two simultaneous saves.",
+      "judgment": "Two saves issued at the same instant for one solution leave exactly one saved row for that account.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R3",
+      "dimension": "functionality",
+      "weight": 10,
+      "evaluation_target": "database-row",
+      "criterion": "Each account private saved list carries that account rows alone.",
+      "judgment": "The first account saved list carries the steel solution and the second account saved list does not.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R4",
+      "dimension": "functionality",
+      "weight": 10,
+      "evaluation_target": "database-row",
+      "criterion": "The document room answers only an account whose own request reads approved.",
+      "judgment": "The pending account meets the answer a route that never existed gives, and no document slug appears in that response.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R5",
+      "dimension": "functionality",
+      "weight": 10,
+      "evaluation_target": "database-row",
+      "criterion": "Every worked calculator row in the brief is reproduced exactly.",
+      "judgment": "Each of the four worked needs returns the module count, the annual energy and the carbon figure the brief pins.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R6",
+      "dimension": "functionality",
+      "weight": 8,
+      "evaluation_target": "database-row",
+      "criterion": "A save made with no session is readable on the account that claims its token.",
+      "judgment": "The claimed account saved list carries the solution saved before the account existed, and the store holds one row for it.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R7",
+      "dimension": "functionality",
+      "weight": 7,
+      "evaluation_target": "database-row",
+      "criterion": "The comparison holds four saved solutions at most.",
+      "judgment": "A fifth slug is refused as invalid and the four-way comparison still returns four solutions.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R8",
+      "dimension": "functionality",
+      "weight": 6,
+      "evaluation_target": "database-row",
+      "criterion": "A sent enquiry is stored received under a reference in the pinned shape.",
+      "judgment": "The reference matches the enquiry prefix followed by eight uppercase letters or digits, and the stored status reads received.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R9",
+      "dimension": "functionality",
+      "weight": 6,
+      "evaluation_target": "database-row",
+      "criterion": "The enquiry acknowledgement reaches the enquirer carrying its reference.",
+      "judgment": "The mail server holds a message for that address whose subject begins with the pinned prefix followed by the reference.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R10",
+      "dimension": "functionality",
+      "weight": 5,
+      "evaluation_target": "database-row",
+      "criterion": "One account holds at most one investor access request.",
+      "judgment": "A second request updates the organisation and the role title on the one stored row.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R11",
+      "dimension": "functionality",
+      "weight": 4,
+      "evaluation_target": "database-row",
+      "criterion": "One account holds at most one application per job.",
+      "judgment": "A second application to one job updates the note on the one stored row.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R12",
+      "dimension": "functionality",
+      "weight": 3,
+      "evaluation_target": "database-row",
+      "criterion": "The story wall answers three stories at a time over the whole seeded count.",
+      "judgment": "The first page carries three stories and the count header reports seven.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R13",
+      "dimension": "functionality",
+      "weight": 3,
+      "evaluation_target": "database-row",
+      "criterion": "Every private list refuses a caller carrying no bearer token.",
+      "judgment": "Each of the five private routes answers an unauthenticated caller with a client refusal.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    },
+    {
+      "id": "R14",
+      "dimension": "functionality",
+      "weight": 3,
+      "evaluation_target": "database-row",
+      "criterion": "The deployed app answers its readiness route on its published origin.",
+      "judgment": "A request to the health route from outside the container returns 200 after the session has ended.",
+      "evidence": [
+        "database-row",
+        "http-response-body"
+      ],
+      "mode": "compiled"
+    }
+  ]
+}

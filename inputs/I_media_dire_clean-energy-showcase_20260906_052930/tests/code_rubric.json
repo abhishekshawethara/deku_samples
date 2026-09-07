@@ -1,0 +1,64 @@
+{
+  "_schema": "code-rubric-v1",
+  "rubric_version": "1",
+  "judge_pin": "claude-sonnet-4-6",
+  "dimensions": [
+    "readability",
+    "idiomaticity",
+    "abstraction",
+    "naming",
+    "dead_code",
+    "scope_discipline",
+    "internal_consistency"
+  ],
+  "criteria": [
+    {
+      "id": "Q1",
+      "dimension": "scope_discipline",
+      "statement": "No dependency appears in the package manifest that no checklist obligation required, and none of them is a mail vendor SDK, a queue client, a cache client, an object-store client, a mapping client or a second database driver.",
+      "importance": "critically_important"
+    },
+    {
+      "id": "Q2",
+      "dimension": "scope_discipline",
+      "statement": "No table, column or seed row exists beyond the thirteen tables the obligation list enumerates: accounts, solutions, saved_solutions, saved_searches, enquiries, access_requests, documents, jobs, applications, stories, team_members, offices and faqs.",
+      "importance": "important"
+    },
+    {
+      "id": "Q3",
+      "dimension": "scope_discipline",
+      "statement": "No background worker, scheduled job or queue module exists in the source tree for saving, enquiring, requesting access or applying, all of which the obligation list keeps inside the handler that performs them.",
+      "importance": "critically_important"
+    },
+    {
+      "id": "Q4",
+      "dimension": "scope_discipline",
+      "statement": "No image file, video file, icon font or fetched web font ships in the source tree, and no surface the obligation list names as absent was built anyway: no live operations telemetry screen, no map site planner, no assistant, no language switch, no editor console, no upload endpoint.",
+      "importance": "critically_important"
+    },
+    {
+      "id": "Q5",
+      "dimension": "internal_consistency",
+      "statement": "One naming convention runs across the source for the same idea, so a saved solution is not a save in one module and a bookmark in another, and the stored enum spellings the obligation list pins for output kind, temperature band, deployment and every status are the spellings the code uses end to end.",
+      "importance": "important"
+    },
+    {
+      "id": "Q6",
+      "dimension": "internal_consistency",
+      "statement": "The row-ownership rule is written once and called from every private list and every addressed row, rather than restated per route.",
+      "importance": "critically_important"
+    },
+    {
+      "id": "Q7",
+      "dimension": "internal_consistency",
+      "statement": "The module, energy and carbon arithmetic is written once in a server-side module and read by both the calculator endpoint and the view layer, rather than reimplemented in the client.",
+      "importance": "important"
+    },
+    {
+      "id": "Q8",
+      "dimension": "internal_consistency",
+      "statement": "The pinned literals the obligation list names, the three mail subject prefixes, the two reference prefixes, the nine menu labels and the pinned copy strings, are declared once and read from that declaration in every path that needs them, rather than duplicated as inline literals.",
+      "importance": "important"
+    }
+  ]
+}

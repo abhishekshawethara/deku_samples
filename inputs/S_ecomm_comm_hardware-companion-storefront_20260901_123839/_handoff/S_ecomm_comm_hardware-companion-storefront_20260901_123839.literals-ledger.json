@@ -1,0 +1,1766 @@
+{
+  "_schema": "literals-ledger-v1",
+  "literals": [
+    {
+      "value": "deku-demo-pw-2026",
+      "class": "credential",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md"
+      ]
+    },
+    {
+      "value": "/app/USER_README.md",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "customer@example.com",
+      "class": "account",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "customer2@example.com",
+      "class": "account",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md"
+      ]
+    },
+    {
+      "value": "USD",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "That camera is registered to someone else.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "We do not recognise that serial number.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "SMTP_HOST",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "SMTP_PORT",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "Order confirmed:",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "confirmed",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "workflows.yaml",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "PAYMENTS_API_URL",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "PAYMENTS_API_KEY",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "PAYMENTS_API_SECRET",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "PAYMENTS_ADMIN_USER",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "PAYMENTS_ADMIN_PASSWORD",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "/",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "solution/app/USER_README.md",
+        "task.toml",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/shop",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/shop/<handle>",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/cart",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/checkout/where-it-goes",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/checkout/how-it-gets-there",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/checkout/payment",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/orders/<number>",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/downloads",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/downloads/<version>",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/doctor",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/sign-in",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "solution/app/USER_README.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/sign-up",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/account",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/account/orders",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py"
+      ]
+    },
+    {
+      "value": "/account/cameras",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "/account/cameras/<serial>",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "the table",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "June 1, 2026",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "See you soon.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "$378.00",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "$37.80",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "$415.80",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "VE-2026-0002",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Order VE-2026-0002 is confirmed. We have emailed customer@example.com.",
+      "class": "account",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "VA2609KTMHX4",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Not yet connected",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Nothing is on the table right now.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Your cart is empty.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "No cameras registered yet.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "/api",
+      "class": "route",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "DATABASE_URL",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "SMTP_USER",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "SMTP_PASS",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "GET /api/health",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "200",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "3780",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "409",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "stdout",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "request_id",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "page_size",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py"
+      ]
+    },
+    {
+      "value": "20",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "solution/app/USER_README.md",
+        "task.toml",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "100",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "next_cursor",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "has_more",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "37800",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "active",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "discontinued",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "rubric.json"
+      ]
+    },
+    {
+      "value": "VE-<year>-<four digits>",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "pending",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "rubric.json"
+      ]
+    },
+    {
+      "value": "cancelled",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "unpaid",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "invoiced",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "manufactured",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "sold",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml",
+        "rubric.json"
+      ]
+    },
+    {
+      "value": "registered",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "workflows.yaml",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "blocked",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "solution/app/USER_README.md",
+        "workflows.yaml",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "Newly Added",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Improvements",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Bug Fixes",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Known Issues",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "started",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py"
+      ]
+    },
+    {
+      "value": "succeeded",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py"
+      ]
+    },
+    {
+      "value": "failed",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "rubric.json"
+      ]
+    },
+    {
+      "value": "Vela A1",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "flagship",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "2032-06-01",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "VELA-A1-GRAPHITE",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "89900",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "4",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "solution/app/USER_README.md",
+        "task.toml",
+        "workflows.yaml",
+        "rubric.json",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "VELA-A1-SAND",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "6",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "solution/app/USER_README.md",
+        "task.toml",
+        "workflows.yaml",
+        "rubric.json",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "VELA-A1-YELLOW",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "solution/app/USER_README.md",
+        "task.toml",
+        "workflows.yaml",
+        "rubric.json",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "Vela Cricket",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "compact",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "VELA-CRICKET-GRAPHITE",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "29900",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "12",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "task.toml",
+        "workflows.yaml",
+        "rubric.json",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "VELA-CRICKET-YELLOW",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "0",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "solution/app/USER_README.md",
+        "task.toml",
+        "workflows.yaml",
+        "rubric.json",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "Monitor Mount",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "mount",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "rubric.json"
+      ]
+    },
+    {
+      "value": "2029-09-01",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "VELA-CASE-STD",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "7900",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "15",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml",
+        "rubric.json",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "VELA-CABLE-1M",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1900",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "VELA-CABLE-2M",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2400",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "VELA-PROTECT-2",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "298",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "10000",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "49999",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Standard",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Express",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2500",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "VE-2026-0001",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "32890",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "VC2609PVDA7Q",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "7.0",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "VA2609NRWB2Z",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "VC2609WJ3DKT",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "solution/app/USER_README.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "23456789ABCDEFGHJKLMNPQRSTUVWXYZ",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2.0.0",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "2000",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2024-12-11",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "arranger-2.0.0.dmg",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "154876459",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1.4.4",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1440",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2024-06-26",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1.4.3",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "1430",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2024-05-20",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1.4.2",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "1420",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "9f2a41c0d83bb6f9127ae5c40d92b8e31f6a7c05d4e8931b2f4d0e6a1c8b39f2",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "7.2",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "720",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "6.11",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "700",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "611",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2.4",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "240",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py"
+      ]
+    },
+    {
+      "value": "2.0",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "task.toml",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "All rights reserved",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Shop",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "test_storefront.py",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "99+",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "From ",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Only 4 left",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Sold out",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "We no longer sell this. We will support it until September 1, 2029.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Estimated. We will show the exact amount once we know where it is going.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Protect this shipment against loss, theft and damage for ",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Placing your order",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Keep track of this order",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Arranger requires macOS 13.0 or later. Download the app below.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Download Arranger 2.0.0",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Arranger is a macOS application.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Download Vela Cricket Firmware 7.2",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Firmware install (web-based)",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Only use this if Arranger cannot see your camera.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Released on ",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "The Vela team.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "This replaces the software inside your camera. It takes about ninety seconds. Do not unplug the camera and do not let your computer go to sleep. If you are on a laptop, plug it in.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "I understand",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Writing, <percent>. Do not unplug your camera.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Done. Your camera is running 7.2.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "The camera disconnected. Plug it back in and reload this page. Your camera is very probably fine.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Update available",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "workflows.yaml"
+      ]
+    },
+    {
+      "value": "Remove from my account",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "That did not work.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "rubric.json"
+      ]
+    },
+    {
+      "value": "That page does not exist.",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "rubric.json"
+      ]
+    },
+    {
+      "value": "POST /api/auth/login",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "POST /api/auth/signup",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "GET /api/products",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "POST /api/cart/lines",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "POST /api/cart/delivery",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "POST /api/orders",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "GET /api/account/devices",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "POST /api/account/devices",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "GET /api/releases",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "GET /api/firmware/manifest",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "POST /api/flash-sessions",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "POST /api/flash-sessions/{id}/complete",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "Idempotency-Key",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "conftest.py",
+        "if_constraints.json"
+      ]
+    },
+    {
+      "value": "APP_PUBLIC_URL",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "4173",
+      "class": "amount",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": "APP_PUBLIC_PORT",
+      "class": "env_var",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md",
+        "task.toml"
+      ]
+    },
+    {
+      "value": ".browser_screenshots/",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": ".downloads/",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    },
+    {
+      "value": "0.0.0.0",
+      "class": "fixture",
+      "verifier_only": false,
+      "carriers": [
+        "instruction.md"
+      ]
+    }
+  ]
+}

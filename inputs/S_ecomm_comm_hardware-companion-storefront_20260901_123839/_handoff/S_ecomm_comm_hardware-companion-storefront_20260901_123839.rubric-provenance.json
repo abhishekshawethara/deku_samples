@@ -1,0 +1,138 @@
+{
+  "R1": {
+    "items": [
+      "C-FE-14",
+      "C-FE-15",
+      "C-FE-17"
+    ],
+    "anchor": "letter.two_layer_copy",
+    "facet": "presentation"
+  },
+  "R2": {
+    "items": [
+      "C-FE-05",
+      "C-FE-06",
+      "C-FE-07",
+      "C-FE-10"
+    ],
+    "anchor": "letter_stage.layers",
+    "facet": "presentation"
+  },
+  "R3": {
+    "items": [
+      "C-FE-40",
+      "C-FE-41"
+    ],
+    "anchor": "catalogue.arrangement",
+    "facet": "ordering"
+  },
+  "R4": {
+    "items": [
+      "C-FE-45",
+      "C-UX-05"
+    ],
+    "anchor": "product.spec_table",
+    "facet": "presentation"
+  },
+  "R5": {
+    "items": [
+      "C-FE-51",
+      "C-FE-52"
+    ],
+    "anchor": "cart.inline_quantity",
+    "facet": "behaviour"
+  },
+  "R6": {
+    "items": [
+      "C-FE-50"
+    ],
+    "anchor": "product.support_note",
+    "facet": "presentation"
+  },
+  "R7": {
+    "items": [
+      "C-FE-80"
+    ],
+    "anchor": "installer.capability_gate",
+    "facet": "behaviour"
+  },
+  "R8": {
+    "items": [
+      "C-FE-53"
+    ],
+    "anchor": "cart.estimate_note",
+    "facet": "presentation"
+  },
+  "R9": {
+    "items": [
+      "C-FE-95"
+    ],
+    "anchor": "camera_card.warranty_chip",
+    "facet": "presentation"
+  },
+  "R10": {
+    "items": [
+      "C-UX-01",
+      "C-UX-02",
+      "C-UX-03"
+    ],
+    "anchor": "product.register",
+    "facet": "presentation"
+  },
+  "R11": {
+    "items": [
+      "C-UX-14",
+      "C-UX-15"
+    ],
+    "anchor": "ground.inversion",
+    "facet": "presentation"
+  },
+  "R12": {
+    "items": [
+      "C-UX-16",
+      "C-UX-17"
+    ],
+    "anchor": "palette.accent",
+    "facet": "presentation"
+  },
+  "R13": {
+    "items": [
+      "C-UX-07",
+      "C-UX-08"
+    ],
+    "anchor": "motion.character",
+    "facet": "presentation"
+  },
+  "R14": {
+    "items": [
+      "C-UX-13",
+      "C-UX-19"
+    ],
+    "anchor": "a11y.meaning_in_words",
+    "facet": "presentation"
+  },
+  "R15": {
+    "items": [
+      "C-UX-22",
+      "C-UX-23"
+    ],
+    "anchor": "shell.rail_collapse",
+    "facet": "presentation"
+  },
+  "R16": {
+    "items": [
+      "C-FE-100"
+    ],
+    "anchor": "cart.notice_persistence",
+    "facet": "behaviour"
+  },
+  "R17": {
+    "items": [
+      "C-FE-02",
+      "C-FE-03",
+      "C-FE-04"
+    ],
+    "anchor": "letter.editorial_purity",
+    "facet": "presentation"
+  }
+}

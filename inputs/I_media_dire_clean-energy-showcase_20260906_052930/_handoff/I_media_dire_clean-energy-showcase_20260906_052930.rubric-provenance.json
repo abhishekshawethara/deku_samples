@@ -1,0 +1,169 @@
+{
+  "_schema": "rubric-provenance-v1",
+  "R1": {
+    "items": [
+      "C-UX-03",
+      "C-UX-04",
+      "C-UX-05",
+      "C-UX-06",
+      "C-FE-12",
+      "C-FE-13"
+    ],
+    "anchor": "the showcase routes",
+    "facet": "type personality"
+  },
+  "R2": {
+    "items": [
+      "C-UX-01",
+      "C-UX-02",
+      "C-UX-07",
+      "C-UX-08",
+      "C-FE-14",
+      "C-FE-73"
+    ],
+    "anchor": "the solutions explorer",
+    "facet": "density and register"
+  },
+  "R3": {
+    "items": [
+      "C-UX-09",
+      "C-UX-10",
+      "C-FE-36",
+      "C-FE-37",
+      "C-FE-38"
+    ],
+    "anchor": "the working surfaces",
+    "facet": "motion character"
+  },
+  "R4": {
+    "items": [
+      "C-UX-11",
+      "C-UX-12",
+      "C-UX-13",
+      "C-FE-04",
+      "C-FE-06",
+      "C-FE-34",
+      "C-FE-35"
+    ],
+    "anchor": "the home route reactor",
+    "facet": "scroll binding"
+  },
+  "R5": {
+    "items": [
+      "C-UX-14",
+      "C-UX-15",
+      "C-UX-16",
+      "C-UX-17",
+      "C-UX-18",
+      "C-UX-19",
+      "C-UX-20",
+      "C-UX-21",
+      "C-FE-16",
+      "C-FE-17",
+      "C-FE-18",
+      "C-FE-19",
+      "C-FE-135"
+    ],
+    "anchor": "the whole site",
+    "facet": "palette roles"
+  },
+  "R6": {
+    "items": [
+      "C-UX-22",
+      "C-UX-23",
+      "C-UX-24",
+      "C-UX-25",
+      "C-FE-01",
+      "C-FE-52",
+      "C-FE-55"
+    ],
+    "anchor": "the home route",
+    "facet": "ground and inversion"
+  },
+  "R7": {
+    "items": [
+      "C-TR-17",
+      "C-TR-18",
+      "C-TR-19",
+      "C-TR-20",
+      "C-FE-20",
+      "C-FE-47",
+      "C-FE-48",
+      "C-FE-116",
+      "C-FE-129",
+      "C-FE-130",
+      "C-FE-131",
+      "C-FE-132"
+    ],
+    "anchor": "the drawn artwork",
+    "facet": "asset substitution"
+  },
+  "R8": {
+    "items": [
+      "C-UX-27",
+      "C-UX-28",
+      "C-UX-29",
+      "C-UX-30",
+      "C-UX-31",
+      "C-UX-32",
+      "C-FE-119"
+    ],
+    "anchor": "the whole site",
+    "facet": "accessibility floors"
+  },
+  "R9": {
+    "items": [
+      "C-UX-33",
+      "C-FE-30",
+      "C-FE-74",
+      "C-FE-112",
+      "C-FE-113",
+      "C-FE-114",
+      "C-FE-115",
+      "C-FE-117",
+      "C-FE-118"
+    ],
+    "anchor": "the whole site",
+    "facet": "responsive behaviour"
+  },
+  "R10": {
+    "items": [
+      "C-UX-26",
+      "C-FE-15",
+      "C-FE-21",
+      "C-FE-22",
+      "C-FE-23",
+      "C-FE-24",
+      "C-FE-25",
+      "C-FE-26",
+      "C-FE-29",
+      "C-FE-33",
+      "C-FE-133"
+    ],
+    "anchor": "the fixed chrome",
+    "facet": "iconography"
+  },
+  "R11": {
+    "items": [
+      "C-FE-02",
+      "C-FE-05",
+      "C-FE-08",
+      "C-FE-27",
+      "C-FE-28",
+      "C-FE-49"
+    ],
+    "anchor": "the first load",
+    "facet": "loading and layering"
+  },
+  "R12": {
+    "items": [
+      "C-UF-26",
+      "C-UF-27",
+      "C-UF-28",
+      "C-FE-106",
+      "C-FE-134"
+    ],
+    "anchor": "every list and form",
+    "facet": "empty and refusal states"
+  }
+}

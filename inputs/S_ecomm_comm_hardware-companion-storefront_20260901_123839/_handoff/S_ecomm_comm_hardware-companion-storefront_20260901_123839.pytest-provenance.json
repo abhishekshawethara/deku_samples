@@ -1,0 +1,261 @@
+{
+  "_schema": "pytest-provenance-v1",
+  "tests": {
+    "test_health_route_and_reserved_directories_exist": [
+      "C-DC-01",
+      "C-DC-02",
+      "C-DC-03",
+      "C-DC-04",
+      "C-DC-05",
+      "C-DC-07",
+      "C-DC-08",
+      "C-DC-09",
+      "C-DC-10",
+      "C-DC-11",
+      "C-DC-12",
+      "C-DC-13",
+      "C-DC-14",
+      "C-DC-15",
+      "C-DC-18",
+      "C-DC-29",
+      "C-DC-31",
+      "C-TR-01",
+      "C-TR-02",
+      "C-TR-14",
+      "C-TR-15",
+      "C-TR-16",
+      "C-TR-17",
+      "C-TR-31",
+      "C-TR-32",
+      "C-TR-33",
+      "C-TR-34",
+      "C-TR-35",
+      "C-TR-36",
+      "C-TR-37",
+      "C-TR-38",
+      "C-CN-10"
+    ],
+    "test_seeded_catalogue_rows_exist_as_specified": [
+      "C-DM-33",
+      "C-DM-34",
+      "C-DM-35",
+      "C-DM-36",
+      "C-DM-37",
+      "C-DM-38",
+      "C-DM-39",
+      "C-DM-40",
+      "C-DM-41",
+      "C-DM-42",
+      "C-DM-43",
+      "C-DM-05",
+      "C-DM-07",
+      "C-DM-09",
+      "C-DM-10",
+      "C-DM-29",
+      "C-CN-01",
+      "C-CN-08",
+      "C-TR-09",
+      "C-TR-10"
+    ],
+    "test_guest_checkout_creates_order_with_pinned_totals": [
+      "C-CF-12",
+      "C-CF-15",
+      "C-DM-14",
+      "C-TR-20",
+      "C-TR-21",
+      "C-DC-21",
+      "C-DM-11",
+      "C-DM-12",
+      "C-DM-15",
+      "C-DM-16",
+      "C-TR-22",
+      "C-TR-23",
+      "C-CN-02"
+    ],
+    "test_order_totals_reconcile_with_stored_lines": [
+      "C-TR-24",
+      "C-DM-17",
+      "C-DM-18",
+      "C-TR-18",
+      "C-TR-19",
+      "C-DM-19",
+      "C-TR-08"
+    ],
+    "test_confirmed_order_invoice_exists_in_billing_platform_for_total": [
+      "C-CF-22",
+      "C-CF-23",
+      "C-CF-24",
+      "C-CF-25",
+      "C-CF-26",
+      "C-TR-25",
+      "C-DC-33",
+      "C-CF-63",
+      "C-CF-64",
+      "C-CF-65",
+      "C-CF-66",
+      "C-CF-67",
+      "C-CF-68",
+      "C-CF-69",
+      "C-TR-03"
+    ],
+    "test_stock_commit_moves_available_and_committed_on_order": [
+      "C-CF-16",
+      "C-CF-17",
+      "C-CF-20",
+      "C-DM-08"
+    ],
+    "test_confirmed_order_email_delivered_to_buyer_only": [
+      "C-CF-47",
+      "C-CF-48",
+      "C-CF-49",
+      "C-CF-50",
+      "C-CF-51",
+      "C-CF-52",
+      "C-CF-53",
+      "C-CF-54",
+      "C-CF-55",
+      "C-TR-04",
+      "C-TR-05",
+      "C-TR-06",
+      "C-TR-07",
+      "C-CN-06",
+      "C-TR-12"
+    ],
+    "test_no_email_sent_for_cart_change_or_device_registration": [
+      "C-CF-56",
+      "C-CF-57",
+      "C-CF-58",
+      "C-CF-59",
+      "C-CN-05",
+      "C-CN-09"
+    ],
+    "test_repeat_idempotency_key_creates_no_second_order_or_invoice": [
+      "C-CF-27",
+      "C-CF-28",
+      "C-CF-29",
+      "C-TR-30",
+      "C-DC-28"
+    ],
+    "test_concurrent_checkout_for_last_unit_allows_exactly_one": [
+      "C-CF-18",
+      "C-CF-19",
+      "C-CF-21",
+      "C-TR-28",
+      "C-TR-29"
+    ],
+    "test_cart_price_change_is_surfaced_and_order_refused": [
+      "C-CF-06",
+      "C-CF-07",
+      "C-CF-11",
+      "C-CF-13",
+      "C-CF-14"
+    ],
+    "test_device_registration_claims_unowned_serial_and_writes_one_ownership_row": [
+      "C-CF-30",
+      "C-CF-36",
+      "C-RL-12",
+      "C-CF-38",
+      "C-DM-30"
+    ],
+    "test_registering_serial_owned_by_another_account_denied_and_row_untouched": [
+      "C-CF-32",
+      "C-RL-18",
+      "C-RL-19"
+    ],
+    "test_cross_customer_device_read_denied_at_api": [
+      "C-RL-15",
+      "C-UF-26",
+      "C-DC-22"
+    ],
+    "test_unknown_and_malformed_serial_refused_before_lookup": [
+      "C-CF-35",
+      "C-DM-20"
+    ],
+    "test_blocked_device_registration_refused": [
+      "C-DM-21"
+    ],
+    "test_concurrent_registration_of_one_serial_allows_exactly_one": [
+      "C-CF-37",
+      "C-OV-10",
+      "C-DM-22",
+      "C-OV-09"
+    ],
+    "test_unauthenticated_account_routes_denied_at_api": [
+      "C-RL-07",
+      "C-RL-08",
+      "C-RL-09",
+      "C-CF-03",
+      "C-CF-04",
+      "C-DC-30",
+      "C-UF-23",
+      "C-UF-24"
+    ],
+    "test_cross_customer_order_read_denied_at_api": [
+      "C-RL-17",
+      "C-UF-25",
+      "C-UF-15"
+    ],
+    "test_release_archive_orders_by_build_descending_across_shared_date": [
+      "C-CF-60",
+      "C-CF-61",
+      "C-CF-62",
+      "C-DM-23",
+      "C-DC-24"
+    ],
+    "test_seeded_releases_and_firmware_rows_exist_as_specified": [
+      "C-DM-57",
+      "C-DM-58",
+      "C-DM-59",
+      "C-DM-60",
+      "C-DM-61",
+      "C-DM-62",
+      "C-DM-63",
+      "C-DM-64",
+      "C-DM-65",
+      "C-DM-66"
+    ],
+    "test_firmware_manifest_entries_match_stored_rows": [
+      "C-TR-26",
+      "C-TR-27",
+      "C-DM-26",
+      "C-DC-25"
+    ],
+    "test_flash_session_complete_records_reported_version_not_requested": [
+      "C-CF-43",
+      "C-CF-44",
+      "C-DM-27",
+      "C-DC-27"
+    ],
+    "test_flash_session_failure_leaves_device_firmware_unchanged": [
+      "C-CF-45",
+      "C-DM-28"
+    ],
+    "test_flash_session_downgrade_below_min_firmware_refused_and_device_untouched": [
+      "C-CF-41",
+      "C-CF-42"
+    ],
+    "test_flash_session_model_mismatch_refused_and_no_session_row": [
+      "C-CF-39",
+      "C-DC-26"
+    ],
+    "test_seeded_devices_and_ownership_rows_exist_as_specified": [
+      "C-DM-51",
+      "C-DM-52",
+      "C-DM-31",
+      "C-DM-32",
+      "C-CN-11",
+      "C-CN-12"
+    ],
+    "test_seed_is_idempotent_no_duplicate_rows": [
+      "C-DM-67",
+      "C-DM-03",
+      "C-DM-04",
+      "C-DM-06",
+      "C-OV-11",
+      "C-OV-12",
+      "C-OV-13",
+      "C-CN-03",
+      "C-CN-04"
+    ]
+  }
+}
