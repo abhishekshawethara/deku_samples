@@ -1,0 +1,377 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import ProductMedia from '../../components/ProductMedia.astro';
+import { formatMoney, formatDate } from '../../lib/view.js';
+import { query } from '../../../server/lib/db.js';
+
+const { handle } = Astro.params;
+
+const { rows } = await query(
+  `SELECT p.id, p.handle, p.title, p.subtitle, p.kind, p.status, p.support_until,
+          v.id AS variant_id, v.sku, v.option_value, v.price_minor,
+          COALESCE(i.available,0) AS available
+     FROM product p
+     JOIN variant v ON v.product_id = p.id
+     LEFT JOIN inventory_level i ON i.variant_id = v.id
+    WHERE p.handle = $1 AND p.kind != 'protection'
+    ORDER BY v.position, v.id`,
+  [handle],
+);
+
+if (!rows.length) {
+  return new Response(null, { status: 404 });
+}
+
+const product = {
+  id: rows[0].id,
+  handle: rows[0].handle,
+  title: rows[0].title,
+  subtitle: rows[0].subtitle,
+  kind: rows[0].kind,
+  status: rows[0].status,
+  support_until: rows[0].support_until,
+};
+const discontinued = product.status === 'discontinued';
+
+const variants = rows.map((r) => ({
+  sku: r.sku,
+  option_value: r.option_value,
+  price_minor: r.price_minor,
+  available: r.available,
+  discontinued,
+  // Precomputed so the markup carries no comparison operators, which the
+  // template compiler reads as tags.
+  stock_label: discontinued
+    ? 'Discontinued'
+    : r.available === 0
+      ? 'Sold out'
+      : `${r.available} in stock`,
+}));
+
+// A parameter naming a variant that does not exist renders the default and
+// drops the parameter without comment.
+const asked = Astro.url.searchParams.get('variant');
+const selected = variants.find((v) => v.sku === asked) ?? variants[0];
+
+const { rows: blocks } = await query(
+  'SELECT kind, payload FROM product_block WHERE product_id = $1 ORDER BY position',
+  [product.id],
+);
+
+const lede = blocks.find((b) => b.kind === 'lede');
+const specGroups = blocks.filter((b) => b.kind === 'spec_group');
+const inTheBox = blocks.find((b) => b.kind === 'in_the_box');
+const compatibility = blocks.find((b) => b.kind === 'compatibility');
+const supportNote = blocks.find((b) => b.kind === 'support_note');
+
+// Availability is a state, not a boolean.
+function stateFor(v) {
+  if (discontinued) return { key: 'discontinued', label: 'Discontinued' };
+  if (v.available <= 0) return { key: 'sold_out', label: 'Sold out' };
+  if (v.available <= 10) return { key: 'low', label: `Only ${v.available} left` };
+  return { key: 'available', label: 'Available' };
+}
+const state = stateFor(selected);
+const maxQty = Math.max(1, Math.min(10, selected.available));
+
+const supportLine =
+  discontinued && product.support_until
+    ? `We no longer sell this. We will support it until ${formatDate(product.support_until)}.`
+    : null;
+---
+
+<Shell title={`${product.title} — Vela`} current="shop" description={product.subtitle}>
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/shop">Shop</a> <span aria-hidden="true">/</span> <span>{product.title}</span>
+  </nav>
+
+  <div class="product" data-product data-variants={JSON.stringify(variants)}>
+    <!-- A keyboard navigable gallery on one side. -->
+    <section class="gallery" aria-label={`${product.title} images`}>
+      <ProductMedia handle={product.handle} option={selected.option_value} ratio="4 / 3"
+        alt={`${product.title} in ${selected.option_value}`} />
+      <ul class="thumbs">
+        {variants.map((v) => (
+          <li>
+            <a class:list={['thumb', { 'thumb-current': v.sku === selected.sku }]}
+              href={`/shop/${product.handle}?variant=${v.sku}`}
+              aria-current={v.sku === selected.sku ? 'true' : undefined}
+              aria-label={`${product.title} in ${v.option_value}`}>
+              <ProductMedia handle={product.handle} option={v.option_value} ratio="1 / 1" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="buy" aria-label="Buy">
+      <h1>{product.title}</h1>
+      <p class="subtitle muted">{product.subtitle}</p>
+
+      <p class="price money" data-price>{formatMoney(selected.price_minor)}</p>
+      <p class="availability">
+        <span class:list={['chip', state.key === 'low' && 'chip-progress']} data-availability>
+          {state.label}
+        </span>
+      </p>
+
+      {supportLine && <p class="support-note notice">{supportLine}</p>}
+
+      <form method="post" action="/cart/add" data-buy-form>
+        {/* One radio group per option rather than a select at five or fewer. */}
+        {variants.length > 1 && (
+          <fieldset class="options">
+            <legend>Finish</legend>
+            {variants.map((v) => (
+              <label class="option">
+                <input type="radio" name="sku" value={v.sku} checked={v.sku === selected.sku} />
+                <span class="option-face">
+                  <span class="option-name">{v.option_value}</span>
+                  <span class="option-state xsmall muted">{v.stock_label}</span>
+                </span>
+              </label>
+            ))}
+          </fieldset>
+        )}
+        {variants.length === 1 && <input type="hidden" name="sku" value={selected.sku} />}
+
+        <div class="qty-row">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1" max={maxQty}
+            inputmode="numeric" disabled={state.key !== 'available' && state.key !== 'low'} />
+        </div>
+
+        <div class="buy-row">
+          <button type="submit" class="button button-primary buy-submit" data-buy-submit
+            disabled={state.key === 'sold_out' || state.key === 'discontinued'}>
+            {state.key === 'sold_out' ? 'Sold out' : state.key === 'discontinued' ? 'Discontinued' : 'Add to cart'}
+          </button>
+          {state.key === 'sold_out' && (
+            <button type="button" class="button button-quiet">Tell me when it is back</button>
+          )}
+        </div>
+
+        <!-- An unavailable control always says why. -->
+        {state.key === 'discontinued' && (
+          <p class="xsmall muted why">We stopped making this. It cannot be added to a cart.</p>
+        )}
+        {state.key === 'sold_out' && (
+          <p class="xsmall muted why">This finish is out of stock, so it cannot be added to a cart.</p>
+        )}
+
+        <p class="buy-status" data-buy-status role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+
+  <div class="detail">
+    {lede && <p class="lede">{lede.payload.text}</p>}
+
+    {specGroups.length > 0 && (
+      <section class="specs" aria-label="Specifications">
+        <h2>Specifications</h2>
+        <!-- A real table with figures aligned, never a wall of prose. -->
+        {specGroups.map((g) => (
+          <table class="data">
+            <caption>{g.payload.title}</caption>
+            <tbody>
+              {g.payload.rows.map(([k, v]) => (
+                <tr>
+                  <th scope="row">{k}</th>
+                  <td class="num">{v}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ))}
+      </section>
+    )}
+
+    <div class="detail-side">
+      {inTheBox && (
+        <section aria-label="In the box">
+          <h2>In the box</h2>
+          <ul class="box-list">
+            {inTheBox.payload.items.map((i) => <li>{i}</li>)}
+          </ul>
+        </section>
+      )}
+
+      {compatibility && (
+        <section aria-label="Compatibility">
+          <h2>Compatibility</h2>
+          <table class="data">
+            <tbody>
+              <tr><th scope="row">Operating system</th><td class="num">{compatibility.payload.min_os} or later</td></tr>
+              <tr><th scope="row">Arranger</th><td class="num version">{compatibility.payload.min_app} or later</td></tr>
+            </tbody>
+          </table>
+        </section>
+      )}
+
+      {supportNote && (
+        <section aria-label="Support">
+          <h2>Support</h2>
+          <p class="small">{supportNote.payload.text}</p>
+        </section>
+      )}
+    </div>
+  </div>
+
+  <script>
+    import '../../scripts/product.js';
+  </script>
+</Shell>
+
+<style>
+  .crumbs {
+    font-size: var(--text-sm);
+    color: var(--ink-2);
+    margin-bottom: var(--u4);
+  }
+  .crumbs a { color: var(--ink-2); }
+
+  .product {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--u8);
+    align-items: start;
+    margin-bottom: var(--u8);
+  }
+
+  .gallery .thumbs {
+    list-style: none;
+    display: flex;
+    gap: var(--u2);
+    padding: 0;
+    margin: var(--u2) 0 0;
+  }
+  .thumb {
+    display: block;
+    width: 56px;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .thumb-current { border-color: var(--ink); }
+
+  .buy h1 { font-size: var(--text-xl); }
+  .subtitle { margin: var(--u) 0 var(--u4); }
+  .price {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin: 0 0 var(--u2);
+  }
+  .availability { margin: 0 0 var(--u4); }
+
+  .support-note {
+    border-left-color: var(--rule-strong);
+    margin-bottom: var(--u4);
+  }
+
+  .options {
+    border: 0;
+    padding: 0;
+    margin: 0 0 var(--u4);
+  }
+  .options legend {
+    padding: 0;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: var(--u2);
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: var(--u3);
+    margin-bottom: var(--u2);
+    min-height: 44px;
+    padding: 0 var(--u3);
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    cursor: pointer;
+    font-weight: 400;
+    transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease);
+  }
+  .option input {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    margin: 0;
+    accent-color: var(--ink);
+  }
+  .option-face {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--u3);
+    flex: 1;
+    min-width: 0;
+  }
+  /* Marked with weight and a rule as well as colour. */
+  .option:has(input:checked) {
+    border-color: var(--ink);
+    background: var(--surface-2);
+    box-shadow: inset 2px 0 0 var(--ink);
+  }
+  .option:has(input:checked) .option-name { font-weight: 700; }
+  .option-name { font-weight: 600; }
+
+  .qty-row {
+    margin-bottom: var(--u4);
+    max-width: 128px;
+  }
+
+  .buy-row {
+    display: flex;
+    gap: var(--u2);
+    flex-wrap: wrap;
+  }
+  .buy-submit { min-width: 168px; }
+  .why { margin: var(--u2) 0 0; }
+
+  .buy-status:empty { display: none; }
+  .buy-status { margin: var(--u3) 0 0; }
+
+  .detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--u8);
+    align-items: start;
+    border-top: 1px solid var(--rule);
+    padding-top: var(--u6);
+  }
+  .lede {
+    grid-column: 1 / -1;
+    margin: 0 0 var(--u4);
+    font-size: var(--text-md);
+    max-width: 68ch;
+    line-height: 1.65;
+  }
+  .detail h2 {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-bottom: var(--u2);
+  }
+  .detail table.data { margin-bottom: var(--u5); }
+  .detail table.data caption {
+    text-align: left;
+    font-weight: 600;
+    padding-bottom: var(--u);
+    font-size: var(--text-sm);
+  }
+  .detail-side section { margin-bottom: var(--u5); }
+  .box-list {
+    margin: 0;
+    padding-left: var(--u4);
+    font-size: var(--text-sm);
+  }
+  .box-list li { margin-bottom: var(--u); }
+
+  @media (max-width: 900px) {
+    .product,
+    .detail { grid-template-columns: minmax(0, 1fr); gap: var(--u6); }
+  }
+</style>

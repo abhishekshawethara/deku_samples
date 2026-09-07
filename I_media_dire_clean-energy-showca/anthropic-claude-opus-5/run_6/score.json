@@ -1,0 +1,159 @@
+{
+  "combined_score": 0.8605,
+  "weights": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "weights_applied": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "components": {
+    "workflow": {
+      "score": 0.7272727272727273,
+      "passed": 8,
+      "total": 11
+    },
+    "pytest": {
+      "score": 0.9876543209876543,
+      "passed": 80,
+      "total": 81
+    },
+    "rubric": {
+      "score": 1.0,
+      "criteria": 12,
+      "passed": 3,
+      "failed": 0,
+      "unresolved": 9,
+      "coverage": 0.25,
+      "weighted_coverage": 0.147059,
+      "machine_outcomes": {
+        "PASS": 3,
+        "FAIL": 0,
+        "INSUFFICIENT_EVIDENCE": 9,
+        "EVALUATOR_ERROR": 0
+      },
+      "resolution_methods": {
+        "machine_unresolved": 9,
+        "active_acquisition": 3
+      },
+      "needs_human_eval": 0,
+      "council": null
+    }
+  },
+  "reward": 0.7273,
+  "invalid": [],
+  "degraded": [
+    "workflow_timeout",
+    "browser_substeps_ungraded=2/54 (4% <= 40% tolerance); the workflows holding them are counted as failed, so the reward is a lower bound"
+  ],
+  "needs_human_review": 0,
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The routes and relevant textual structures were verified, but the required direct evidence\u2014computed font family/weight measurements and usable visual screenshots for the actual headings versus their running text on all three routes\u2014was not obtainable before the browser budget ended. The available measurements are for navigation/link elements rather than the criterion\u2019s heading/body pairs, so they do not settle whether all showcase-route headings are heavier grotesques than body copy.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the required showcase routes exist and loaded successfully: /company (title \u201cCompany | Zettajoule\u201d), /technology (\u201cTechnology | Zettajoule\u201d), and /team (\u201cOur Team | Zettajoule\u201d).",
+        "Route snapshots identified heading/body pairings such as \u201cThe vision\u201d above its paragraph on /company, \u201cThe fuel\u201d above running copy on /technology, and the team-page hero plus descriptive running text on /team.",
+        "Measured accessible interactive text used the same sans-serif system stack (-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif), with observed weights of 400 and 600 and bounding boxes recorded; however, the browser references did not expose the actual non-interactive headings and paragraphs needed for a direct computed-style comparison.",
+        "Screenshots were requested for visual corroboration, but their image content was unavailable in the tool transport, so appearance could not be defensibly judged from them."
+      ]
+    },
+    {
+      "criterion": "R2",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The solutions-side condition is directly supported, but the criterion requires a comparison against the company route's spacing. Because no company layout/spacing observation was captured, there is insufficient evidence to determine whether it leaves generous space around each block or shares the same spacing rhythm.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "At a 1440\u00d71200 viewport on `/solutions?output_kind=hydrogen`, the output filter produced the full filtered set of 2 cards (`Showing 2 of 8 solutions (1 filter on)`).",
+        "The two filtered cards were arranged side by side: first card bounds x=169\u2013526 and second x=542\u2013898, both beginning at y=709; their Open controls ended at y=1066, so the complete filtered card set fit within the 1200px viewport.",
+        "Navigation to `/company` succeeded, but evidence collection ended before the company section spacing could be measured or observed."
+      ]
+    },
+    {
+      "criterion": "R4",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The route and scroll behavior were verified, but the browser evidence did not provide observable reactor-stage states in both directions. Therefore, the required reversible scroll-linked sequence cannot be defensibly judged true or false.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "The home route `/` loaded and exposed a hero reactor area, including the text \u201cHigh-temperature gas-cooled reactor\u201d and \u201cThe reactor sequence in words.\u201d",
+        "Direct scrolling was confirmed: after one PageDown, the \u201cHeat\u201d link moved from y=314 to y=250; after another PageDown, \u201cThe company story\u201d moved from y=2246 to y=1459; pressing Home returned it to y=3033.",
+        "Motion capture during both a PageDown and several ArrowDown inputs reported `animation_count: 0`; available browser observations did not expose the reactor\u2019s visual stages or establish whether its opening reversed with upward scrolling versus continuing on a timer."
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion requires links on all three routes to use one blue hue and deepen to a shade of that hue on hover. Available measurements cover only static states on company and newsroom; they also include several link presentation types whose text itself is dark or white on blue, making the intended scope ambiguous. Since /account and actual hover-state colors were not measured, the observations do not defensibly settle whether the cross-route blue and deeper-hover requirement is met.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the relevant routes from navigation hrefs as /company, /news, and /account.",
+        "On /company, the active Company navigation link measured color rgb(47, 111, 219), while ordinary News and Account navigation links measured rgb(35, 40, 46). The 'Why that matters' CTA measured white text on rgb(47, 111, 219). Bounding boxes were collected for measured links.",
+        "On /news, article-title links such as 'First module order signed' and 'Helium loop completes a 1000 hour run' measured rgb(35, 40, 46), while the 'Read the story' CTA measured white text on rgb(47, 111, 219). Bounding boxes and an element screenshot were collected.",
+        "The account route was reached, but evidence collection ended before its links could be measured. No valid pointer-hover measurements were obtained on the three routes."
+      ]
+    },
+    {
+      "criterion": "R6",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R7",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The composite evaluation requires direct confirmation that the logo, reactor, technical diagrams, and every team portrait are vector shapes or generated gradients, with failure if any is raster. The observed interactivity and page copy strongly suggest a drawn reactor, but the available browser evidence did not directly identify the rendering primitives or asset types for all required categories, especially the team portraits and logo. A defensible yes/no conclusion therefore cannot be made.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /technology, the page exposes interactive controls for reactor components (Control rods, Pressure dome, Reactor vessel, Fuel core, Base and skirt, Helium loop), and selecting Fuel core dynamically added the textual description \u201cFuel core, a dark column of coated fuel grains in graphite.\u201d",
+        "The technology page explicitly states: \u201cThe diagram is drawn line by line, so it stays sharp at any size.\u201d This is app-controlled descriptive text, not sufficient on its own to prove the rendering implementation.",
+        "All observed requests remained on the app origin, but the available network summary did not expose request URLs or MIME types, so it could not rule out same-origin raster assets.",
+        "The team route showed four team portraits/bio controls, but available element/style probes targeted the controls rather than the portrait-rendering nodes; therefore they did not establish whether portraits are vector/generated gradients or raster images."
+      ]
+    },
+    {
+      "criterion": "R8",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The sampled explorer controls had a strong, consistent visible focus ring and correct tab progression, but the criterion is universal and specifically includes save controls and modals. Not all card controls were traversed, and no modal was encountered and tested. Therefore there is not enough direct evidence to answer yes or no for the complete criterion.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On the Solutions explorer, keyboard Tab moved sequentially through Search, Industry, What you need out, How hot, Deployment, Compare saved, the saved-search name input, and Save search without skipping any of those controls.",
+        "Each directly inspected focused control showed a visible solid 3px blue outline (rgb(47, 111, 219)); this was measured on the search input and Industry select, and the browser's focus observation reported the same outline on the remaining filters, Compare saved, saved-search name field, and Save search button.",
+        "Activating Save search with an empty name produced an inline \u201cNOT SAVED\u201d validation message rather than a modal. Opening a solution navigated to a detail view rather than displaying a modal.",
+        "Evidence collection ended before keyboard traversal and visible-focus verification could cover every result-card Save/Open control or any modal controls, so the universal claim that every explorer control and modal control is reachable and visibly marked cannot be conclusively resolved."
+      ]
+    },
+    {
+      "criterion": "R9",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion requires proving that all three routes have no horizontal scrollbar or overlap at phone, tablet, and desktop widths. Only one of the nine route/width combinations has a deterministic overflow measurement. Responsive snapshots are supportive but do not directly settle sideways overflow or overlap, so a defensible yes/no result cannot be reached.",
+      "evidence": [
+        "layout measurements captured",
+        "The supplied deterministic measurement directly establishes that the home route at 390\u00d7844 has bodyScrollWidth=390 and horizontalOverflow=false.",
+        "Fresh snapshots after resizing showed responsive navigation and complete route content on the home, solutions explorer (/solutions), and account (/account) routes at 390px, 768px, and 1440px widths.",
+        "However, no direct scroll-width/viewport-width measurements were available for /solutions or /account, or for the tablet and desktop widths; the screenshot transport explicitly said appearance could not be judged from its omitted images."
+      ]
+    },
+    {
+      "criterion": "R11",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion specifically concerns a transient first-visit loading state. Browser navigation completed after that transient would have occurred, and the available browser tools did not preserve initial paint frames or expose a progress readout. Therefore there is not enough direct evidence to decide whether the required white progress cover appeared and lifted only after the reactor was ready; missing observation is not converted into a negative result.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Repeated direct navigations to `/` and a same-origin link navigation to the home page reached the fully rendered hero (`Powering the World`) immediately enough that browser observation never exposed an intermediate cover.",
+        "Immediate text probes after navigation found the complete page content; probes for visible `Loading`, `100%`, and `Initializing` readouts did not find those strings.",
+        "Animation capture on each home load detected only one indefinitely repeating 1900 ms animation named `svelte-vcwr0j-zj-pulse`; it did not provide evidence of a finite cover-lift transition or its relationship to reactor readiness."
+      ]
+    }
+  ],
+  "rubric_coverage": 0.25,
+  "evidence_bundle": "evidence_bundle.json",
+  "note": "combined_score is a report, not a training signal; reward.json is unchanged and remains the workflow pass rate (PLAN.md 1.4)"
+}

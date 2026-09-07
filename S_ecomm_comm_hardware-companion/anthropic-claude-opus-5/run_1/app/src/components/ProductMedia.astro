@@ -1,0 +1,85 @@
+---
+/**
+ * Product media, drawn as an inline SVG rather than fetched, so the product
+ * carries no third party asset and nothing is licensed that we cannot ship.
+ * It is decorative scenery beside real information.
+ */
+interface Props {
+  handle: string;
+  option?: string;
+  ratio?: string;
+  alt?: string;
+}
+const { handle, option = '', ratio = '4 / 3', alt = '' } = Astro.props;
+
+const bodies: Record<string, string> = {
+  Graphite: '#3f4247',
+  Sand: '#b9a184',
+  Yellow: '#d8a318',
+  Clamp: '#8d9198',
+  VESA: '#8d9198',
+  Standard: '#4a4d52',
+  '1 m': '#5b5f66',
+  '2 m': '#5b5f66',
+};
+const body = bodies[option] ?? '#4a4d52';
+const isCamera = handle === 'flagship' || handle === 'compact';
+const big = handle === 'flagship';
+---
+
+<div class="media" style={`aspect-ratio:${ratio}`} role={alt ? 'img' : 'presentation'} aria-label={alt || undefined}>
+  <svg viewBox="0 0 120 90" preserveAspectRatio="xMidYMid meet" aria-hidden={alt ? undefined : 'true'}>
+    {isCamera ? (
+      <g>
+        <rect x={big ? 22 : 30} y={big ? 30 : 34} width={big ? 76 : 60} height={big ? 40 : 32}
+          rx="3" fill={body} />
+        <rect x={big ? 46 : 48} y={big ? 24 : 28} width={big ? 28 : 22} height={big ? 8 : 7}
+          rx="2" fill={body} opacity="0.85" />
+        <circle cx={big ? 60 : 60} cy={big ? 50 : 50} r={big ? 15 : 11} fill="#17181a" opacity="0.85" />
+        <circle cx={big ? 60 : 60} cy={big ? 50 : 50} r={big ? 9 : 6.5} fill="#0d0d0e" />
+        <circle cx={big ? 56 : 57} cy={big ? 46 : 47} r={big ? 3 : 2} fill="#f2efea" opacity="0.35" />
+        <rect x={big ? 84 : 78} y={big ? 35 : 38} width="6" height="3" rx="1" fill="#f2efea" opacity="0.5" />
+      </g>
+    ) : handle === 'case' ? (
+      <g>
+        <rect x="24" y="30" width="72" height="42" rx="4" fill={body} />
+        <rect x="24" y="46" width="72" height="3" fill="#17181a" opacity="0.35" />
+        <rect x="52" y="24" width="16" height="8" rx="3" fill={body} opacity="0.8" />
+        <rect x="36" y="56" width="10" height="6" rx="1" fill="#17181a" opacity="0.25" />
+        <rect x="74" y="56" width="10" height="6" rx="1" fill="#17181a" opacity="0.25" />
+      </g>
+    ) : handle === 'cable' ? (
+      <g>
+        <path d="M28 62 C 44 62, 44 34, 60 34 S 76 62, 92 62"
+          fill="none" stroke={body} stroke-width="5" stroke-linecap="round" />
+        <rect x="22" y="57" width="10" height="10" rx="2" fill="#3f4247" />
+        <rect x="88" y="57" width="10" height="10" rx="2" fill="#3f4247" />
+      </g>
+    ) : (
+      <g>
+        <rect x="34" y="26" width="8" height="42" rx="2" fill={body} />
+        <rect x="34" y="26" width="46" height="7" rx="2" fill={body} />
+        <rect x="74" y="30" width="14" height="22" rx="2" fill={body} opacity="0.8" />
+        <rect x="28" y="64" width="20" height="6" rx="2" fill="#3f4247" />
+      </g>
+    )}
+  </svg>
+</div>
+
+<style>
+  .media {
+    width: 100%;
+    background:
+      linear-gradient(165deg, var(--surface-2) 0%, var(--surface) 70%);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    place-items: center;
+    /* Media carries no rounding at all. */
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .media svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>

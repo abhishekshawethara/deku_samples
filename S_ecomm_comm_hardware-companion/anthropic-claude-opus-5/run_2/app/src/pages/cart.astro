@@ -1,0 +1,194 @@
+---
+import Shell from '../layouts/Shell.astro';
+import ProductMedia from '../components/ProductMedia.astro';
+import { formatMoney } from '../lib/view.js';
+
+const cart = Astro.locals.cart;
+const lines = cart?.lines ?? [];
+const notices = cart?.notices ?? [];
+const rung = cart?.protection_rung ?? null;
+---
+
+<Shell title="Cart — Vela" current="shop">
+  <header class="head">
+    <h1>Cart</h1>
+  </header>
+
+  {lines.length === 0 ? (
+    <div class="empty-state">
+      <p>Your cart is empty.</p>
+      <p><a href="/shop">Shop</a></p>
+    </div>
+  ) : (
+    <div class="cart" data-cart>
+      <div class="lines-side">
+        <!-- A price or availability change renders above the lines as a
+             persistent notice that cannot be dismissed. -->
+        {notices.map((n) => (
+          <p class="notice notice-progress" role="status">{n.message}</p>
+        ))}
+
+        <p class="cart-status" data-cart-status role="status" aria-live="polite"></p>
+
+        <ul class="lines">
+          {lines.map((l) => (
+            <li class="line" data-line={l.id}>
+              <a class="line-media" href={`/shop/${l.handle}?variant=${l.sku}`} tabindex="-1" aria-hidden="true">
+                <ProductMedia handle={l.handle} option={l.option_value} ratio="1 / 1" />
+              </a>
+              <div class="line-body">
+                <a class="line-title" href={`/shop/${l.handle}?variant=${l.sku}`}>{l.title}</a>
+                <p class="line-variant xsmall muted">{l.option_value} · <span class="serial">{l.sku}</span></p>
+                <p class="line-unit xsmall muted money">{formatMoney(l.unit_price_minor)} each</p>
+              </div>
+              <div class="line-qty">
+                <label class="visually-hidden" for={`qty-${l.id}`}>Quantity of {l.title}</label>
+                <input type="number" id={`qty-${l.id}`} value={l.quantity} min="1"
+                  max={Math.max(1, Math.min(10, l.available))} inputmode="numeric"
+                  data-quantity data-previous={l.quantity} />
+              </div>
+              <p class="line-total money" data-line-total>{formatMoney(l.total_minor)}</p>
+              <button type="button" class="button button-quiet line-remove" data-remove
+                aria-label={`Remove ${l.title} from the cart`}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <aside class="summary card" data-summary aria-label="Cart summary">
+        <h2>Summary</h2>
+        <!-- Every figure is labelled estimated until the address is known. -->
+        <dl class="totals">
+          <div><dt>Estimated subtotal</dt><dd class="money" data-total="subtotal">{formatMoney(cart.subtotal_minor)}</dd></div>
+          <div data-protection-row hidden={!cart.protection_enabled}>
+            <dt>Shipment protection</dt>
+            <dd class="money" data-total="protection">{formatMoney(cart.protection_minor)}</dd>
+          </div>
+          <div><dt>Estimated delivery</dt><dd class="money" data-total="shipping">{formatMoney(cart.shipping_minor)}</dd></div>
+          <div><dt>Estimated tax</dt><dd class="money" data-total="tax">{formatMoney(cart.tax_minor)}</dd></div>
+          <div class="totals-final"><dt>Estimated total</dt><dd class="money" data-total="total">{formatMoney(cart.total_minor)}</dd></div>
+        </dl>
+
+        <p class="xsmall muted estimate-note">
+          Estimated. We will show the exact amount once we know where it is going.
+        </p>
+
+        {rung && (
+          <label class="protect">
+            <input type="checkbox" data-protection checked={cart.protection_enabled} />
+            <span>Protect this shipment against loss, theft and damage for {formatMoney(rung.price_minor)}</span>
+          </label>
+        )}
+
+        <a class="button button-primary continue" href="/checkout/where-it-goes">Continue</a>
+        <a class="button button-quiet keep" href="/shop">Keep shopping</a>
+      </aside>
+    </div>
+  )}
+
+  <script>
+    import '../scripts/cart.js';
+  </script>
+</Shell>
+
+<style>
+  .head { margin-bottom: var(--u5); }
+  .head h1 { font-size: var(--text-xl); }
+
+  .cart {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: var(--u6);
+    align-items: start;
+  }
+
+  .cart-status:empty { display: none; }
+
+  /* Density is compact: the cart sits tight so a whole set fits one screen. */
+  .lines {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .line {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 84px 90px auto;
+    gap: var(--u3);
+    align-items: center;
+    padding: var(--u3) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .line-media { display: block; border: 1px solid var(--rule); }
+  .line-body { min-width: 0; }
+  .line-title {
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .line-title:hover { text-decoration: underline; }
+  .line-variant,
+  .line-unit { margin: 2px 0 0; }
+  .line-qty input { min-height: 36px; }
+  .line-total {
+    margin: 0;
+    text-align: right;
+    font-weight: 600;
+  }
+  .line-remove { min-height: 36px; padding: 0 var(--u2); font-size: var(--text-sm); }
+
+  .summary { padding: var(--u4); position: sticky; top: 76px; }
+  .summary h2 { font-size: var(--text-md); margin-bottom: var(--u3); }
+  .summary.is-pending .totals { opacity: 0.55; }
+  .totals { margin: 0 0 var(--u3); }
+  .totals div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--u3);
+    padding: var(--u) 0;
+    font-size: var(--text-sm);
+  }
+  .totals dt { color: var(--ink-2); }
+  .totals dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .totals-final {
+    border-top: 1px solid var(--rule);
+    margin-top: var(--u2);
+    padding-top: var(--u2) !important;
+    font-weight: 700;
+  }
+  .totals-final dt { color: var(--ink) !important; }
+  .estimate-note { margin: 0 0 var(--u3); }
+
+  .protect {
+    display: flex;
+    gap: var(--u2);
+    align-items: flex-start;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    margin-bottom: var(--u4);
+    padding: var(--u2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .protect input { margin-top: 2px; min-width: 18px; min-height: 18px; }
+
+  .continue, .keep { width: 100%; }
+  .keep { margin-top: var(--u2); }
+
+  @media (max-width: 900px) {
+    .cart { grid-template-columns: minmax(0, 1fr); }
+    .summary { position: static; }
+    .line {
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      grid-template-areas:
+        "media body body"
+        "qty total remove";
+      row-gap: var(--u2);
+    }
+    .line-media { grid-area: media; }
+    .line-body { grid-area: body; }
+    .line-qty { grid-area: qty; width: 84px; }
+    .line-total { grid-area: total; text-align: left; align-self: center; }
+    .line-remove { grid-area: remove; }
+  }
+</style>

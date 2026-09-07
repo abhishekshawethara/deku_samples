@@ -1,0 +1,16 @@
+# Evidence and scratch directories, reserved at the app root and kept out of the image.
+.browser_screenshots/
+.downloads/
+
+# Installed and built in the image itself, never copied in.
+node_modules/
+build/
+.svelte-kit/
+
+# Session scratch.
+scripts/
+server.log
+*.log
+.git/
+.gitignore
+sessions/

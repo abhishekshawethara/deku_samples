@@ -1,0 +1,236 @@
+---
+import Shell from '../layouts/Shell.astro';
+---
+
+<Shell title="Firmware installer — Vela" current="doctor">
+  <header class="head">
+    <h1>Firmware installer</h1>
+    <p class="lede">
+      This page writes new software to a camera that Arranger cannot see. If Arranger can see
+      your camera, use Arranger instead: it is the ordinary path and it is safer.
+    </p>
+  </header>
+
+  <div class="doctor" data-doctor>
+    <!-- One polite live region carries the current step and status. -->
+    <p class="visually-hidden" role="status" aria-live="polite" data-live></p>
+
+    <ol class="steps">
+      <li class="step">
+        <h2><span class="step-n tnum">1</span> Whether this browser can talk to a camera</h2>
+        <div class="step-body">
+          <!-- It opens by stating plainly whether this browser can talk to a
+               device and naming which can. -->
+          <p class="small" data-support-yes hidden>
+            This browser can talk to a camera over USB. Plug the camera in with the cable it came
+            with, then continue below.
+          </p>
+          <p class="small" data-support-no hidden>
+            This browser cannot talk to a camera over USB. Chrome, Edge and Opera on a desktop
+            computer can. Open this page in one of those, or use Arranger, which does not need a
+            browser at all.
+          </p>
+          <noscript>
+            <p class="small">
+              This page needs scripting to talk to a camera. Use Arranger instead, or open this
+              page in Chrome, Edge or Opera on a desktop computer.
+            </p>
+          </noscript>
+        </div>
+      </li>
+
+      <li class="step">
+        <h2><span class="step-n tnum">2</span> Before you start</h2>
+        <div class="step-body">
+          <!-- A warning block that is real, focusable and readable rather than
+               a tooltip. -->
+          <div class="warning" data-warning tabindex="0" role="group" aria-label="Before you start">
+            <p>
+              This replaces the software inside your camera. It takes about ninety seconds. Do not
+              unplug the camera and do not let your computer go to sleep. If you are on a laptop,
+              plug it in.
+            </p>
+          </div>
+          <button type="button" class="button" data-accept>I understand</button>
+        </div>
+      </li>
+
+      <li class="step">
+        <h2><span class="step-n tnum">3</span> Find your camera</h2>
+        <div class="step-body">
+          <div class="find-row">
+            <div class="field find-field">
+              <label for="serial">Serial number</label>
+              <input type="text" id="serial" class="serial" data-serial
+                placeholder="VC2609PVDA7Q" maxlength="14" autocomplete="off"
+                spellcheck="false" disabled
+                aria-describedby="serial-hint" />
+              <p class="field-hint" id="serial-hint">
+                Twelve characters, engraved on the underside of the camera.
+              </p>
+            </div>
+            <button type="button" class="button" data-connect disabled
+              aria-describedby="connect-blocked">Find my camera</button>
+          </div>
+          <!-- Unavailability is never signalled by colour alone. -->
+          <p class="xsmall muted" id="connect-blocked" data-connect-blocked>
+            Read the warning above and choose “I understand” before this can be used.
+          </p>
+          <p class="connect-error" data-connect-error role="alert"></p>
+        </div>
+      </li>
+
+      <li class="step">
+        <h2><span class="step-n tnum">4</span> Choose the software</h2>
+        <div class="step-body">
+          <div data-identified hidden>
+            <p class="identity" data-identity></p>
+            <ul class="images" data-images></ul>
+          </div>
+          <p class="small muted" data-awaiting>Find your camera first and the versions it can take will appear here.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <h2><span class="step-n tnum">5</span> The write</h2>
+        <div class="step-body">
+          <div data-write-step hidden>
+            <!-- A figure that came from the device, and no cancel, because
+                 there is no safe cancel. -->
+            <p class="write-line" data-write-line>Writing, 0 percent. Do not unplug your camera.</p>
+            <progress class="meter" data-meter max="100" value="0">0 percent</progress>
+          </div>
+          <p class="result" data-result tabindex="-1" hidden></p>
+          <p class="small muted" data-idle-note>
+            Nothing has been written yet. You can leave this page at any point before the write and
+            nothing on your camera will have changed.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    // Stating plainly whether this browser can talk to a device, and showing no
+    // control that cannot work where it cannot.
+    const yes = document.querySelector('[data-support-yes]');
+    const no = document.querySelector('[data-support-no]');
+    if ('usb' in navigator) { if (yes) yes.hidden = false; }
+    else if (no) no.hidden = false;
+  </script>
+  <script>
+    import '../scripts/doctor.js';
+  </script>
+</Shell>
+
+<style>
+  .head { margin-bottom: var(--u5); }
+  .head h1 { font-size: var(--text-xl); margin-bottom: var(--u2); }
+  .lede { margin: 0; max-width: 64ch; }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 62ch;
+  }
+  .step {
+    border-top: 1px solid var(--rule);
+    padding: var(--u4) 0;
+  }
+  .step h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--u2);
+    font-size: var(--text-md);
+    margin-bottom: var(--u3);
+  }
+  .step-n {
+    display: inline-grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 50%;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    flex: none;
+  }
+  .step-body { padding-left: calc(22px + var(--u2)); }
+
+  .warning {
+    border: 1px solid var(--rule-strong);
+    border-left-width: 3px;
+    border-left-color: var(--progress);
+    background: var(--progress-ground);
+    color: var(--progress);
+    padding: var(--u3);
+    border-radius: var(--radius);
+    margin-bottom: var(--u3);
+  }
+  .warning p { margin: 0; font-size: var(--text-sm); line-height: 1.55; }
+  .warning[data-accepted='true'] {
+    border-left-color: var(--rule-strong);
+    background: var(--surface-2);
+    color: var(--ink-2);
+  }
+
+  .find-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--u3);
+    flex-wrap: wrap;
+  }
+  .find-field { max-width: 240px; margin-bottom: var(--u2); }
+  .find-row .button { margin-top: 22px; }
+
+  .connect-error:empty { display: none; }
+  .connect-error {
+    margin: var(--u2) 0 0;
+    font-size: var(--text-sm);
+    color: var(--wrong);
+    font-weight: 600;
+  }
+
+  .identity {
+    margin: 0 0 var(--u3);
+    font-weight: 600;
+  }
+
+  .images { list-style: none; margin: 0; padding: 0; }
+  .images :global(.image-row) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--u4);
+    padding: var(--u2) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .images :global(.image-main) { display: flex; flex-direction: column; }
+  .images :global(.image-version) { font-weight: 600; }
+  .images :global(.image-why) {
+    margin: 0;
+    max-width: 34ch;
+    color: var(--ink-2);
+  }
+  .images :global(.image-more) { padding: var(--u2) 0; }
+  .images :global(.image-more summary) {
+    cursor: pointer;
+    font-size: var(--text-sm);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .images :global(.image-extra) { list-style: none; margin: 0; padding: 0; }
+
+  .write-line { margin: 0 0 var(--u2); font-weight: 600; }
+  .meter {
+    width: 100%;
+    max-width: 340px;
+    height: 8px;
+    border-radius: 0;
+  }
+
+  .result { margin: var(--u3) 0 0; font-weight: 600; }
+  .result:focus { outline: 2px solid currentColor; outline-offset: 2px; }
+</style>

@@ -1,0 +1,123 @@
+{
+  "summary": {
+    "reward": 0.8182,
+    "partial_reward": 0.8182,
+    "invalid": [],
+    "workflows_total": 11,
+    "workflows_passed": 9,
+    "substeps_total": 135,
+    "substeps_passed": 130,
+    "browser_substeps_declared": 54,
+    "browser_substeps_total": 54,
+    "browser_substeps_passed": 51,
+    "browser_substeps_ungraded": 0,
+    "pytest_substeps_total": 81,
+    "pytest_substeps_passed": 79,
+    "critical_substeps_failed": 1,
+    "browser_graded": true,
+    "degraded": [],
+    "deployed": 1.0,
+    "judge_score": 0.636364
+  },
+  "workflows": [
+    {
+      "id": "app_is_reachable_and_credentials_work",
+      "purpose": "The deployed app answers on its published origin and the documented accounts sign in",
+      "passed": false,
+      "substeps_passed": 11,
+      "substeps_graded": 13,
+      "ratio": 0.8462,
+      "critical_failed": true
+    },
+    {
+      "id": "visitor_browses_the_showcase_routes",
+      "purpose": "A stranger reads the home, company, technology, edge and team routes with no account",
+      "passed": true,
+      "substeps_passed": 17,
+      "substeps_graded": 18,
+      "ratio": 0.9444,
+      "critical_failed": false
+    },
+    {
+      "id": "visitor_filters_the_solutions_explorer",
+      "purpose": "A stranger narrows the eight industry solutions with the four filters and opens one",
+      "passed": true,
+      "substeps_passed": 19,
+      "substeps_graded": 19,
+      "ratio": 1.0,
+      "critical_failed": false
+    },
+    {
+      "id": "anonymous_save_is_claimed_at_signup",
+      "purpose": "A save made with no account follows the visitor into a new account",
+      "passed": true,
+      "substeps_passed": 12,
+      "substeps_graded": 13,
+      "ratio": 0.9231,
+      "critical_failed": false
+    },
+    {
+      "id": "comparison_holds_four_saves_at_most",
+      "purpose": "The comparison takes four saved solutions and refuses a fifth",
+      "passed": true,
+      "substeps_passed": 4,
+      "substeps_graded": 4,
+      "ratio": 1.0,
+      "critical_failed": false
+    },
+    {
+      "id": "enquiry_is_sent_and_acknowledged",
+      "purpose": "A visitor sends an enquiry, reads its reference and receives the acknowledgement",
+      "passed": true,
+      "substeps_passed": 15,
+      "substeps_graded": 15,
+      "ratio": 1.0,
+      "critical_failed": false
+    },
+    {
+      "id": "investor_room_is_denied_without_approval",
+      "purpose": "The private document room opens for an approved account and is refused to every other caller",
+      "passed": true,
+      "substeps_passed": 13,
+      "substeps_graded": 13,
+      "ratio": 1.0,
+      "critical_failed": false
+    },
+    {
+      "id": "cross_account_rows_cannot_be_read",
+      "purpose": "One account can reach none of another account private rows, on the direct call",
+      "passed": true,
+      "substeps_passed": 10,
+      "substeps_graded": 10,
+      "ratio": 1.0,
+      "critical_failed": false
+    },
+    {
+      "id": "unauthenticated_visitor_is_sent_to_sign_in",
+      "purpose": "A caller with no session reaches no private route and is sent to sign in with a return path",
+      "passed": false,
+      "substeps_passed": 4,
+      "substeps_graded": 5,
+      "ratio": 0.8,
+      "critical_failed": false
+    },
+    {
+      "id": "calculator_returns_the_worked_figures",
+      "purpose": "A heat or power need becomes a module count, an annual energy figure and a carbon figure",
+      "passed": true,
+      "substeps_passed": 8,
+      "substeps_graded": 8,
+      "ratio": 1.0,
+      "critical_failed": false
+    },
+    {
+      "id": "newsroom_and_careers_are_browsed_and_applied_to",
+      "purpose": "A visitor reads the story wall, opens a story, then applies to an open job",
+      "passed": true,
+      "substeps_passed": 17,
+      "substeps_graded": 17,
+      "ratio": 1.0,
+      "critical_failed": false
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+---
+import { formatMoney } from '../lib/view.js';
+
+interface Props {
+  cart: any;
+  exact?: boolean;
+}
+const { cart, exact = false } = Astro.props;
+const label = (word: string) => (exact ? word : `Estimated ${word.toLowerCase()}`);
+---
+
+<!-- A persistent summary sits beside all three steps. -->
+<aside class="summary card" aria-label="Order summary">
+  <h2>Summary</h2>
+
+  <ul class="lines">
+    {cart.lines.map((l: any) => (
+      <li>
+        <span class="lines-title">{l.title} <span class="muted">x{l.quantity}</span></span>
+        <span class="money">{formatMoney(l.total_minor)}</span>
+      </li>
+    ))}
+  </ul>
+
+  <dl class="totals">
+    <div><dt>{exact ? 'Subtotal' : 'Estimated subtotal'}</dt><dd class="money">{formatMoney(cart.subtotal_minor)}</dd></div>
+    {cart.protection_enabled && (
+      <div><dt>Shipment protection</dt><dd class="money">{formatMoney(cart.protection_minor)}</dd></div>
+    )}
+    <div><dt>{label('Delivery')}</dt><dd class="money">{formatMoney(cart.shipping_minor)}</dd></div>
+    <div><dt>{label('Tax')}</dt><dd class="money">{formatMoney(cart.tax_minor)}</dd></div>
+    <div class="totals-final"><dt>{exact ? 'Total' : 'Estimated total'}</dt><dd class="money">{formatMoney(cart.total_minor)}</dd></div>
+  </dl>
+
+  {!exact && (
+    <p class="xsmall muted">Estimated. We will show the exact amount once we know where it is going.</p>
+  )}
+</aside>
+
+<style>
+  .summary {
+    padding: var(--u4);
+    position: sticky;
+    top: 76px;
+  }
+  .summary h2 { font-size: var(--text-md); margin-bottom: var(--u3); }
+
+  .lines {
+    list-style: none;
+    margin: 0 0 var(--u3);
+    padding: 0 0 var(--u3);
+    border-bottom: 1px solid var(--rule);
+  }
+  .lines li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--u3);
+    font-size: var(--text-sm);
+    padding: 2px 0;
+  }
+  .lines-title { min-width: 0; }
+  .money { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .totals { margin: 0 0 var(--u2); }
+  .totals div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--u3);
+    padding: var(--u) 0;
+    font-size: var(--text-sm);
+  }
+  .totals dt { color: var(--ink-2); }
+  .totals dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .totals-final {
+    border-top: 1px solid var(--rule);
+    margin-top: var(--u2);
+    padding-top: var(--u2) !important;
+    font-weight: 700;
+  }
+  .totals-final dt { color: var(--ink) !important; }
+
+  @media (max-width: 900px) {
+    .summary { position: static; }
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+interface Props { step: 1 | 2 | 3 }
+const { step } = Astro.props;
+
+const steps = [
+  { n: 1, label: 'Where it goes', href: '/checkout/where-it-goes' },
+  { n: 2, label: 'How it gets there', href: '/checkout/how-it-gets-there' },
+  { n: 3, label: 'Payment', href: '/checkout/payment' },
+];
+---
+
+<nav class="steps" aria-label="Checkout steps">
+  <ol>
+    {steps.map((s) => (
+      <li class:list={['step', { 'step-current': s.n === step, 'step-done': s.n < step }]}>
+        {s.n < step ? (
+          <a href={s.href}>
+            <span class="step-n tnum">{s.n}</span>
+            <span class="step-label">{s.label}</span>
+            <span class="visually-hidden">, completed</span>
+          </a>
+        ) : (
+          <span aria-current={s.n === step ? 'step' : undefined}>
+            <span class="step-n tnum">{s.n}</span>
+            <span class="step-label">{s.label}</span>
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .steps { margin-bottom: var(--u5); }
+  .steps ol {
+    list-style: none;
+    display: flex;
+    gap: var(--u2);
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  .step a,
+  .step > span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--u2);
+    min-height: 40px;
+    padding: 0 var(--u3);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    color: var(--ink-3);
+    text-decoration: none;
+  }
+  .step-n {
+    display: inline-grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: var(--text-xs);
+    font-weight: 700;
+  }
+  /* The current step is marked with weight and a marker as well as colour. */
+  .step-current > span {
+    color: var(--ink);
+    font-weight: 700;
+    border-color: var(--ink);
+    background: var(--surface-2);
+  }
+  .step-done a { color: var(--ink-2); }
+  .step-done a:hover { background: var(--surface-2); }
+
+  @media (max-width: 560px) {
+    .step-label { display: none; }
+  }
+</style>

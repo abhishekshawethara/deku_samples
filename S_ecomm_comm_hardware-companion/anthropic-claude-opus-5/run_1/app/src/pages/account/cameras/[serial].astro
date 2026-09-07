@@ -1,0 +1,166 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import { formatDate } from '../../../lib/view.js';
+import {
+  ownedDevice, decorateDevice, renameDevice, releaseDevice,
+} from '../../../../server/lib/devices.js';
+
+const customer = Astro.locals.customer;
+const { serial } = Astro.params;
+
+let notice = '';
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const action = String(form.get('action') ?? '');
+  try {
+    if (action === 'rename') {
+      await renameDevice(serial, customer.id, String(form.get('nickname') ?? ''));
+      notice = 'Saved.';
+    } else if (action === 'release') {
+      // Removing releases the camera without giving it to anyone.
+      await releaseDevice(serial, customer.id);
+      return Astro.redirect('/account/cameras', 303);
+    }
+  } catch (err: any) {
+    notice = err?.message || 'That did not work.';
+  }
+}
+
+// A customer opening another customer's serial is answered as not found.
+let raw;
+try {
+  raw = await ownedDevice(serial, customer.id);
+} catch {
+  return new Response(null, { status: 404 });
+}
+const device = await decorateDevice(raw);
+
+const firmwareChip =
+  device.firmware_state === 'unknown'
+    ? { text: 'Not yet connected', tone: '' }
+    : device.firmware_state === 'behind'
+      ? { text: 'Update available', tone: 'progress' }
+      : { text: 'Up to date', tone: 'done' };
+---
+
+<Shell title={`${device.model} ${device.serial} — Vela`} current="cameras">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/account/cameras">Cameras</a> <span aria-hidden="true">/</span>
+    <span class="serial">{device.serial}</span>
+  </nav>
+
+  <header class="head">
+    <h1>{device.model}</h1>
+    <p class="serial-line serial">{device.serial}</p>
+    {device.nickname && <p class="muted small">{device.nickname}</p>}
+  </header>
+
+  {notice && <p class="notice" role="status">{notice}</p>}
+
+  <div class="panels">
+    <section class="panel card">
+      <h2>State</h2>
+      <table class="data">
+        <tbody>
+          <tr>
+            <th scope="row">Firmware</th>
+            <td>
+              <span class:list={['chip', firmwareChip.tone && `chip-${firmwareChip.tone}`]}>{firmwareChip.text}</span>
+              {device.firmware_version && <span class="version"> {device.firmware_version}</span>}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Newest firmware</th>
+            <td class="version">{device.latest_firmware ?? 'None published'}</td>
+          </tr>
+          <tr>
+            <th scope="row">Warranty</th>
+            <td>
+              {device.warranty_until
+                ? (device.warranty_expired
+                  ? `Ended ${formatDate(device.warranty_until)}`
+                  : `Until ${formatDate(device.warranty_until)}`)
+                : 'Not on record'}
+            </td>
+          </tr>
+          <tr><th scope="row">Finish</th><td>{device.option_value}</td></tr>
+        </tbody>
+      </table>
+
+      {device.firmware_state === 'behind' && (
+        <p class="small update-note">
+          Update it with Arranger, or with the <a href="/doctor">firmware installer</a> if Arranger
+          cannot see it.
+        </p>
+      )}
+    </section>
+
+    <section class="panel card">
+      <h2>Name</h2>
+      <form method="post">
+        <input type="hidden" name="action" value="rename" />
+        <div class="field">
+          <label for="nickname">What you call it</label>
+          <input type="text" id="nickname" name="nickname" value={device.nickname ?? ''}
+            maxlength="60" placeholder="The one with the dent" />
+        </div>
+        <button type="submit" class="button">Save</button>
+      </form>
+    </section>
+
+    <section class="panel card">
+      <h2>Ownership</h2>
+      <!-- Two different actions, and the copy never blurs them. -->
+      <p class="small">
+        Removing this camera releases it without giving it to anyone. It is what you do when you
+        sell it to a stranger: they can then register it themselves.
+      </p>
+      <form method="post" data-confirm-release>
+        <input type="hidden" name="action" value="release" />
+        <button type="submit" class="button">Remove from my account</button>
+      </form>
+      <p class="small hand-note">
+        <strong>Hand this camera to someone else</strong> is the same first step: remove it here,
+        then give the new owner the serial number so they can register it.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    // Every destructive action confirms first.
+    document.querySelector('[data-confirm-release]')?.addEventListener('submit', (event) => {
+      const ok = window.confirm(
+        'Remove this camera from your account? It will belong to nobody until somebody registers it.',
+      );
+      if (!ok) event.preventDefault();
+    });
+  </script>
+</Shell>
+
+<style>
+  .crumbs { font-size: var(--text-sm); color: var(--ink-2); margin-bottom: var(--u4); }
+  .crumbs a { color: var(--ink-2); }
+
+  .head { margin-bottom: var(--u4); }
+  .head h1 { font-size: var(--text-xl); }
+  .serial-line { margin: var(--u) 0 0; font-size: var(--text-sm); }
+
+  .panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+    gap: var(--u3);
+    align-items: start;
+  }
+  .panel { padding: var(--u3); }
+  .panel h2 {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-bottom: var(--u3);
+  }
+  .panel p.small { margin: 0 0 var(--u3); }
+  .update-note { margin-top: var(--u3) !important; }
+  .hand-note { margin: var(--u3) 0 0 !important; color: var(--ink-2); }
+</style>

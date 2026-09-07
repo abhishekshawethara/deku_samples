@@ -1,0 +1,54 @@
+---
+import { formatDate } from '../lib/view.js';
+
+interface Props { device: any }
+const { device } = Astro.props;
+
+// A firmware chip and a warranty chip. A camera whose firmware is behind reads
+// "Update available", one never heard from reads "Not yet connected".
+const firmwareChip =
+  device.firmware_state === 'unknown'
+    ? { text: 'Not yet connected', tone: '' }
+    : device.firmware_state === 'behind'
+      ? { text: 'Update available', tone: 'progress' }
+      : { text: `Firmware ${device.firmware_version}`, tone: 'done' };
+
+// An expired warranty reads as a neutral state and never as a warning, because
+// an expired warranty is not a problem.
+const warrantyChip = !device.warranty_until
+  ? { text: 'No warranty on record', tone: '' }
+  : device.warranty_expired
+    ? { text: `Warranty ended ${formatDate(device.warranty_until)}`, tone: '' }
+    : { text: `Under warranty until ${formatDate(device.warranty_until)}`, tone: '' };
+---
+
+<li class="camera card">
+  <div class="camera-head">
+    <h3>
+      <a href={`/account/cameras/${device.serial}`}>{device.model}</a>
+    </h3>
+    {device.nickname && <p class="nickname small">{device.nickname}</p>}
+  </div>
+
+  <p class="serial-line">
+    <span class="visually-hidden">Serial number </span>
+    <span class="serial">{device.serial}</span>
+  </p>
+
+  <div class="chips">
+    <span class:list={['chip', firmwareChip.tone && `chip-${firmwareChip.tone}`]}>{firmwareChip.text}</span>
+    <span class="chip">{warrantyChip.text}</span>
+  </div>
+</li>
+
+<style>
+  /* Density is compact: the camera list sits tight so a whole set fits one screen. */
+  .camera { padding: var(--u3); }
+  .camera-head { margin-bottom: var(--u2); }
+  h3 { font-size: var(--text-md); }
+  h3 a { text-decoration: none; }
+  h3 a:hover { text-decoration: underline; }
+  .nickname { margin: 2px 0 0; color: var(--ink-2); }
+  .serial-line { margin: 0 0 var(--u2); font-size: var(--text-sm); }
+  .chips { display: flex; gap: var(--u2); flex-wrap: wrap; }
+</style>

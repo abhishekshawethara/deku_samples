@@ -1,0 +1,8 @@
+node_modules
+build
+.svelte-kit
+.browser_screenshots
+.downloads
+.git
+tests
+*.log

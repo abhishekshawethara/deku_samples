@@ -1,0 +1,9 @@
+node_modules
+build
+.svelte-kit
+.browser_screenshots
+.downloads
+*.log
+.env
+.env.*
+.DS_Store

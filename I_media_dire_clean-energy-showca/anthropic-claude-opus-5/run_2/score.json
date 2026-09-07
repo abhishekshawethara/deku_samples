@@ -1,0 +1,132 @@
+{
+  "combined_score": 0.8382,
+  "weights": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "weights_applied": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "components": {
+    "workflow": {
+      "score": 0.7272727272727273,
+      "passed": 8,
+      "total": 11
+    },
+    "pytest": {
+      "score": 0.9753086419753086,
+      "passed": 79,
+      "total": 81
+    },
+    "rubric": {
+      "score": 0.923076,
+      "criteria": 12,
+      "passed": 4,
+      "failed": 1,
+      "unresolved": 7,
+      "coverage": 0.4166666666666667,
+      "weighted_coverage": 0.382353,
+      "machine_outcomes": {
+        "PASS": 4,
+        "FAIL": 1,
+        "INSUFFICIENT_EVIDENCE": 7,
+        "EVALUATOR_ERROR": 0
+      },
+      "resolution_methods": {
+        "machine_unresolved": 7,
+        "active_acquisition": 5
+      },
+      "needs_human_eval": 0,
+      "council": null
+    }
+  },
+  "reward": 0.7273,
+  "invalid": [],
+  "degraded": [],
+  "needs_human_review": 0,
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion requires direct comparison of heading and running-text typography on all three routes using screenshots plus measured styles and bounding boxes. Although all routes and relevant text were verified, the available computed-style measurements targeted controls rather than the actual headings and body paragraphs, and the screenshot pixels were unavailable. Therefore the observations do not defensibly establish whether headings are consistently a heavier grotesque than running text across company, technology, and team; missing evidence must not be converted into a negative result.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the required showcase routes exist and rendered: /company (title \u201cCompany, Zettajoule\u201d), /technology (\u201cTechnology, Zettajoule\u201d), and /team (\u201cOur Team, Zettajoule\u201d).",
+        "Snapshots exposed heading/body pairings on each route, including \u201cThe vision\u201d with its paragraph on /company, \u201cThe fuel contains itself\u201d with its paragraph on /technology, and the \u201cOUR TEAM\u201d introduction plus team names/roles on /team.",
+        "Measured UI text used the sans-serif stack \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", system-ui, sans-serif at font-weight 700 (for example, the /technology \u201cPressure vessel head\u201d control was 13.76px/700 and the /team \u201cView bio\u201d control was 13.6px/700). A dialog close control measured Arial 13.3333px/400.",
+        "Full-page screenshot capture was attempted for /company, but the image was omitted by the tool transport and could not be visually inspected."
+      ]
+    },
+    {
+      "criterion": "R4",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The route and required interaction were exercised in both directions, but no inspectable visual or state evidence established whether the reactor returned through the same stages to whole, nor whether it remained mid-stage due to a timer. The accessible prose describes the intended forward sequence only. A defensible yes/no determination is therefore not possible from the available observations.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the correct home route `/`; its visible accessibility text describes the reactor sequence as whole metallic module, control rods lifting, dome rising, fuel core exposed, then technical line drawing.",
+        "Performed down/up scrolling on `/`, including PageDown\u2192PageUp and small ArrowDown\u2192ArrowUp reversals.",
+        "CDP motion captures over the down/up interactions reported `animation_count: 0`; this does not expose scroll-driven canvas/SVG/CSS state and therefore cannot distinguish reversible scroll tracking from a timer-triggered sequence.",
+        "Viewport screenshots were captured at multiple positions, but the available tool transport omitted their image content, preventing direct stage-by-stage visual comparison."
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R6",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "Evidence supports a visually inverted unmatched-heat section on the home route, but collection ended before directly measuring its containing section\u2019s background or checking every other route for additional dark inversions. Therefore the full composite requirement\u2014exactly one near-black section across the whole site\u2014cannot be defensibly resolved.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On the home route, extracted visible text shows a distinct \u201cUNMATCHED HEAT\u201d section containing \u201c750 degrees Celsius. A water cooled reactor stops at three hundred.\u201d",
+        "The \u201cWhy we are different\u201d link within that section has light-blue text and border (rgb(157, 192, 255)), unlike nearby light-ground links such as \u201cExplore the solutions,\u201d which use a blue background (rgb(31, 99, 214)) with white text. This supports\u2014but does not by itself prove\u2014the intended dark inversion.",
+        "The site exposes additional routes including /company, /technology, /solutions, /edge, /team, /investors, /news, /careers, /contact, /account, /calculator, /compare, and /faq."
+      ]
+    },
+    {
+      "criterion": "R8",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "Direct evidence verifies keyboard reachability and a visible focus ring for all explorer filters and the save-search controls tested. However, evidence collection ended immediately after initiating a Compare control, before the resulting modal and its controls could be inspected or tab-tested. Because the evaluation rule explicitly includes modals, the available evidence cannot defensibly settle the complete criterion.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On the Solutions explorer, keyboard Tab moved in order through Industry, Output, Temperature, Deployment, Search, Name this search, and Save search.",
+        "Each tested focused control had a clearly measurable focus indicator: a 3px white outer separation ring plus a 3px blue ring (computed box-shadow: white 0 0 0 3px, rgb(31, 99, 214) 0 0 0 6px).",
+        "The Save search button was keyboard-reached immediately after Name this search and showed the same blue-and-white focus ring."
+      ]
+    },
+    {
+      "criterion": "R10",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "layout measurements captured",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+        "The top bar visibly contains the Zettajoule logo, exactly nine route labels (Company, Technology, Solutions, Our Edge, Our Team, Investors, News, Careers, Contact), and one Get in Touch action."
+      ]
+    },
+    {
+      "criterion": "R11",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The final ready screen is directly observable, but the decisive transient first-visit interval is not. Absence of the cover after navigation or reload cannot establish that it was absent or lifted too early during initial rendering. Therefore neither yes nor no is defensible from the available evidence.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On the supplied `/` route, the first observable snapshot already showed the complete home screen, including navigation, the \u201cPowering the World\u201d hero, reactor description, solution links, and signed-in visitor controls.",
+        "A cache-busting same-origin visit to `/?r11=firstvisit2` likewise returned with the complete page already visible; no progress readout or white cover was present in the post-navigation DOM/text.",
+        "A controlled reload while Chrome DevTools animation capture was active produced zero captured animations before \u201cPowering the World\u201d was confirmed visible. A separate navigation capture only found the ongoing `hint-pulse` animation (1800 ms), not a cover-lift transition.",
+        "The available browser navigation tools return after navigation/loading, so they did not expose paint-by-paint state early enough to determine whether a white progress cover existed before the first observable snapshot and lifted only after the reactor became drawable. Clearing cookies/storage to recreate a pristine first-visit state was disallowed because the required visitor role was already authenticated."
+      ]
+    }
+  ],
+  "rubric_coverage": 0.4166666666666667,
+  "evidence_bundle": "evidence_bundle.json",
+  "note": "combined_score is a report, not a training signal; reward.json is unchanged and remains the workflow pass rate (PLAN.md 1.4)"
+}

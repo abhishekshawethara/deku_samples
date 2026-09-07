@@ -1,0 +1,43 @@
+---
+/**
+ * The no-scripting path for the buy control. The product page posts here when
+ * the island has not taken over, so the catalogue works with scripting off.
+ */
+import { ensureCart, variantBySku, parseQuantity, CART_COOKIE } from '../../../server/lib/cart.js';
+import { query } from '../../../server/lib/db.js';
+
+if (Astro.request.method !== 'POST') return Astro.redirect('/cart', 303);
+
+const form = await Astro.request.formData();
+const sku = String(form.get('sku') ?? '');
+
+try {
+  const quantity = parseQuantity(form.get('quantity') ?? 1);
+  const variant = await variantBySku(sku);
+
+  if (variant.kind === 'protection' || variant.product_status === 'discontinued') {
+    return Astro.redirect('/shop', 303);
+  }
+  if (variant.inventory_policy === 'deny' && variant.available < quantity) {
+    return Astro.redirect(`/shop/${variant.handle}?variant=${variant.sku}`, 303);
+  }
+
+  const cart = await ensureCart(Astro.locals.cartToken, Astro.locals.customer?.id ?? null);
+  Astro.cookies.set(CART_COOKIE, cart.token, {
+    path: '/', httpOnly: true, sameSite: 'lax', maxAge: 60 * 60 * 24 * 30,
+  });
+
+  await query(
+    `INSERT INTO cart_line (cart_id,variant_id,quantity,unit_price_minor)
+     VALUES ($1,$2,$3,$4)
+     ON CONFLICT (cart_id,variant_id) DO UPDATE
+       SET quantity = LEAST(10, cart_line.quantity + EXCLUDED.quantity)`,
+    [cart.id, variant.id, quantity, variant.price_minor],
+  );
+  await query('UPDATE cart SET updated_at=now() WHERE id=$1', [cart.id]);
+} catch {
+  return Astro.redirect('/shop', 303);
+}
+
+return Astro.redirect('/cart', 303);
+---

@@ -1,0 +1,25 @@
+{
+  "task": "S_ecomm_comm_hardware-companion",
+  "model": "anthropic-claude-opus-5",
+  "trial_id": "S_ecomm_comm_hardware-companion__hqA2hn8",
+  "source_job": "jobs/2026-09-01__23-23-15/S_ecomm_comm_hardware-companion__hqA2hn8",
+  "task_checksum": "985c74d8f75e17ea0f37b7ae69b5353dfbbdb15f4b08dedb3c17bfe4f258fd24",
+  "reward": 0.375,
+  "deployed": 1.0,
+  "invalid": [],
+  "exception": null,
+  "started_at": "2026-09-01T23:23:17.651107Z",
+  "finished_at": "2026-09-02T00:29:05.634114Z",
+  "stage_seconds": {
+    "environment_setup": 39.4,
+    "agent_setup": 36.9,
+    "agent_execution": 3849.0,
+    "verifier": null
+  },
+  "agent": {
+    "version": "0.62.0",
+    "cost_usd": 291.53263999999996
+  },
+  "repackaged_from": "harness/repackage.py",
+  "graded_by": "verifier_fresh"
+}

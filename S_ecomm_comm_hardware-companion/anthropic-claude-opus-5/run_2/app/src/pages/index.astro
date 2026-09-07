@@ -1,0 +1,184 @@
+---
+import Base from '../layouts/Base.astro';
+import LetterStage from '../components/LetterStage.astro';
+import LetterFooter from '../components/LetterFooter.astro';
+import {
+  LETTER_TITLE, LETTER_DATELINE, LETTER_CLOSING, LETTER_PARAGRAPHS,
+} from '../lib/letter.js';
+---
+
+<Base title="the table — Vela" ground="dark" bodyClass="letter-body">
+  <!-- The skip link targets the writing on the letter. -->
+  <a class="skip-link" href="#letter">Skip to the letter</a>
+
+  <LetterStage />
+
+  <!-- The fixed wordmark, above every stage layer. There is no navigation on
+       this page beyond it and the footer. -->
+  <a class="wordmark" href="/shop">Vela</a>
+
+  <!--
+    Every paragraph exists twice in the document: once in normal flow, which is
+    what the markup carries and what a reader with no scripting receives in
+    correct reading order, and once in an inert layer that the scroll drives and
+    that is hidden from assistive technology. The driven layer is never the only
+    copy.
+  -->
+  <article class="letter" id="letter" tabindex="-1">
+    <header class="letter-head">
+      <h1 class="title">{LETTER_TITLE}</h1>
+      <p class="dateline">{LETTER_DATELINE}</p>
+    </header>
+
+    {LETTER_PARAGRAPHS.map((p) => <p class="para">{p.text}</p>)}
+  </article>
+
+  <div class="letter-driven" id="letter-driven" aria-hidden="true">
+    {LETTER_PARAGRAPHS.map((p) => (
+      <div class:list={['driven-block', `side-${p.side}`, { 'is-grouped': !!p.group }]}>
+        <p>{p.text}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- The closing line follows the writing at both tiers, and is the only place
+       the accent appears on this surface. -->
+  <p class="closing">{LETTER_CLOSING}</p>
+
+  <LetterFooter />
+
+  <script>
+    import '../scripts/letter.js';
+  </script>
+</Base>
+
+<style is:global>
+  .letter-body {
+    background: #0d0d0e;
+  }
+</style>
+
+<style>
+  /* 7: the fixed wordmark, the topmost layer of the page. */
+  .wordmark {
+    position: fixed;
+    top: var(--u6);
+    left: var(--u8);
+    z-index: 7;
+    font-weight: 700;
+    font-size: var(--text-md);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* 6: the writing, above every stage layer. */
+  .letter {
+    position: relative;
+    z-index: 6;
+    /* On a wide screen the letter is a narrow column standing beside the film. */
+    width: min(46ch, calc(100% - var(--u16)));
+    margin: 0 0 0 auto;
+    margin-right: max(var(--u16), 8vw);
+    padding: 42vh 0 32vh;
+    color: var(--ink);
+    /* Insurance: a faint shadow at every width, invisible against the dark
+       ground and load-bearing against the lit one. */
+    text-shadow: 0 1px 3px rgb(0 0 0 / 0.55);
+  }
+  .letter:focus { outline: none; }
+
+  .letter-head { margin-bottom: var(--u12); }
+
+  .title {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-transform: lowercase;
+    margin: 0 0 var(--u2);
+  }
+  .dateline {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: var(--text-sm);
+  }
+
+  .para {
+    margin: 0 0 var(--u8);
+    font-size: var(--text-md);
+    line-height: 1.72;
+  }
+
+  .closing {
+    position: relative;
+    z-index: 6;
+    width: min(46ch, calc(100% - var(--u16)));
+    margin: 0 max(var(--u16), 8vw) 26vh auto;
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--accent);
+    text-shadow: 0 1px 3px rgb(0 0 0 / 0.55);
+  }
+
+  /* The driven layer is scenery for the wide tier and carries the alternating
+     composition below it. It is inert and never the only copy. */
+  .letter-driven {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .wordmark { left: var(--u4); top: var(--u4); }
+
+    /*
+     * Below the wide tier the letter becomes a different page: each paragraph is
+     * a half width block, the blocks alternate between the left and right halves
+     * in a pattern that follows the argument, and each fades in and out in exact
+     * step with the scroll. The flow copy stays in the document for a reader
+     * with no scripting and for assistive technology.
+     */
+    .letter .para { display: none; }
+    .letter {
+      width: auto;
+      margin: 0;
+      padding: 34vh var(--u4) var(--u10);
+    }
+
+    .letter-driven {
+      display: block;
+      position: relative;
+      z-index: 6;
+      padding: 0 var(--u4) 22vh;
+    }
+    .driven-block {
+      width: 62%;
+      margin-bottom: var(--u16);
+      color: var(--ink);
+      text-shadow: 0 1px 3px rgb(0 0 0 / 0.55);
+      opacity: var(--reveal, 1);
+      transition: opacity var(--speed) var(--ease);
+    }
+    .driven-block p {
+      margin: 0;
+      font-size: var(--text-md);
+      line-height: 1.72;
+    }
+    .side-left { margin-right: auto; }
+    .side-right { margin-left: auto; }
+
+    .closing {
+      width: auto;
+      margin: 0 var(--u4) 18vh;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* The reveal is removed; the darkening is not. */
+    .driven-block {
+      opacity: 1 !important;
+      transition: none;
+    }
+  }
+</style>

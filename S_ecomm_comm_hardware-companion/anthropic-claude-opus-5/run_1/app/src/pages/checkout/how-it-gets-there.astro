@@ -1,0 +1,135 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import CheckoutSteps from '../../components/CheckoutSteps.astro';
+import CheckoutSummary from '../../components/CheckoutSummary.astro';
+import { cartByToken, readCart, shippingMethods } from '../../../server/lib/cart.js';
+import { query } from '../../../server/lib/db.js';
+import { formatMoney } from '../../lib/view.js';
+
+const cart = Astro.locals.cart;
+if (!cart || cart.lines.length === 0) return Astro.redirect('/cart', 302);
+// Step one must be complete before this step means anything.
+if (!cart.draft?.email || !cart.draft?.shipping_address?.line1) {
+  return Astro.redirect('/checkout/where-it-goes', 302);
+}
+
+const methods = await shippingMethods();
+let error = '';
+let chosen = cart.draft?.shipping_method ?? '';
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  chosen = String(form.get('shipping_method') ?? '');
+  if (!chosen || !methods.some((m) => m.code === chosen)) {
+    error = 'Choose a delivery method.';
+  } else {
+    const raw = await cartByToken(Astro.locals.cartToken);
+    if (raw) {
+      await query('UPDATE cart SET draft=$2, updated_at=now() WHERE id=$1', [
+        raw.id, JSON.stringify({ ...(raw.draft || {}), shipping_method: chosen }),
+      ]);
+      return Astro.redirect('/checkout/payment', 303);
+    }
+  }
+}
+
+const fresh = await cartByToken(Astro.locals.cartToken);
+const view = fresh ? await readCart(fresh) : cart;
+---
+
+<Shell title="How it gets there — Vela" current="shop">
+  <h1 class="page-title">Checkout</h1>
+  <CheckoutSteps step={2} />
+
+  <div class="layout">
+    <section class="panel">
+      <h2>How it gets there</h2>
+
+      {error && <p class="notice notice-wrong" role="alert">{error}</p>}
+
+      <form method="post">
+        <!-- No method is preselected. -->
+        <fieldset class="methods">
+          <legend class="visually-hidden">Delivery method</legend>
+          {methods.map((m) => (
+            <label class="method">
+              <input type="radio" name="shipping_method" value={m.code} checked={chosen === m.code} required />
+              <span class="method-face">
+                <span class="method-main">
+                  <span class="method-label">{m.label}</span>
+                  <span class="method-window xsmall muted">{m.window_text}</span>
+                </span>
+                <span class="method-price money">{formatMoney(m.price_minor)}</span>
+              </span>
+            </label>
+          ))}
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" class="button button-primary">Continue to payment</button>
+          <a class="button button-quiet" href="/checkout/where-it-goes">Back</a>
+        </div>
+      </form>
+    </section>
+
+    <CheckoutSummary cart={view} />
+  </div>
+</Shell>
+
+<style>
+  .page-title { font-size: var(--text-xl); margin-bottom: var(--u4); }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: var(--u6);
+    align-items: start;
+  }
+  .panel h2 { font-size: var(--text-md); margin-bottom: var(--u4); }
+
+  .methods { border: 0; padding: 0; margin: 0 0 var(--u5); }
+  .method {
+    display: flex;
+    align-items: center;
+    gap: var(--u3);
+    margin-bottom: var(--u2);
+    padding: 0 var(--u4);
+    min-height: 56px;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    cursor: pointer;
+    font-weight: 400;
+    transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease);
+  }
+  .method input {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    margin: 0;
+    accent-color: var(--ink);
+  }
+  .method-face {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--u4);
+    flex: 1;
+    min-width: 0;
+  }
+  /* The chosen method is marked with weight and a rule as well as colour. */
+  .method:has(input:checked) {
+    border-color: var(--ink);
+    background: var(--surface-2);
+    box-shadow: inset 2px 0 0 var(--ink);
+  }
+  .method:has(input:checked) .method-label { font-weight: 700; }
+  .method-main { display: flex; flex-direction: column; }
+  .method-label { font-weight: 600; }
+  .method-price { font-weight: 600; }
+
+  .actions { display: flex; gap: var(--u2); flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

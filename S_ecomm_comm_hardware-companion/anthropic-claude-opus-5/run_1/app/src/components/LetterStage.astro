@@ -1,0 +1,116 @@
+---
+/**
+ * The stacking system for the letter, and the whole of it. Nothing may
+ * introduce another layer.
+ *
+ *   1 stage      the film, at the lowest layer
+ *   2 still      a still frame above it, dissolving away once footage plays
+ *   3 speckle    a very faint animated speckle so a large dark gradient cannot band
+ *   4 darken     a gradient panel darkening the stage from the bottom upward
+ *   5 flat       a flat panel removing the film once the gradient is fully drawn
+ *   6 writing    the letter itself
+ *   7 wordmark   the fixed wordmark
+ *
+ * The film is inert: no controls, not focusable, hidden from assistive
+ * technology, and dragging on it scrolls the page.
+ */
+---
+
+<div class="stage" id="letter-stage" aria-hidden="true">
+  <!-- 1: the film. Generated in the browser only when it is allowed to play. -->
+  <div class="layer stage-film" id="stage-film"></div>
+
+  <!-- 2: the still frame. A generated gradient keyed to the letter's own
+       colours, so there is no rung at which the page has nothing to show. -->
+  <div class="layer stage-still" id="stage-still"></div>
+
+  <!-- 3: the speckle. -->
+  <div class="layer stage-speckle"></div>
+
+  <!-- 4: the darkening, driven only by scroll position. -->
+  <div class="layer stage-darken" id="stage-darken"></div>
+
+  <!-- 5: the flat panel that removes the film entirely at the end. -->
+  <div class="layer stage-flat" id="stage-flat"></div>
+</div>
+
+<style>
+  .stage {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--ground);
+    /* Dragging on it scrolls the page. */
+    touch-action: auto;
+    pointer-events: none;
+  }
+  .layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* The workshop table, drawn rather than photographed: a lit surface, a warm
+     lamp above and to the left, and the dark of the room falling away. */
+  .stage-still {
+    background:
+      radial-gradient(120% 90% at 22% 18%, rgb(255 214 160 / 0.55) 0%, rgb(120 82 46 / 0.35) 34%, transparent 68%),
+      radial-gradient(80% 70% at 78% 82%, rgb(64 44 28 / 0.6) 0%, transparent 70%),
+      linear-gradient(168deg, #3a2a1c 0%, #241a12 42%, #14100c 76%, #0d0d0e 100%);
+    transition: opacity var(--speed) var(--ease);
+  }
+  /* A still frame sits above the film and dissolves away once there is enough
+     footage to play. */
+  .stage-still.is-dissolved { opacity: 0; }
+
+  .stage-film {
+    background:
+      radial-gradient(120% 90% at 22% 18%, rgb(255 214 160 / 0.5) 0%, rgb(120 82 46 / 0.32) 34%, transparent 68%),
+      linear-gradient(168deg, #3d2c1d 0%, #251b12 44%, #14100c 78%, #0d0d0e 100%);
+    opacity: 0;
+  }
+  .stage-film.is-playing {
+    opacity: 1;
+    animation: film-drift 38s linear infinite alternate;
+  }
+  @keyframes film-drift {
+    from { transform: scale(1.04) translate3d(-0.6%, -0.4%, 0); }
+    to   { transform: scale(1.10) translate3d(0.8%, 0.6%, 0); }
+  }
+
+  /* A very faint animated speckle so a large dark gradient cannot band. */
+  .stage-speckle {
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: speckle-shift 1.2s steps(3) infinite;
+  }
+  @keyframes speckle-shift {
+    0%   { transform: translate3d(0, 0, 0); }
+    33%  { transform: translate3d(-2%, 1%, 0); }
+    66%  { transform: translate3d(1%, -2%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  /*
+   * The darkening is a pure function of scroll position: --darken is written by
+   * the driver and nothing else moves it, so stopping halfway leaves it halfway
+   * and scrolling back up lifts it in exact proportion. It is never a fade that
+   * plays once on a timer, and it is never removed under reduced motion.
+   */
+  .stage-darken {
+    background: linear-gradient(to top, #0d0d0e 0%, #0d0d0e 42%, rgb(13 13 14 / 0.55) 72%, transparent 100%);
+    transform: translate3d(0, calc((1 - var(--darken, 0)) * 100%), 0);
+  }
+
+  .stage-flat {
+    background: var(--ground);
+    opacity: var(--flat, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Reduced motion removes the film and the speckle's animation, and never
+       removes the darkening. */
+    .stage-film { display: none; }
+    .stage-speckle { animation: none; }
+  }
+</style>

@@ -1,0 +1,755 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 81,
+            "passed": 79,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1788724589.816239,
+            "stop": 1788724613.8879132
+        },
+        "tests": [
+            {
+                "name": "test_showcase.py::test_health_endpoint_answers_on_the_app_origin",
+                "status": "passed",
+                "duration": 0.04356083914171904,
+                "start": 1788724589.9275947,
+                "stop": 1788724589.971447,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_seeded_password_signs_every_account_in",
+                "status": "passed",
+                "duration": 0.15478008496575058,
+                "start": 1788724589.9716368,
+                "stop": 1788724590.1266522,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_app_root_carries_its_contract_deliverables",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0007499268976971507,
+                "start": 1788724590.126827,
+                "stop": 1788724590.1582146,
+                "retries": 0,
+                "file_path": "test_showcase.py",
+                "trace": "def test_the_app_root_carries_its_contract_deliverables():\n        \"\"\"The credentials file lists each account as three plain lines, and both\n        reserved directories exist and are empty.\"\"\"\n        readme = os.path.join(APP_ROOT, \"USER_README.md\")\n        assert os.path.isfile(readme), f\"the App Contract requires {readme}\"\n        text = open(readme, encoding=\"utf-8\").read()\n        lines = [ln.strip() for ln in text.splitlines()]\n        for email in (VISITOR_EMAIL, VISITOR2_EMAIL):\n            assert f\"Email: {email}\" in lines, (\n                f\"{readme} carries no plain line reading 'Email: {email}' outside a table\"\n            )\n        assert f\"Role: {VISITOR_ROLE}\" in lines, (\n            f\"{readme} carries no plain line reading 'Role: {VISITOR_ROLE}'\"\n        )\n        assert f\"Password: {SEEDED_PASSWORD}\" in lines, (\n            f\"{readme} carries no plain line reading 'Password: {SEEDED_PASSWORD}'\"\n        )\n        for reserved in RESERVED_DIRS:\n            path = os.path.join(APP_ROOT, reserved)\n            assert os.path.isdir(path), f\"the App Contract requires the directory {path}\"\n>           assert os.listdir(path) == [], (\n                f\"{path} must exist empty; it holds {sorted(os.listdir(path))[:5]}\"\n            )\nE           AssertionError: /app/.browser_screenshots must exist empty; it holds ['01_explorer_filtered_to_two.png', '02_signed_up_steel_waiting.png', '03_compare_refuses_a_fifth.png', '04_enquiry_reference_in_place.png', '05_document_room_open_for_ada.png']\nE           assert ['01_explorer...ken.png', ...] == []\nE             \nE             Left contains 7 more items, first extra item: '01_explorer_filtered_to_two.png'\nE             Use -v to get more diff\n\n/tests/test_showcase.py:131: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_showcase.py::test_seeded_accounts_carry_their_display_names",
+                "status": "passed",
+                "duration": 0.07308966398704797,
+                "start": 1788724590.1584086,
+                "stop": 1788724590.2317336,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_signup_creates_a_visitor_and_returns_a_token",
+                "status": "passed",
+                "duration": 0.1405957150273025,
+                "start": 1788724590.231926,
+                "stop": 1788724590.372702,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_password_is_never_returned_by_the_account_route",
+                "status": "passed",
+                "duration": 0.001473675831221044,
+                "start": 1788724590.3728886,
+                "stop": 1788724590.3744793,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_account_email_cannot_be_taken_twice",
+                "status": "passed",
+                "duration": 0.1399732450954616,
+                "start": 1788724590.3746352,
+                "stop": 1788724590.5147839,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_eight_solutions_are_seeded_with_their_pinned_slugs",
+                "status": "passed",
+                "duration": 0.011178830754943192,
+                "start": 1788724590.5149648,
+                "stop": 1788724590.5263112,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_every_solution_carries_a_legal_enum_triple",
+                "status": "passed",
+                "duration": 0.005854587070643902,
+                "start": 1788724590.5264924,
+                "stop": 1788724590.5325017,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_seeded_solution_attributes_match_the_pinned_table",
+                "status": "passed",
+                "duration": 0.011483100126497447,
+                "start": 1788724590.5326805,
+                "stop": 1788724590.5443258,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_solution_list_returns_every_solution_with_its_fields",
+                "status": "passed",
+                "duration": 0.005526556051336229,
+                "start": 1788724590.544503,
+                "stop": 1788724590.550177,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_solution_list_carries_the_match_count_header",
+                "status": "passed",
+                "duration": 0.0011582180159166455,
+                "start": 1788724590.5503922,
+                "stop": 1788724590.5516634,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_two_filters_narrow_the_set_to_the_worked_pair",
+                "status": "passed",
+                "duration": 0.0011710359249264002,
+                "start": 1788724590.5517955,
+                "stop": 1788724590.5530589,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_each_filter_narrows_the_set_left_by_the_last",
+                "status": "passed",
+                "duration": 0.007304821047000587,
+                "start": 1788724590.5531743,
+                "stop": 1788724590.5606122,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_filter_by_industry_reconciles_with_the_store",
+                "status": "passed",
+                "duration": 0.01196971395984292,
+                "start": 1788724590.5607615,
+                "stop": 1788724590.5728877,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_filter_by_deployment_reconciles_with_the_store",
+                "status": "passed",
+                "duration": 0.013052788097411394,
+                "start": 1788724590.5730605,
+                "stop": 1788724590.5862799,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_plain_language_search_matches_stored_solutions",
+                "status": "passed",
+                "duration": 0.0068064238876104355,
+                "start": 1788724590.5864584,
+                "stop": 1788724590.5934122,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_one_solution_answers_with_its_long_copy",
+                "status": "passed",
+                "duration": 0.0012809059116989374,
+                "start": 1788724590.5935826,
+                "stop": 1788724590.5949647,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_unknown_solution_slug_is_refused",
+                "status": "passed",
+                "duration": 0.0009811469353735447,
+                "start": 1788724590.5950906,
+                "stop": 1788724590.5961623,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_anonymous_save_returns_a_token_and_survives_signup",
+                "status": "passed",
+                "duration": 0.17112505494151264,
+                "start": 1788724590.5962737,
+                "stop": 1788724590.7675745,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_claiming_a_save_token_empties_it",
+                "status": "passed",
+                "duration": 0.16466159385163337,
+                "start": 1788724590.767753,
+                "stop": 1788724590.9325924,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_saving_one_solution_twice_adds_no_second_row",
+                "status": "passed",
+                "duration": 0.15414285100996494,
+                "start": 1788724590.932768,
+                "stop": 1788724591.0870907,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_concurrent_saves_of_one_solution_leave_one_row",
+                "status": "passed",
+                "duration": 2.183939940063283,
+                "start": 1788724591.0872703,
+                "stop": 1788724593.2713904,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_save_is_removed_by_its_owner",
+                "status": "passed",
+                "duration": 0.15261829912196845,
+                "start": 1788724593.2715788,
+                "stop": 1788724593.42438,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_seeded_accounts_hold_their_pinned_saves",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.03819267905782908,
+                "start": 1788724593.4245641,
+                "stop": 1788724593.484787,
+                "retries": 0,
+                "file_path": "test_showcase.py",
+                "trace": "db = <conftest.ShowcaseStore object at 0xffffadfa9af0>\n\n    def test_seeded_accounts_hold_their_pinned_saves(db):\n        \"\"\"Each seeded account holds exactly the saves the brief pins.\"\"\"\n        first = db.account_by_email(VISITOR_EMAIL)\n        second = db.account_by_email(VISITOR2_EMAIL)\n        first_ids = {row.get(\"solution_id\") for row in db.saves_for(first.get(\"id\"))}\n        second_ids = {row.get(\"solution_id\") for row in db.saves_for(second.get(\"id\"))}\n        expected_first = {db.solution_by_slug(SAVED_SLUG_A).get(\"id\"),\n                          db.solution_by_slug(SAVED_SLUG_B).get(\"id\")}\n        expected_second = {db.solution_by_slug(SAVED_SLUG_C).get(\"id\")}\n>       assert first_ids == expected_first, (\n            f\"{VISITOR_EMAIL} holds {len(first_ids)} saves, expected the two pinned ones\"\n        )\nE       AssertionError: visitor@example.com holds 5 saves, expected the two pinned ones\nE       assert {1, 2, 3, 4, 6} == {4, 6}\nE         \nE         Extra items in the left set:\nE         1\nE         2\nE         3\nE         Use -v to get more diff\n\n/tests/test_showcase.py:448: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_showcase.py::test_comparison_returns_at_most_four_solutions",
+                "status": "passed",
+                "duration": 0.0018519810400903225,
+                "start": 1788724593.4849591,
+                "stop": 1788724593.4869542,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_fifth_comparison_slug_is_refused",
+                "status": "passed",
+                "duration": 0.002284149988554418,
+                "start": 1788724593.4870892,
+                "stop": 1788724593.4894814,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_saved_search_is_stored_under_its_name",
+                "status": "passed",
+                "duration": 0.1516339179361239,
+                "start": 1788724593.489611,
+                "stop": 1788724593.641424,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_resaving_a_search_name_replaces_its_filters",
+                "status": "passed",
+                "duration": 0.15221870609093457,
+                "start": 1788724593.6416075,
+                "stop": 1788724593.7939985,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_saved_search_is_removed_by_its_owner",
+                "status": "passed",
+                "duration": 0.1542338099097833,
+                "start": 1788724593.7941785,
+                "stop": 1788724593.9485946,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_seeded_saved_search_is_stored_for_its_owner",
+                "status": "passed",
+                "duration": 0.011194213991984725,
+                "start": 1788724593.948771,
+                "stop": 1788724593.9601352,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_enquiry_mints_a_reference_and_is_stored_received",
+                "status": "passed",
+                "duration": 0.09434836998116225,
+                "start": 1788724593.9603055,
+                "stop": 1788724594.0548253,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_enquiry_references_are_unique_across_the_application",
+                "status": "passed",
+                "duration": 0.1548691518837586,
+                "start": 1788724594.0550032,
+                "stop": 1788724594.2100565,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_enquiry_sent_signed_out_carries_no_account",
+                "status": "passed",
+                "duration": 0.0742480099434033,
+                "start": 1788724594.2102382,
+                "stop": 1788724594.284664,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_enquiry_stores_the_contact_fields_it_was_given",
+                "status": "passed",
+                "duration": 0.07947066682390869,
+                "start": 1788724594.284844,
+                "stop": 1788724594.36449,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_enquiry_topic_outside_the_pinned_set_is_refused",
+                "status": "passed",
+                "duration": 2.034791466081515,
+                "start": 1788724594.3646655,
+                "stop": 1788724596.399637,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_owner_closes_their_own_enquiry",
+                "status": "passed",
+                "duration": 0.1973336871014908,
+                "start": 1788724596.3998148,
+                "stop": 1788724596.5973303,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_closing_a_closed_enquiry_records_one_close",
+                "status": "passed",
+                "duration": 0.1963262460194528,
+                "start": 1788724596.5975149,
+                "stop": 1788724596.7940135,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_seeded_enquiries_are_stored_in_their_pinned_states",
+                "status": "passed",
+                "duration": 0.011753847124055028,
+                "start": 1788724596.7941935,
+                "stop": 1788724596.806116,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_access_request_starts_pending_with_a_reference",
+                "status": "passed",
+                "duration": 0.20832817303016782,
+                "start": 1788724596.80629,
+                "stop": 1788724597.014798,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_second_access_request_updates_the_first",
+                "status": "passed",
+                "duration": 0.26498961402103305,
+                "start": 1788724597.014978,
+                "stop": 1788724597.2801476,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_concurrent_access_requests_leave_one_row",
+                "status": "passed",
+                "duration": 2.234798275050707,
+                "start": 1788724597.2803295,
+                "stop": 1788724599.515306,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_access_request_references_are_unique",
+                "status": "passed",
+                "duration": 0.39167911501135677,
+                "start": 1788724599.5154877,
+                "stop": 1788724599.907357,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_seeded_access_requests_hold_their_pinned_states",
+                "status": "passed",
+                "duration": 0.0225800599437207,
+                "start": 1788724599.9075408,
+                "stop": 1788724599.9302943,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_document_room_answers_the_approved_account",
+                "status": "passed",
+                "duration": 0.007928832899779081,
+                "start": 1788724599.9304783,
+                "stop": 1788724599.9385788,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_document_room_is_denied_to_a_pending_account",
+                "status": "passed",
+                "duration": 0.0019571789307519794,
+                "start": 1788724599.938756,
+                "stop": 1788724599.9408474,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_document_room_is_denied_with_no_session",
+                "status": "passed",
+                "duration": 0.0012921571033075452,
+                "start": 1788724599.9410157,
+                "stop": 1788724599.9424212,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_one_account_never_reads_another_saved_list",
+                "status": "passed",
+                "duration": 0.0024455899838358164,
+                "start": 1788724599.9425597,
+                "stop": 1788724599.945118,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_one_account_never_reads_another_enquiry_list",
+                "status": "passed",
+                "duration": 0.0019716700771823525,
+                "start": 1788724599.9452512,
+                "stop": 1788724599.9473257,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_one_account_never_reads_another_access_request",
+                "status": "passed",
+                "duration": 0.0018191860290244222,
+                "start": 1788724599.947454,
+                "stop": 1788724599.94937,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_save_belonging_to_another_account_cannot_be_deleted",
+                "status": "passed",
+                "duration": 2.025161162018776,
+                "start": 1788724599.9494905,
+                "stop": 1788724601.974825,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_enquiry_belonging_to_another_account_cannot_be_closed",
+                "status": "passed",
+                "duration": 2.015129314153455,
+                "start": 1788724601.975012,
+                "stop": 1788724603.9903207,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_save_row_that_never_existed_is_refused",
+                "status": "passed",
+                "duration": 0.002058844082057476,
+                "start": 1788724603.9905124,
+                "stop": 1788724603.9926944,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_private_lists_ignore_an_account_identifier_in_the_query",
+                "status": "passed",
+                "duration": 0.0027709039859473705,
+                "start": 1788724603.992848,
+                "stop": 1788724603.9957442,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_every_private_list_is_denied_with_no_session",
+                "status": "passed",
+                "duration": 0.002471997053362429,
+                "start": 1788724603.9958866,
+                "stop": 1788724603.9984717,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_expired_token_is_refused",
+                "status": "passed",
+                "duration": 0.024608875857666135,
+                "start": 1788724603.998616,
+                "stop": 1788724604.0233922,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_calculator_returns_the_worked_rows",
+                "status": "passed",
+                "duration": 0.0027630639960989356,
+                "start": 1788724604.023565,
+                "stop": 1788724604.026468,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_module_count_rounds_up",
+                "status": "passed",
+                "duration": 0.0013848359230905771,
+                "start": 1788724604.0266402,
+                "stop": 1788724604.0281384,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_energy_figure_follows_the_modules_built",
+                "status": "passed",
+                "duration": 0.0009118719026446342,
+                "start": 1788724604.0282745,
+                "stop": 1788724604.0292854,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_electrical_kind_uses_the_converted_module_output",
+                "status": "passed",
+                "duration": 0.000771587947383523,
+                "start": 1788724604.0294075,
+                "stop": 1788724604.0302699,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_need_of_zero_or_less_is_refused",
+                "status": "passed",
+                "duration": 0.0025600469671189785,
+                "start": 1788724604.0303836,
+                "stop": 1788724604.0330648,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_a_calculator_kind_outside_the_pinned_pair_is_refused",
+                "status": "passed",
+                "duration": 0.0008387399138882756,
+                "start": 1788724604.0332043,
+                "stop": 1788724604.0341387,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_seven_stories_are_seeded_with_one_featured",
+                "status": "passed",
+                "duration": 0.01159999007359147,
+                "start": 1788724604.0342534,
+                "stop": 1788724604.0460172,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_story_list_pages_three_at_a_time",
+                "status": "passed",
+                "duration": 0.0019463509088382125,
+                "start": 1788724604.046192,
+                "stop": 1788724604.0482652,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_second_story_page_carries_different_stories",
+                "status": "passed",
+                "duration": 0.0021946070482954383,
+                "start": 1788724604.048416,
+                "stop": 1788724604.0507226,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_one_story_answers_with_its_body",
+                "status": "passed",
+                "duration": 0.0009237318299710751,
+                "start": 1788724604.0508611,
+                "stop": 1788724604.0518796,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_three_jobs_are_seeded_with_the_academy_named",
+                "status": "passed",
+                "duration": 0.006518759066238999,
+                "start": 1788724604.0519927,
+                "stop": 1788724604.058636,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_team_and_offices_answer_a_stranger",
+                "status": "passed",
+                "duration": 0.012261405936442316,
+                "start": 1788724604.0587668,
+                "stop": 1788724604.0711892,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_questions_answer_a_stranger_and_filter",
+                "status": "passed",
+                "duration": 0.00839381106197834,
+                "start": 1788724604.0713568,
+                "stop": 1788724604.0799062,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_content_is_served_from_the_store_not_the_build",
+                "status": "passed",
+                "duration": 0.012860510032624006,
+                "start": 1788724604.0800743,
+                "stop": 1788724604.0931017,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_application_is_stored_against_its_job",
+                "status": "passed",
+                "duration": 0.20122445398010314,
+                "start": 1788724604.0932722,
+                "stop": 1788724604.2946866,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_applying_twice_to_one_job_updates_the_row",
+                "status": "passed",
+                "duration": 0.24982201389502734,
+                "start": 1788724604.294867,
+                "stop": 1788724604.5448909,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_application_to_an_unknown_job_is_refused",
+                "status": "passed",
+                "duration": 2.148198399110697,
+                "start": 1788724604.5450716,
+                "stop": 1788724606.693445,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_caller_reads_only_their_own_applications",
+                "status": "passed",
+                "duration": 0.19264335418120027,
+                "start": 1788724606.6936305,
+                "stop": 1788724606.886456,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_enquiry_reaches_the_enquirer_with_its_reference",
+                "status": "passed",
+                "duration": 0.10434607591014355,
+                "start": 1788724606.886653,
+                "stop": 1788724606.9912126,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_enquiry_message_reaches_that_address_alone",
+                "status": "passed",
+                "duration": 0.07890779105946422,
+                "start": 1788724606.9913836,
+                "stop": 1788724607.0704634,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_the_enquiry_body_carries_the_topic_and_the_reference",
+                "status": "passed",
+                "duration": 0.0796480841236189,
+                "start": 1788724607.0706515,
+                "stop": 1788724607.1504676,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_access_request_reaches_the_requester",
+                "status": "passed",
+                "duration": 0.18955736700445414,
+                "start": 1788724607.1506553,
+                "stop": 1788724607.3403833,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_an_application_reaches_the_applicant_with_the_job_title",
+                "status": "passed",
+                "duration": 0.20991455996409059,
+                "start": 1788724607.3405573,
+                "stop": 1788724607.550642,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_saving_and_calculating_send_no_mail",
+                "status": "passed",
+                "duration": 2.1442730319686234,
+                "start": 1788724607.5508237,
+                "stop": 1788724609.6952662,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            },
+            {
+                "name": "test_showcase.py::test_closing_an_enquiry_sends_no_mail",
+                "status": "passed",
+                "duration": 4.1920552861411124,
+                "start": 1788724609.6954415,
+                "stop": 1788724613.8876626,
+                "retries": 0,
+                "file_path": "test_showcase.py"
+            }
+        ]
+    }
+}

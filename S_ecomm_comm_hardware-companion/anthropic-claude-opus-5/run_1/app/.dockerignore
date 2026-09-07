@@ -1,0 +1,14 @@
+# The image builds its own tree; nothing from this working copy comes with it.
+node_modules
+dist
+.astro
+
+# Evidence and scratch space, reserved at the app root and not shipped.
+.browser_screenshots
+.downloads
+server.log
+
+.git
+.gitignore
+npm-debug.log
+*.log

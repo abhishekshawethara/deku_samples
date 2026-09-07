@@ -1,0 +1,118 @@
+exit=1
+
+--- stdout ---
+
+--- stderr ---
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.70kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-bookworm-slim
+#2 DONE 1.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 358B done
+#3 DONE 0.0s
+
+#4 [runtime  1/10] FROM docker.io/library/node:20-bookworm-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#4 DONE 0.0s
+
+#5 [runtime  2/10] WORKDIR /app
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 557.92kB done
+#6 DONE 0.0s
+
+#7 [build  3/11] COPY package.json package-lock.json ./
+#7 DONE 0.5s
+
+#8 [build  4/11] RUN npm ci
+#8 2.238 npm warn deprecated tsconfck@3.1.6: unmaintained
+#8 4.298 
+#8 4.298 added 369 packages, and audited 370 packages in 4s
+#8 4.298 
+#8 4.298 155 packages are looking for funding
+#8 4.298   run `npm fund` for details
+#8 4.342 
+#8 4.342 6 vulnerabilities (2 moderate, 4 high)
+#8 4.342 
+#8 4.342 To address all issues (including breaking changes), run:
+#8 4.342   npm audit fix --force
+#8 4.342 
+#8 4.342 Run `npm audit` for details.
+#8 4.343 npm notice
+#8 4.343 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+#8 4.343 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+#8 4.343 npm notice To update run: npm install -g npm@12.0.2
+#8 4.343 npm notice
+#8 DONE 7.3s
+
+#9 [build  5/11] COPY astro.config.mjs ./
+#9 DONE 0.0s
+
+#10 [build  6/11] COPY src ./src
+#10 DONE 0.1s
+
+#11 [build  7/11] COPY public ./public
+#11 DONE 0.0s
+
+#12 [build  8/11] COPY server ./server
+#12 DONE 0.0s
+
+#13 [build  9/11] COPY db ./db
+#13 DONE 0.0s
+
+#14 [build 10/11] RUN npm run build
+#14 0.458 
+#14 0.458 > app@1.0.0 build
+#14 0.458 > astro build
+#14 0.458 
+#14 0.841 ▶ Astro collects anonymous usage data.
+#14 0.841   This information helps us improve Astro.
+#14 0.841   Run "astro telemetry disable" to opt-out.
+#14 0.841   https://astro.build/telemetry
+#14 0.841 
+#14 1.184 24:30:00 [types] Generated 33ms
+#14 1.184 24:30:00 [build] output: "server"
+#14 1.184 24:30:00 [build] directory: /app/dist/
+#14 1.184 24:30:00 [build] adapter: @astrojs/node
+#14 1.184 24:30:00 [build] Collecting build info...
+#14 1.185 24:30:00 [build] ✓ Completed in 43ms.
+#14 1.187 24:30:00 [build] Building server entrypoints...
+#14 1.774 24:30:00 [ERROR] [vite] x Build failed in 562ms
+#14 1.879 Expected identifier but found "["
+#14 1.879   Location:
+#14 1.879     /app/src/pages/sign-up.astro:24:36
+#14 1.879   Stack trace:
+#14 1.879     at failureErrorWithLog (/app/node_modules/esbuild/lib/main.js:1472:15)
+#14 1.879     at responseCallbacks.<computed> (/app/node_modules/esbuild/lib/main.js:622:9)
+#14 1.879     at Socket.readFromStdout (/app/node_modules/esbuild/lib/main.js:600:7)
+#14 1.879     at addChunk (node:internal/streams/readable:561:12)
+#14 1.879     at Readable.push (node:internal/streams/readable:392:5)
+#14 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [build 10/11] RUN npm run build:
+1.774 24:30:00 [ERROR] [vite] x Build failed in 562ms
+1.879 Expected identifier but found "["
+1.879   Location:
+1.879     /app/src/pages/sign-up.astro:24:36
+1.879   Stack trace:
+1.879     at failureErrorWithLog (/app/node_modules/esbuild/lib/main.js:1472:15)
+1.879     at responseCallbacks.<computed> (/app/node_modules/esbuild/lib/main.js:622:9)
+1.879     at Socket.readFromStdout (/app/node_modules/esbuild/lib/main.js:600:7)
+1.879     at addChunk (node:internal/streams/readable:561:12)
+1.879     at Readable.push (node:internal/streams/readable:392:5)
+------
+Dockerfile:28
+--------------------
+  26 |     # Produce the production build: dist/server holds the SSR entrypoint and
+  27 |     # dist/client holds the island bundles and the static assets.
+  28 | >>> RUN npm run build
+  29 |     
+  30 |     # Drop the development dependencies so the runtime stage copies a lean tree.
+--------------------
+ERROR: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+

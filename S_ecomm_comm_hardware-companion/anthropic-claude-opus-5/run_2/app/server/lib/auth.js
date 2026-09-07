@@ -1,0 +1,82 @@
+import crypto from 'node:crypto';
+import { query } from './db.js';
+import { unauthorized } from './errors.js';
+
+// Passwords are stored hashed with a modern password hash. scrypt is memory-hard
+// and ships in the Node standard library, so the image needs no native build.
+const SCRYPT = { N: 16384, r: 8, p: 1, keylen: 64 };
+const TOKEN_TTL_HOURS = Number(process.env.AUTH_TOKEN_TTL_HOURS || 12);
+
+export function hashPassword(password) {
+  const salt = crypto.randomBytes(16);
+  const key = crypto.scryptSync(password, salt, SCRYPT.keylen, {
+    N: SCRYPT.N, r: SCRYPT.r, p: SCRYPT.p, maxmem: 256 * 1024 * 1024,
+  });
+  return `scrypt$${SCRYPT.N}$${SCRYPT.r}$${SCRYPT.p}$${salt.toString('base64')}$${key.toString('base64')}`;
+}
+
+export function verifyPassword(password, stored) {
+  try {
+    const [scheme, N, r, p, salt, key] = String(stored).split('$');
+    if (scheme !== 'scrypt') return false;
+    const expected = Buffer.from(key, 'base64');
+    const actual = crypto.scryptSync(password, Buffer.from(salt, 'base64'), expected.length, {
+      N: Number(N), r: Number(r), p: Number(p), maxmem: 256 * 1024 * 1024,
+    });
+    return crypto.timingSafeEqual(expected, actual);
+  } catch {
+    return false;
+  }
+}
+
+const sha256 = (s) => crypto.createHash('sha256').update(String(s)).digest('hex');
+
+export async function issueToken(customerId) {
+  const token = crypto.randomBytes(32).toString('base64url');
+  const expiresAt = new Date(Date.now() + TOKEN_TTL_HOURS * 3600_000);
+  await query('INSERT INTO auth_token (token_hash, customer_id, expires_at) VALUES ($1,$2,$3)', [
+    sha256(token), customerId, expiresAt,
+  ]);
+  return { token, expiresAt };
+}
+
+/** A request with an expired or absent token is rejected and mutates nothing. */
+export async function customerForToken(token) {
+  if (!token) return null;
+  const { rows } = await query(
+    `SELECT c.id, c.email, c.name, c.status
+       FROM auth_token t JOIN customer c ON c.id = t.customer_id
+      WHERE t.token_hash = $1 AND t.expires_at > now()`,
+    [sha256(token)],
+  );
+  const c = rows[0];
+  if (!c || c.status !== 'active') return null;
+  return c;
+}
+
+export function bearerFrom(c) {
+  const header = c.req.header('authorization') || '';
+  const m = /^Bearer\s+(.+)$/i.exec(header.trim());
+  if (m) return m[1].trim();
+  // The server-rendered pages carry the same token in a cookie so a signed-in
+  // reader gets HTML on first paint without a client round trip.
+  const cookie = c.req.header('cookie') || '';
+  const cm = /(?:^|;\s*)vela_session=([^;]+)/.exec(cookie);
+  return cm ? decodeURIComponent(cm[1]) : null;
+}
+
+export async function requireCustomer(c) {
+  const customer = await customerForToken(bearerFrom(c));
+  if (!customer) throw unauthorized();
+  return customer;
+}
+
+export async function optionalCustomer(c) {
+  return customerForToken(bearerFrom(c));
+}
+
+export async function revokeToken(token) {
+  if (token) await query('DELETE FROM auth_token WHERE token_hash = $1', [sha256(token)]);
+}
+
+export const hashOpaque = sha256;

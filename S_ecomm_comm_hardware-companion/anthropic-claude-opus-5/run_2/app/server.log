@@ -1,0 +1,5 @@
+{"ts":"2026-09-02T00:27:36.150Z","level":"info","msg":"schema applied"}
+{"ts":"2026-09-02T00:27:36.237Z","level":"info","msg":"seed complete"}
+{"ts":"2026-09-02T00:27:36.277Z","level":"info","msg":"listening","port":4173,"host":"0.0.0.0","public_url":"http://main:4173"}
+{"ts":"2026-09-02T00:27:45.907Z","level":"info","msg":"request","method":"GET","route":"/api/health","status":200,"duration_ms":1,"request_id":"4d0515b1-42f9-4899-b2e9-2f10ec96ae45"}
+{"ts":"2026-09-02T00:28:08.206Z","level":"info","msg":"request","method":"GET","route":"/api/health","status":200,"duration_ms":1,"request_id":"ea429fc1-df3e-4efa-a199-6a6dbc555d40"}

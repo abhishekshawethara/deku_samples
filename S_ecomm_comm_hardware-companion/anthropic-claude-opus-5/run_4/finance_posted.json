@@ -1,0 +1,52 @@
+{
+  "posted_at": "2026-09-05T04:06:58+00:00",
+  "endpoint": "https://projects-stage.ethara.ai/api/v1/ethara_project/trajectory_usage/create",
+  "trajectory_id": "S_ecomm_comm_hardware-companion__SMHd4uh",
+  "status": 200,
+  "response": {
+    "message": "Trajectory usage record created.",
+    "errors": [],
+    "data": {
+      "id": 6457,
+      "project_id": "DEKU",
+      "project_type": "technical",
+      "task_id": "S_ecomm_comm_hardware-companion",
+      "trajectory_id": "S_ecomm_comm_hardware-companion__SMHd4uh",
+      "team_type": "projects",
+      "budget_type": "rfp",
+      "rfp_sub_type": "sampling",
+      "production_mode": "",
+      "is_phase_based": false,
+      "phase_number": "",
+      "generated_at": "2026-09-05T03:06:30",
+      "model_name": "anthropic-claude-opus-5",
+      "trajectory_input_tokens": 51662967.0,
+      "trajectory_output_tokens": 295987.0,
+      "trajectory_input_cache_tokens": 0.0,
+      "trajectory_output_cache_tokens": 0.0,
+      "trajectory_cost_usd": 265.71451,
+      "subscription_id": "0b78c925-1ba1-4b37-871d-e3a893e8d71f",
+      "judge_lines": [
+        {
+          "id": 6399,
+          "model_name": "gpt-5.6-sol",
+          "judge_input_tokens": 652349.0,
+          "judge_output_tokens": 30635.0,
+          "judge_input_cache_tokens": 2520448.0,
+          "judge_output_cache_tokens": 0.0,
+          "judge_cost_usd": 0.0
+        },
+        {
+          "id": 6400,
+          "model_name": "gpt-5.6-sol",
+          "judge_input_tokens": 439456.0,
+          "judge_output_tokens": 30787.0,
+          "judge_input_cache_tokens": 654848.0,
+          "judge_output_cache_tokens": 0.0,
+          "judge_cost_usd": 0.0
+        }
+      ]
+    },
+    "status_code": 200
+  }
+}

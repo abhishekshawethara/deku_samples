@@ -1,0 +1,1 @@
+async function o(s,t,{headers:r}={}){const a=await s(`/api${t}`,{headers:r});if(!a.ok){const n=new Error(`api ${t} failed with ${a.status}`);throw n.status=a.status,n}return{data:await a.json(),headers:a.headers}}async function e(s,t,r){try{const{data:a}=await o(s,t);return a}catch{return r}}export{e as a,o as l};

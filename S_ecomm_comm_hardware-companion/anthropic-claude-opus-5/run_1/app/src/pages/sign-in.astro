@@ -1,0 +1,77 @@
+---
+import Shell from '../layouts/Shell.astro';
+import { query } from '../../server/lib/db.js';
+import { verifyPassword, issueToken } from '../../server/lib/auth.js';
+import { SESSION_COOKIE } from '../middleware.js';
+
+// A signed-out request for any /account route lands here carrying the intended
+// path and returns there after signing in.
+const next = Astro.url.searchParams.get('next') || '/account';
+const safeNext = next.startsWith('/') && !next.startsWith('//') ? next : '/account';
+
+let error = '';
+let email = '';
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  email = String(form.get('email') ?? '').trim();
+  const [REDACTED] = String(form.get('[REDACTED]') ?? '');
+  const target = String(form.get('next') ?? safeNext);
+
+  const { rows } = await query('SELECT * FROM customer WHERE lower(email)=lower($1)', [email]);
+  const customer = rows[0];
+  if (!customer || customer.status !== 'active' || !verifyPassword([REDACTED], customer.[REDACTED]_hash)) {
+    error = 'That email and [REDACTED] do not match an account.';
+  } else {
+    const { token, expiresAt } = await issueToken(customer.id);
+    Astro.cookies.set(SESSION_COOKIE, token, {
+      path: '/', httpOnly: true, sameSite: 'lax', expires: expiresAt,
+    });
+    return Astro.redirect(target.startsWith('/') && !target.startsWith('//') ? target : '/account', 303);
+  }
+}
+
+if (Astro.locals.customer) return Astro.redirect(safeNext, 302);
+---
+
+<Shell title="Sign in — Vela" current="">
+  <div class="auth">
+    <h1>Sign in</h1>
+    <p class="muted small">Your orders and the cameras on your account.</p>
+
+    {error && <p class="notice notice-wrong" role="alert">{error}</p>}
+
+    <form method="post">
+      <input type="hidden" name="next" value={safeNext} />
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value={email} autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label for="[REDACTED]">Password</label>
+        <input type="[REDACTED]" id="[REDACTED]" name="[REDACTED]" autocomplete="current-[REDACTED]" required />
+      </div>
+
+      <button type="submit" class="button button-primary wide">Sign in</button>
+    </form>
+
+    <p class="small alt">
+      No account? <a href={`/sign-up?next=${encodeURIComponent(safeNext)}`}>Create one</a>.
+      You never need one to buy.
+    </p>
+  </div>
+</Shell>
+
+<style>
+  .auth {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: var(--u8) 0;
+  }
+  .auth h1 { font-size: var(--text-xl); margin-bottom: var(--u); }
+  .auth > p.muted { margin: 0 0 var(--u5); }
+  .wide { width: 100%; margin-top: var(--u2); }
+  .alt { margin-top: var(--u5); }
+</style>

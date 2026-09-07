@@ -1,0 +1,792 @@
+{
+  "workflows": [
+    {
+      "id": "app_is_reachable_and_credentials_work",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "The sign-in route opened successfully and the form contains only two fields: an email input and a password input.",
+          "steps_used": 5,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_navigate": 1,
+            "browser_click": 1,
+            "report_result": 1
+          },
+          "do": "Open the sign-in route and confirm the form asks for an email and a password only"
+        },
+        {
+          "passed": true,
+          "note": "Opened /signup, submitted a new unique name, email, and valid password, and the app created and signed into the new account, showing its account dashboard.",
+          "steps_used": 11,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_fill": 3,
+            "browser_navigate": 1,
+            "browser_click": 1,
+            "report_result": 1
+          },
+          "do": "Open the sign-up route and confirm a new account can be created from it"
+        },
+        {
+          "passed": true,
+          "note": "Signed in successfully as visitor@example.com (Ada Moreau) and confirmed the account page opened at /account.",
+          "steps_used": 14,
+          "tools_used": {
+            "browser_snapshot": 6,
+            "browser_click": 4,
+            "browser_fill": 2,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Sign in with the first account documented in the app user readme and confirm the account route opens"
+        },
+        {
+          "passed": false,
+          "note": "Sign-out succeeded and the signed-out home page rendered, but the browser URL remained on /account instead of returning to the home route (/).",
+          "steps_used": 5,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_click": 1,
+            "browser_wait_for": 1,
+            "report_result": 1
+          },
+          "do": "Sign out and confirm the browser returns to the home route"
+        },
+        {
+          "passed": true,
+          "note": "The top bar shows the Zettajoule logo, all nine route labels (Company, Technology, Solutions, Our Edge, Our Team, Investors, News, Careers, Contact), and one Get in Touch action.",
+          "steps_used": 14,
+          "tools_used": {
+            "browser_get_bounding_box": 11,
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the top bar carries the logo, the nine route labels and one Get in Touch action"
+        },
+        {
+          "passed": true,
+          "note": "The route\u2019s foot includes the invitation \u201cTell us what you need to power,\u201d supporting copy, and a \u201cGet in Touch\u201d link immediately above the footer.",
+          "steps_used": 6,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_navigate": 1,
+            "browser_scroll_to": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the foot of the route carries a get-in-touch invitation"
+        }
+      ]
+    },
+    {
+      "id": "visitor_browses_the_showcase_routes",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "The home route opens with the first-screen hero headed \u201cPowering the World,\u201d and the reactor presentation stands directly beneath it.",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_screenshot": 1,
+            "report_result": 1
+          },
+          "do": "Open the home route and confirm the reactor stands on the first screen under one huge display line reading Powering the World"
+        },
+        {
+          "passed": true,
+          "note": "Scrolling the home-route reactor sequence advanced through \u201cDome off, core exposed\u201d and then \u201cResolved into a technical drawing,\u201d confirming the reactor comes apart to reveal the fuel column and the metal transitions to line art.",
+          "steps_used": 11,
+          "tools_used": {
+            "browser_snapshot": 4,
+            "browser_scroll": 3,
+            "browser_screenshot": 2,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Scroll the home route and confirm the reactor comes apart, exposing a fuel column, and the metal resolves into a line drawing"
+        },
+        {
+          "passed": true,
+          "note": "The opened-reactor hero shows all three key facts: \u201cHigh-temperature gas-cooled reactor,\u201d \u201c250 MW thermal a module,\u201d and \u201c750 degrees Celsius at the outlet.\u201d",
+          "steps_used": 3,
+          "tools_used": {
+            "browser_snapshot": 1,
+            "browser_screenshot": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the three key facts appear beside the opened reactor naming the reactor type, the module output and the outlet temperature"
+        },
+        {
+          "passed": true,
+          "note": "The home route includes the \u201cWhy Zettajoule\u201d passage explaining the company name and an \u201cEight industries, one object\u201d section with industry cards arranged in a horizontal row.",
+          "steps_used": 7,
+          "tools_used": {
+            "browser_get_bounding_box": 4,
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the home route carries a passage about the company name and a row of industry cards"
+        },
+        {
+          "passed": true,
+          "note": "The page includes a visible \u201cThe reactor sequence in words\u201d section with four plain-text stage descriptions: the whole module, control rods lifting, lid/core exposure, and the final technical line drawing with helium circuit.",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Confirm each stage of the reactor sequence is also readable as plain written text"
+        },
+        {
+          "passed": true,
+          "note": "The /company route shows the opening line \u201cclean heat and electricity to power a world of industrial applications,\u201d followed by the vision, mission, Zettajoule naming story, and three offices: Rotterdam (headquarters), Chicago (licensing), and Tokyo (engineering).",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Open the company route and confirm the opening line, the vision, the mission, the naming story and the three offices"
+        },
+        {
+          "passed": true,
+          "note": "The /technology route opened and shows the reactor cutaway plus sections for The fuel, The graphite, The helium, The digital twin (a living digital copy), The safety case, and Built in modules.",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Open the technology route and confirm the cutaway with the fuel, the graphite, the helium, the digital copy, the safety case and the modules"
+        },
+        {
+          "passed": true,
+          "note": "Interacted with the technology diagram\u2019s TURN control, selected \u201cControl rods,\u201d and confirmed it displayed an explanation describing the absorbers and how they shut down the chain reaction.",
+          "steps_used": 20,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_click": 3,
+            "browser_get_bounding_box": 3,
+            "browser_get_html": 2,
+            "browser_get_attribute": 2,
+            "browser_navigate": 1,
+            "browser_screenshot": 1,
+            "browser_drag": 1,
+            "browser_press_key": 1,
+            "report_result": 1
+          },
+          "do": "Drag the technology diagram, then tap one part, and confirm that part explains itself"
+        },
+        {
+          "passed": true,
+          "note": "Opened the Our Edge route and confirmed all four claims: a modernized design based on an operating late-1990s test reactor, the 300\u00b0C water-cooled versus 750\u00b0C Zettajoule temperature case, single- and multi-module configurations, and the owned/operated energy-sale business model.",
+          "steps_used": 6,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_navigate": 1,
+            "browser_click": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Open the edge route and confirm the modernized proven design, the temperature case, the modules and the business model"
+        },
+        {
+          "passed": true,
+          "note": "The /team route opens with \u201cshaping the future of nuclear together\u201d above four leaders\u2014Mira Halvorsen, Tobias Ruiz, Anneke Vos, and Daniel Okoye\u2014laid out in a four-column grid with portrait plates styled using soft tinted backgrounds.",
+          "steps_used": 13,
+          "tools_used": {
+            "browser_get_bounding_box": 4,
+            "browser_view_source": 3,
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_screenshot": 1,
+            "browser_get_computed_style": 1,
+            "browser_get_html": 1,
+            "report_result": 1
+          },
+          "do": "Open the team route and confirm the opening line over a grid of four leaders on soft tinted plates"
+        },
+        {
+          "passed": true,
+          "note": "Opened Mira Halvorsen\u2019s Professional profile link, returned to the team page, and used View bio; a shared modal opened with her full Chief Executive description, Professional profile link, and Close controls.",
+          "steps_used": 11,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_click": 3,
+            "browser_navigate": 1,
+            "browser_go_back": 1,
+            "report_result": 1
+          },
+          "do": "Open one leader profile link, then the view-bio action, and confirm the fuller description opens in the shared modal"
+        },
+        {
+          "passed": true,
+          "note": "Navigated between Company and Technology via the in-app route links; the destination content/title transitioned before the URL settled, with the route cover sweep, and navigation completed in the same page context without a full reload.",
+          "steps_used": 18,
+          "tools_used": {
+            "browser_snapshot": 7,
+            "browser_click": 4,
+            "browser_wait_for": 2,
+            "browser_navigate": 1,
+            "browser_screenshot": 1,
+            "browser_get_network_requests": 1,
+            "browser_view_source": 1,
+            "report_result": 1
+          },
+          "do": "Move between two showcase routes and confirm the change does not reload the page and a cover sweeps across"
+        },
+        {
+          "passed": true,
+          "note": "The home route returned HTTP 200 with a complete 40,665-byte server-rendered HTML document containing the header, hero, reactor sequence, all eight industry cards, technology sections, CTA, and footer before JavaScript ran; with scripting active, the solution filters updated results/URL, Save toggle",
+          "steps_used": 22,
+          "tools_used": {
+            "browser_snapshot": 7,
+            "browser_click": 4,
+            "browser_get_html": 3,
+            "browser_navigate": 2,
+            "browser_view_source": 1,
+            "browser_get_text": 1,
+            "browser_get_network_requests": 1,
+            "browser_select_option": 1,
+            "browser_screenshot": 1,
+            "report_result": 1
+          },
+          "do": "Open the home route with scripting turned off and confirm the whole page arrives as complete HTML, then turn scripting back on and confirm only the filter row, the save control and the modals become interactive"
+        },
+        {
+          "passed": true,
+          "note": "The server-rendered response already contains the navigation bars, hero copy, sequence words, and initial reactor/loading view; these were usable immediately, while scrolling progressively advanced the reactor from \u201cWhole and metallic\u201d through later stages, with no additional off-origin payloads obs",
+          "steps_used": 18,
+          "tools_used": {
+            "browser_snapshot": 6,
+            "browser_get_network_requests": 3,
+            "browser_navigate": 2,
+            "browser_scroll": 2,
+            "browser_view_source": 1,
+            "browser_screenshot": 1,
+            "browser_scroll_to": 1,
+            "browser_reload": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the bars, the words and the first view of the reactor are usable before the whole sequence has arrived, and that the heavier extras arrive only on reaching them"
+        },
+        {
+          "passed": true,
+          "note": "At a 390\u00d7844 phone viewport, the route-menu button opened a dedicated mobile menu panel with a close control and the full navigation list spanning the panel width.",
+          "steps_used": 12,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_screenshot": 2,
+            "browser_get_bounding_box": 2,
+            "browser_set_viewport": 1,
+            "browser_click": 1,
+            "browser_wait_for": 1,
+            "browser_get_html": 1,
+            "browser_get_computed_style": 1,
+            "report_result": 1
+          },
+          "do": "Narrow the browser to a phone width and confirm the menu button opens a full panel"
+        },
+        {
+          "passed": true,
+          "note": "The never-defined route displays a 404 card headed \u201cWe cannot find that page\u201d and includes a \u201cBack to the home page\u201d link with href='/'.",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_get_attribute": 1,
+            "report_result": 1
+          },
+          "do": "Open an address that was never a route and confirm the not-found card reads We cannot find that page and links home"
+        }
+      ]
+    },
+    {
+      "id": "visitor_filters_the_solutions_explorer",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "The /solutions route shows an industry filter row with an \u201cAll industries\u201d selector and eight industry cards arranged in a four-column, two-row grid.",
+          "steps_used": 13,
+          "tools_used": {
+            "browser_get_bounding_box": 10,
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "report_result": 1
+          },
+          "do": "Open the solutions route and confirm eight industry cards in a grid under a filter row offering an industry choice"
+        },
+        {
+          "passed": true,
+          "note": "Selected Hydrogen output and the top temperature band (550 to 750 C); the page shows \u201c2 of 8 solutions.\u201d",
+          "steps_used": 16,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_select_option": 3,
+            "browser_get_html": 2,
+            "browser_navigate": 1,
+            "browser_get_text": 1,
+            "browser_click": 1,
+            "browser_wait_for": 1,
+            "browser_get_attribute": 1,
+            "report_result": 1
+          },
+          "do": "Choose the hydrogen output and the top temperature band, then confirm the count reads two of eight"
+        },
+        {
+          "passed": true,
+          "note": "Opened the Oil and Gas industry card. Its solution page includes \u201cWhat the reactor does here\u201d plus a \u201cBlock by block\u201d explanation covering the source, transfer, use, and operating arrangement.",
+          "steps_used": 5,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_navigate": 1,
+            "browser_click": 1,
+            "report_result": 1
+          },
+          "do": "Open one industry card and confirm the solution explains what the reactor does for that industry block by block"
+        },
+        {
+          "passed": true,
+          "note": "The opened Oil and Gas solution displays both a \u201cSave this solution\u201d button and an \u201cEnquire\u201d link.",
+          "steps_used": 2,
+          "tools_used": {
+            "browser_snapshot": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the opened solution offers a save action and an enquire action"
+        },
+        {
+          "passed": true,
+          "note": "Returned to the home route and followed the \u201cHydrogen\u201d output link; the explorer opened at /solutions?output_kind=hydrogen and showed only 2 hydrogen solutions (Transport and Steel), confirming the output filter was pre-applied.",
+          "steps_used": 7,
+          "tools_used": {
+            "browser_snapshot": 3,
+            "browser_navigate": 1,
+            "browser_click": 1,
+            "browser_get_html": 1,
+            "report_result": 1
+          },
+          "do": "Return to the home route and follow one of the four output links, then confirm the explorer arrives already filtered to that output"
+        },
+        {
+          "passed": true,
+          "note": "Searched the Solutions explorer for \u201chydrogen\u201d; the grid narrowed from 8 to 2 matching industries, Transport and Steel, both with hydrogen output.",
+          "steps_used": 15,
+          "tools_used": {
+            "browser_snapshot": 7,
+            "browser_click": 4,
+            "browser_fill": 2,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Search the explorer in plain language and confirm the grid narrows to matching industries"
+        },
+        {
+          "passed": true,
+          "note": "The solutions grid reads clearly as a plain written sequence of all eight industries, each followed by its description and energy/temperature metadata.",
+          "steps_used": 7,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_navigate": 1,
+            "browser_scroll_to": 1,
+            "browser_get_html": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the solutions grid also reads as a plain written list"
+        }
+      ]
+    },
+    {
+      "id": "anonymous_save_is_claimed_at_signup",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "Saved the Oil and Gas industry solution while signed out; an in-place confirmation banner appeared reading \u201cSaved. Sign in to keep it on an account.\u201d",
+          "steps_used": 8,
+          "tools_used": {
+            "browser_snapshot": 3,
+            "browser_click": 2,
+            "browser_navigate": 1,
+            "browser_screenshot": 1,
+            "report_result": 1
+          },
+          "do": "With no account, save one industry solution and confirm the result appears in place as a banner"
+        },
+        {
+          "passed": true,
+          "note": "Created a new account in the same browser and confirmed on /account that Saved solutions shows 1: Oil and Gas.",
+          "steps_used": 16,
+          "tools_used": {
+            "browser_snapshot": 8,
+            "browser_click": 4,
+            "browser_fill": 3,
+            "report_result": 1
+          },
+          "do": "Sign up from the same browser and confirm the saved solution is waiting on the account route"
+        },
+        {
+          "passed": true,
+          "note": "The account route shows an Enquiries section listing the sent enquiry ENQ-7K2M9QD4 with its state clearly marked ANSWERED.",
+          "steps_used": 12,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_click": 3,
+            "browser_fill": 2,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the account route lists the enquiries sent with the state of each"
+        }
+      ]
+    },
+    {
+      "id": "comparison_holds_four_saves_at_most",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "Opened the comparison route with four saved solutions; it shows \u201cComparing 4 of 4\u201d and Oil and Gas, Chemicals, Steel, and Data Centres in four side-by-side columns.",
+          "steps_used": 21,
+          "tools_used": {
+            "browser_snapshot": 8,
+            "browser_click": 6,
+            "browser_get_bounding_box": 4,
+            "browser_fill": 2,
+            "report_result": 1
+          },
+          "do": "Open the comparison route with four saved solutions and confirm four columns side by side"
+        },
+        {
+          "passed": true,
+          "note": "Added Transport as the fifth saved solution, then attempted to select it for comparison; an in-place refusal appeared stating the limit is 4 and the existing Oil and Gas, Chemicals, Steel, and Data Centres comparison remained at 4 of 4.",
+          "steps_used": 13,
+          "tools_used": {
+            "browser_snapshot": 6,
+            "browser_click": 5,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Add a fifth saved solution and confirm the refusal appears in place while four are still compared"
+        }
+      ]
+    },
+    {
+      "id": "enquiry_is_sent_and_acknowledged",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "The /contact route shows an explanation above the form: \u201cThis form reaches the team directly. Use it for careers, investor and supplier enquiries, or anything technical about the modules and where they can stand.\u201d The form has six fields: Name, Email, Country Code, Phone (optional), Topic, and Messa",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_screenshot": 1,
+            "report_result": 1
+          },
+          "do": "Open the contact route and confirm the explanation of what the form serves over the six fields"
+        },
+        {
+          "passed": true,
+          "note": "Enquiry was sent successfully, and the in-place confirmation displays reference ENQ-IGF6SWFY.",
+          "steps_used": 10,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_fill": 3,
+            "browser_click": 1,
+            "report_result": 1
+          },
+          "do": "Send the enquiry and confirm the reference appears in place"
+        }
+      ]
+    },
+    {
+      "id": "investor_room_is_denied_without_approval",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "The /investors route shows \u201cThe size of the need,\u201d the energy-as-a-service business case, a dated roadmap spanning 1998\u20132031, and the private document-room notice stating that access reads pending until approved.",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Open the investors route and confirm the energy need, the business case, the dated roadmap and the pending notice"
+        },
+        {
+          "passed": true,
+          "note": "Signed in as visitor2, submitted/updated the investor access request, and confirmed the account route shows Investor access IAR-9T3V6BLM as PENDING with the room closed until approval.",
+          "steps_used": 27,
+          "tools_used": {
+            "browser_snapshot": 11,
+            "browser_click": 7,
+            "browser_fill": 4,
+            "browser_navigate": 2,
+            "browser_get_text": 2,
+            "report_result": 1
+          },
+          "do": "Request investor access and confirm the account route reads the request as pending"
+        },
+        {
+          "passed": true,
+          "note": "Signed in as approved account visitor@example.com (Ada Moreau), opened the document room, and confirmed all three documents are listed: Investor Deck 2026, Technology Dossier, and Licensing Roadmap.",
+          "steps_used": 16,
+          "tools_used": {
+            "browser_snapshot": 7,
+            "browser_click": 5,
+            "browser_fill": 2,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Sign in as the approved account, open the document room and confirm the three documents are listed"
+        },
+        {
+          "passed": true,
+          "note": "Signed in as pending account visitor2@example.com (Ken Adeyemi), opened /investors/room, and confirmed the 404 \u201cWe cannot find that page\u201d response.",
+          "steps_used": 17,
+          "tools_used": {
+            "browser_snapshot": 7,
+            "browser_click": 4,
+            "browser_navigate": 2,
+            "browser_fill": 2,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Sign in as the pending account, open the same address and confirm the not-found page"
+        }
+      ]
+    },
+    {
+      "id": "cross_account_rows_cannot_be_read",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "Signed in as visitor2@example.com (Ken Adeyemi) and confirmed /account states everything belongs to this account alone, listing exactly 1 saved solution\u2014Mining\u2014and 0 saved searches.",
+          "steps_used": 13,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_click": 3,
+            "browser_fill": 2,
+            "browser_navigate": 1,
+            "browser_get_html": 1,
+            "report_result": 1
+          },
+          "do": "Sign in as the second account and confirm the account route lists only that account own saves"
+        },
+        {
+          "passed": true,
+          "note": "The /account route is signed in as visitor2@example.com and explicitly states all displayed data belongs to this account alone; it shows exactly one enquiry (ENQ-5R8X1CJ2) and exactly one investor access request (IAR-9T3V6BLM), with no other enquiries or requests listed.",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the account route lists only that account own enquiries and its own access request"
+        }
+      ]
+    },
+    {
+      "id": "unauthenticated_visitor_is_sent_to_sign_in",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "With cookies cleared, opening /account redirected the browser to /signin?next=/account, preserving the account return path.",
+          "steps_used": 7,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_wait_for": 2,
+            "browser_clear_cookies": 1,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "With no session, open the account route and confirm the browser lands on the sign-in route carrying the return path"
+        },
+        {
+          "passed": true,
+          "note": "Signed in successfully as visitor@example.com and confirmed the browser landed on the /account route.",
+          "steps_used": 11,
+          "tools_used": {
+            "browser_snapshot": 5,
+            "browser_fill": 2,
+            "browser_wait_for": 2,
+            "browser_click": 1,
+            "report_result": 1
+          },
+          "do": "Sign in from there and confirm the browser lands back on the account route"
+        },
+        {
+          "passed": true,
+          "note": "Cleared the active visitor session mid-visit, then opened the protected /investors/room route and confirmed it displayed the Sign in page instead of the document room.",
+          "steps_used": 18,
+          "tools_used": {
+            "browser_snapshot": 7,
+            "browser_navigate": 4,
+            "browser_click": 2,
+            "browser_get_attribute": 2,
+            "browser_clear_cookies": 1,
+            "browser_reload": 1,
+            "report_result": 1
+          },
+          "do": "Clear the session mid-visit and confirm the next protected route sends the visitor back to sign in"
+        }
+      ]
+    },
+    {
+      "id": "calculator_returns_the_worked_figures",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "Opened /calculator, entered 251 MW with Thermal selected, and calculated 2 modules, 4,000 GWh annual clean energy, and 1,800,000 tonnes annual CO2 avoided; the accompanying results visualization presents the same three measures as a simple bar chart.",
+          "steps_used": 11,
+          "tools_used": {
+            "browser_snapshot": 4,
+            "browser_click": 2,
+            "browser_navigate": 1,
+            "browser_fill": 1,
+            "browser_screenshot": 1,
+            "browser_wait_for": 1,
+            "report_result": 1
+          },
+          "do": "Open the calculator route, enter a thermal need and confirm the module count, the energy figure and the carbon figure appear beside a simple bar chart"
+        },
+        {
+          "passed": true,
+          "note": "Entered 251 MW thermal (1 MW above the 250 MW capacity of one module); the calculator showed the module count rising from one to two.",
+          "steps_used": 9,
+          "tools_used": {
+            "browser_snapshot": 4,
+            "browser_click": 2,
+            "browser_navigate": 1,
+            "browser_fill": 1,
+            "report_result": 1
+          },
+          "do": "Enter a need one megawatt over a whole module and confirm the module count rises by one"
+        }
+      ]
+    },
+    {
+      "id": "newsroom_and_careers_are_browsed_and_applied_to",
+      "substeps": [
+        {
+          "passed": true,
+          "note": "The News newsroom shows the \u201clatest news\u201d heading, one elevated featured story (\u201cFirst module order signed\u201d), and a three-card wall beneath it; each card has a generated plate plus its publication/source label: Company news, Industry Week, and Energy Monitor.",
+          "steps_used": 12,
+          "tools_used": {
+            "browser_get_bounding_box": 4,
+            "browser_snapshot": 2,
+            "browser_navigate": 1,
+            "browser_click": 1,
+            "browser_screenshot": 1,
+            "browser_get_html": 1,
+            "browser_get_computed_style": 1,
+            "report_result": 1
+          },
+          "do": "Open the newsroom and confirm the heading over one featured story raised above a wall of three cards, each with a plate and where it ran"
+        },
+        {
+          "passed": true,
+          "note": "Pressed \u201cMore stories\u201d; the wall expanded from 3 of 6 to 6 of 6 and displayed the next three stories.",
+          "steps_used": 7,
+          "tools_used": {
+            "browser_snapshot": 3,
+            "browser_click": 2,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Press the more action and confirm the next three stories arrive"
+        },
+        {
+          "passed": true,
+          "note": "Opened the featured story \u201cFirst module order signed\u201d and confirmed its full article text is displayed, including all three body paragraphs.",
+          "steps_used": 7,
+          "tools_used": {
+            "browser_snapshot": 3,
+            "browser_click": 2,
+            "browser_navigate": 1,
+            "report_result": 1
+          },
+          "do": "Open one story and confirm the full text"
+        },
+        {
+          "passed": true,
+          "note": "Careers route loaded and shows the heading \u201chelp us build what's next in nuclear energy,\u201d the \u201cHow we work\u201d culture story, three open roles (Reactor Systems Engineer, Licensing Lead, and Operations Trainer), and \u201cThe Operations Academy\u201d section.",
+          "steps_used": 4,
+          "tools_used": {
+            "browser_navigate": 1,
+            "browser_snapshot": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Open the careers route and confirm the heading, the culture story, the three open jobs and the Operations Academy"
+        },
+        {
+          "passed": true,
+          "note": "Pressed Apply for Reactor Systems Engineer; a modal opened with the role title, Close/Cancel controls, and a short application form containing Name, Email, Your Note, and Submit application.",
+          "steps_used": 6,
+          "tools_used": {
+            "browser_snapshot": 2,
+            "browser_click": 1,
+            "browser_get_text": 1,
+            "browser_screenshot": 1,
+            "report_result": 1
+          },
+          "do": "Press apply on one job and confirm the short form opens in the shared modal"
+        },
+        {
+          "passed": true,
+          "note": "The apply form contains only name, email, and note fields, with no file input or attachment control; it also explicitly states, \u201cThere is no attachment: the note is the whole application.\u201d",
+          "steps_used": 6,
+          "tools_used": {
+            "browser_get_html": 3,
+            "browser_snapshot": 1,
+            "browser_get_text": 1,
+            "report_result": 1
+          },
+          "do": "Confirm the apply form offers no file input and no attachment control"
+        },
+        {
+          "passed": true,
+          "note": "Opened the Questions/FAQ route and confirmed it presents six common questions with a search input and category filter; searching for \u201chelium\u201d successfully filtered the list to two matching questions.",
+          "steps_used": 9,
+          "tools_used": {
+            "browser_snapshot": 4,
+            "browser_click": 2,
+            "browser_navigate": 1,
+            "browser_fill": 1,
+            "report_result": 1
+          },
+          "do": "Open the questions route and confirm the searchable list of common questions"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "grader_model": "gpt-5.6-sol",
+    "grader_provider": "openai",
+    "viewport": "1920x1200",
+    "url": "http://deku-fresh-i_media_dire_clean-energy-showca__hq6yajv-app:4173",
+    "max_steps": 100,
+    "started_at": "2026-09-06T19:25:02+00:00",
+    "finished_at": "2026-09-06T19:56:29+00:00",
+    "ungraded_substeps": 0,
+    "usage": {
+      "calls": 495,
+      "model_name": "gpt-5.6-sol",
+      "input_tokens": 688414,
+      "output_tokens": 27857,
+      "cache_read_input_tokens": 1504256,
+      "cache_creation_input_tokens": 0
+    }
+  }
+}

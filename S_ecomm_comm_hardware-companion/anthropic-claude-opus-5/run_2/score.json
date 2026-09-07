@@ -1,0 +1,136 @@
+{
+  "combined_score": 0.5458,
+  "weights": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "weights_applied": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "components": {
+    "workflow": {
+      "score": 0.375,
+      "passed": 6,
+      "total": 16
+    },
+    "pytest": {
+      "score": 0.5357142857142857,
+      "passed": 15,
+      "total": 28
+    },
+    "rubric": {
+      "score": 0.897436,
+      "criteria": 18,
+      "passed": 9,
+      "failed": 2,
+      "unresolved": 7,
+      "coverage": 0.6111111111111112,
+      "weighted_coverage": 0.609375,
+      "machine_outcomes": {
+        "PASS": 9,
+        "FAIL": 2,
+        "INSUFFICIENT_EVIDENCE": 7,
+        "EVALUATOR_ERROR": 0
+      },
+      "resolution_methods": {
+        "machine_unresolved": 7,
+        "active_acquisition": 11
+      },
+      "needs_human_eval": 0,
+      "council": null
+    }
+  },
+  "reward": 0.375,
+  "invalid": [],
+  "degraded": [
+    "grader_no_tool_call",
+    "workflow_timeout",
+    "browser_substeps_ungraded=2/32 (6% <= 40% tolerance); the workflows holding them are counted as failed, so the reward is a lower bound"
+  ],
+  "needs_human_review": 0,
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion depends on delivered-markup structure: every paragraph must occur once in normal flow and once inside an inert scroll-driven layer. Visible/extracted text and scrolling confirm the letter exists, but they cannot defensibly establish whether a second copy exists in markup or which copy is in ordinary flow versus the driven layer. Therefore the evidence does not settle the criterion.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Route `/` displayed the letter titled \u201cthe table\u201d with a sequence of distinct paragraphs in extracted page text.",
+        "Scrolling was exercised (PageDown and End), but the browser text snapshot continued to expose only one textual sequence of the letter.",
+        "The available browser observations did not expose DOM structure, paragraph counts, duplicate hidden/inert nodes, or containment inside a scroll-driven layer."
+      ]
+    },
+    {
+      "criterion": "R2",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations do not defensibly establish whether a faint speckle overlay exists or whether it is stacked above the film/still frame and below the darkening panel. A zero animation count alone cannot rule out animation implemented via canvas, video, timers, or animated background assets. Because direct visual and layer-order evidence was unavailable, the criterion cannot be resolved as yes or no.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "The correct route was reached at `/#letter`, and the letter content beginning with \u201cthe table\u201d and \u201cJune 1, 2026\u201d was present.",
+        "Two motion-capture intervals reported `animation_count: 0`, so no CSS/Web Animations API animation was detected during those samples.",
+        "The full-page screenshot image was omitted by the tool transport, preventing direct visual inspection of the speckle, writing visibility, and darkening panel.",
+        "Available snapshots exposed only three links and text, not the non-interactive film/speckle/darkening layer elements or their stacking order."
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations establish an in-place accepted quantity update without a page navigation, but the criterion specifically requires direct evidence that totals enter a pending state and that a server-rejected change reverts the quantity with a stated reason. Those decisive rejection and pending-state observations are missing, so the full composite criterion cannot be resolved defensibly.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /cart, changing the Travel Case quantity from 1 to 2 and blurring the field kept the page at /cart and updated the cart badge from 1 to 2, line total from $79.00 to $158.00, subtotal from $79.00 to $158.00, tax from $7.90 to $15.80, and estimated total from $86.90 to $173.80.",
+        "The quantity input exposed min=1 and max=10.",
+        "No pending-totals state was captured during the accepted update, and no server-rejected quantity response was completed or observed."
+      ]
+    },
+    {
+      "criterion": "R9",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion specifically requires observing the visual treatment of an expired warranty. All available camera-grid fixtures showed active warranties, and missing expired-state evidence cannot defensibly be converted into either a pass or a failure.",
+      "evidence": [
+        "no deterministic probe for form_flow; browser specialist required",
+        "On /account/cameras for the supplied authenticated customer@example.com account, the only camera displayed was Vela Cricket VC2609PVDA7Q with the future-state text \u201cUnder warranty until January 14, 2028.\u201d",
+        "After checking the only other supplied customer fixture, customer2@example.com, /account/cameras displayed two cameras, VA2609NRWB2Z and VA2609KTMHX4, with future-state texts \u201cUnder warranty until March 2, 2027\u201d and \u201cUnder warranty until August 19, 2028.\u201d",
+        "No camera with an ended/expired warranty was present in either supplied account camera grid, so the expired state's warning/error versus neutral treatment could not be directly observed."
+      ]
+    },
+    {
+      "criterion": "R13",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "style criterion has no objective selector",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R14",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The directly observed animated controls consistently use the same short 120 ms linear timing, with no spring behavior. However, the required hover interaction was not directly motion-captured, and no disclosure change was exercised. Because the criterion quantifies hover, focus, press, and disclosure behavior across shop, cart, and account, the available observations do not fully settle it.",
+      "evidence": [
+        "motion inventory captured; interaction is required to settle behavior",
+        "On /shop, Cart computed style was background 0.12s linear; account Overview was background/color 0.12s linear; Sign out was background/border-color 0.12s linear.",
+        "A CDP capture started immediately before activating Cart and stopped after the cart page appeared recorded one background-color animation with duration 120 ms, easing linear, one iteration, and no overshoot/bounce.",
+        "On the Vela A1 product page, Add to cart computed style was background/border-color 0.12s linear with no CSS animation.",
+        "Several ordinary links/product cards had no animated transition (0s) rather than a conflicting moving speed."
+      ]
+    },
+    {
+      "criterion": "R17",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion can only be resolved by observing a qualifying cart notice and whether it dismisses itself without reader action. The available workflow did not produce such a notice, so neither the defect nor its absence is defensibly established.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /cart, a Travel Case was added and its quantity changed from 1 to 2; the cart totals updated from $86.90 to $173.80.",
+        "No price- or availability-change notice appeared during the observed add-to-cart, quantity update, checkout/back-to-cart, reload, or 10-second wait.",
+        "Because no qualifying changed-price or availability notice was triggered, its persistence versus automatic disappearance could not be directly observed."
+      ]
+    }
+  ],
+  "rubric_coverage": 0.6111111111111112,
+  "evidence_bundle": "evidence_bundle.json",
+  "note": "combined_score is a report, not a training signal; reward.json is unchanged and remains the workflow pass rate (PLAN.md 1.4)"
+}

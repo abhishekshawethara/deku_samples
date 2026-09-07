@@ -1,0 +1,155 @@
+{
+  "combined_score": 0.8544,
+  "weights": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "weights_applied": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "components": {
+    "workflow": {
+      "score": 0.7272727272727273,
+      "passed": 8,
+      "total": 11
+    },
+    "pytest": {
+      "score": 0.9629629629629629,
+      "passed": 78,
+      "total": 81
+    },
+    "rubric": {
+      "score": 1.0,
+      "criteria": 12,
+      "passed": 3,
+      "failed": 0,
+      "unresolved": 9,
+      "coverage": 0.25,
+      "weighted_coverage": 0.264706,
+      "machine_outcomes": {
+        "PASS": 3,
+        "FAIL": 0,
+        "INSUFFICIENT_EVIDENCE": 9,
+        "EVALUATOR_ERROR": 0
+      },
+      "resolution_methods": {
+        "machine_unresolved": 9,
+        "active_acquisition": 3
+      },
+      "needs_human_eval": 0,
+      "council": null
+    }
+  },
+  "reward": 0.7273,
+  "invalid": [],
+  "degraded": [],
+  "needs_human_review": 0,
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The routes and relevant heading/body content were verified, but the required direct evidence\u2014computed styles and bounding boxes for actual non-interactive headings and their running text\u2014was not obtained. Interactive-element styles cannot substitute for those measurements, and the screenshots were unavailable for visual inspection. Therefore the criterion cannot be resolved as true or false from the available evidence.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the required showcase routes exist and inspected their content: /company contains section headings such as \u201cIndustry gets to keep its heat and lose its carbon\u201d followed by running paragraphs; /technology contains \u201cHow the module works\u201d and explanatory running copy; /team contains \u201cshaping the future of nuclear together\u201d and explanatory running copy.",
+        "Computed-style measurements were obtained only for interactive controls, not the required heading/body pairs. Those controls used ui-sans-serif/system-ui with font-weight 600, but they do not establish the typography of the non-interactive headings and paragraphs.",
+        "Full-page screenshots were captured, but the evidence transport omitted the image content, so no defensible visual comparison of heading versus body weight or face could be made."
+      ]
+    },
+    {
+      "criterion": "R2",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations show a consistent blue token rgb(47, 111, 237) on company CTAs and several account links, but newsroom story links measured dark rather than blue. More importantly, no direct hover-state measurement was obtained, so it is not defensible to determine whether links across all three routes deepen to a darker shade of the same blue under the pointer. Because the required hover comparison remains unobserved, the criterion cannot be resolved.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the three relevant routes directly: /company, /news (title \u201cNewsroom, Zettajoule\u201d), and /account while authenticated as visitor@example.com.",
+        "On /company, measured CTA links \u201cSee what it powers\u201d and \u201cGet in Touch\u201d at background/border rgb(47, 111, 237) with white text; \u201cSee what it powers\u201d bounding box was x=149, y=3377, 203\u00d744.",
+        "On /account, measured inline links \u201cSteel,\u201d \u201cData Centres,\u201d and \u201cHydrogen sites\u201d at rgb(47, 111, 237), while \u201cOpen the document room\u201d used the same rgb(47, 111, 237) as its background/border with white text; \u201cSteel\u201d bounding box was x=137, y=464, 238\u00d726.",
+        "On /news, the content links sampled (\u201cFirst module order signed,\u201d \u201cHelium loop completes a 1000 hour run,\u201d and \u201cSteel partnership targets the hydrogen route\u201d) measured dark text rgb(43, 39, 36), not blue; the featured link\u2019s blue appeared only as border-color rgb(47, 111, 237).",
+        "Screenshots were requested for sampled company and newsroom elements, and bounding boxes were measured, but the required pointer-hover state was not captured or measured before evidence collection ended."
+      ]
+    },
+    {
+      "criterion": "R6",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations identify the correct home section and provide partial evidence that surrounding content is light, but they do not directly measure the unmatched-heat section\u2019s background or exhaustively verify every other route. Therefore the positive composite criterion cannot be settled defensibly from the collected evidence.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "The home route visibly contains a distinct \u201cUNMATCHED HEAT\u201d section with the statement \u201c750 degrees Celsius is the whole argument.\u201d",
+        "The home route and /company were mapped through visible navigation links; sampled elements outside the unmatched-heat area used light/transparent grounds and dark text, while blue buttons used white text.",
+        "The available computed-style samples targeted interactive descendants rather than the unmatched-heat section container itself, so they did not directly establish that its ground is near-black or prove that no other route contains another inversion."
+      ]
+    },
+    {
+      "criterion": "R7",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations strongly suggest code-drawn artwork, but they do not directly establish the rendering type of every required asset (logo, reactor, all technical diagrams, and all team portraits). The available tools did not expose the relevant DOM nodes/tags or network response MIME types, and no zoom comparison could be completed. Same-origin raster assets also cannot be ruled out from the aggregate network summary. Therefore the composite requirement cannot be resolved defensibly.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "The /technology route rendered an interactive reactor explorer with a range control and separate controls for Control rods, Pressure dome, Fuel core, Pressure vessel, Helium circuit, and Base and plinth, which is consistent with a generated diagram rather than a single static picture.",
+        "The /team route states that the portraits are \u201cgenerated plates,\u201d and its footer states that every mark and plate is drawn from code.",
+        "The visible Zettajoule logo element had computed background-image: none; the technology range control and sampled team controls/links likewise had no CSS background image.",
+        "Across the visited /, /technology, and /team routes, the browser network summary showed requests only to the app origin, but the available summary did not expose request URLs or MIME types."
+      ]
+    },
+    {
+      "criterion": "R8",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The sampled explorer filters, save-search controls, and first result link were keyboard reachable with a clear visible ring. However, the criterion requires every explorer control and its modals to be verified. Because evidence collection ended before all result controls and any modal controls could be tested, the available observations do not defensibly settle the universal requirement.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On /solutions, keyboard Tab reached the Industry, Output, Temperature, and Deployment selects in sequence; each measured a solid 3px rgb(47, 111, 237) outline.",
+        "Tab next reached the Search input, saved-search-name input, and Save search button in sequence; each measured the same solid 3px blue outline.",
+        "After activating Save search with an empty name, the page displayed inline validation (\u201cGive the search a name before saving it.\u201d), not a modal; the next Tab reached the Oil and Gas solution link with the same visible focus outline.",
+        "The explorer snapshot exposed additional solution-card Save buttons and Open links, but focus measurements were not completed for every such control, and no explorer modal was opened or keyboard-tested."
+      ]
+    },
+    {
+      "criterion": "R9",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The rule requires the home route, explorer, and account route each to reflow cleanly at phone, tablet, and desktop widths with no sideways scroll or overlap. Direct evidence supports the tested home and explorer layouts, but the account route and desktop explorer are unverified, so the full criterion cannot be defensibly resolved as either satisfied or violated.",
+      "evidence": [
+        "layout measurements captured",
+        "Home route `/` was directly checked at desktop 1440\u00d7900, tablet 768\u00d71024, and phone 390\u00d7844. At phone width, header geometry remained inside the viewport (logo x=16..143, Sign out x=231..322, menu x=330..374), and a content card measured x=0..390. Supplied deterministic measurement also reports bodyScrollWidth=390 for viewport width 390 and horizontalOverflow=false.",
+        "The solutions explorer `/solutions` was directly checked at phone 390\u00d7844 and tablet 768\u00d71024. At phone width, controls/cards remained within the viewport (select x=33..357, search x=33..357, first card x=28..362); at tablet width, the deployment select measured x=48..264.",
+        "The authenticated account route `/account` was not directly inspected at any width, and the solutions explorer was not inspected at desktop width before evidence collection ended."
+      ]
+    },
+    {
+      "criterion": "R10",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "layout measurements captured",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+        "The top bar contains the Zettajoule logo, exactly nine route labels (Company, Technology, Solutions, Our Edge, Our Team, Investors, News, Careers, Contact), and one Get in Touch action; their shared y-position confirms they are in the same top bar."
+      ]
+    },
+    {
+      "criterion": "R11",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "R11 specifically concerns the transient behavior of the true first visit. The available navigation tool completes after page navigation, and the browser was already past that first-load state before evidence collection began. Therefore the absence of a loader in settled snapshots cannot establish failure, while no direct observation establishes that a white progress cover appeared and lifted only after the reactor was ready.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "The supplied browser session was already fully loaded at `/` when inspection began, showing the complete hero/reactor content and no cover or progress readout.",
+        "Two subsequent hard navigations to `/` (including a cache-busting query URL) returned only after the complete screen was present; snapshots contained no visible loader/progress text.",
+        "Animation-domain capture around both navigations detected only one repeating 1800 ms animation named `svelte-10gdhzd-hint`; it did not expose a loading-cover transition."
+      ]
+    }
+  ],
+  "rubric_coverage": 0.25,
+  "evidence_bundle": "evidence_bundle.json",
+  "note": "combined_score is a report, not a training signal; reward.json is unchanged and remains the workflow pass rate (PLAN.md 1.4)"
+}

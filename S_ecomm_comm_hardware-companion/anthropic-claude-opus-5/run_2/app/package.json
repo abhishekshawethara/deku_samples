@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "start": "node server/index.js",
+    "seed": "node db/seed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@astrojs/node": "^8.3.4",
+    "@hono/node-server": "^1.19.17",
+    "astro": "^4.16.19",
+    "hono": "^4.13.5",
+    "nodemailer": "^6.10.1",
+    "pg": "^8.23.0"
+  },
+  "type": "module"
+}

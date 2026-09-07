@@ -1,0 +1,48 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import OrderDetail from '../../../components/OrderDetail.astro';
+import {
+  orderByNumber, orderSerials, orderChip,
+} from '../../../../server/lib/orders.js';
+
+const customer = Astro.locals.customer;
+const { number } = Astro.params;
+
+const found = await orderByNumber(number);
+// A customer opening another customer's order number is answered as not found,
+// never as forbidden with detail.
+if (!found || found.order.customer_id !== customer.id) {
+  return new Response(null, { status: 404 });
+}
+
+const { order, lines } = found;
+const serials = await orderSerials(order.id);
+const chip = orderChip(order);
+---
+
+<Shell title={`Order ${order.number} — Vela`} current="orders">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/account/orders">Orders</a> <span aria-hidden="true">/</span>
+    <span class="tnum">{order.number}</span>
+  </nav>
+
+  <header class="head">
+    <h1>Order {order.number}</h1>
+    <span class:list={['chip', `chip-${chip.tone}`]}>{chip.text}</span>
+  </header>
+
+  <OrderDetail order={order} lines={lines} serials={serials} chip={chip} canRegister />
+</Shell>
+
+<style>
+  .crumbs { font-size: var(--text-sm); color: var(--ink-2); margin-bottom: var(--u4); }
+  .crumbs a { color: var(--ink-2); }
+  .head {
+    display: flex;
+    align-items: center;
+    gap: var(--u3);
+    margin-bottom: var(--u5);
+    flex-wrap: wrap;
+  }
+  .head h1 { font-size: var(--text-xl); }
+</style>

@@ -1,0 +1,25 @@
+{
+  "task": "I_media_dire_clean-energy-showca",
+  "model": "anthropic-claude-opus-5",
+  "trial_id": "I_media_dire_clean-energy-showca__Wk8SvgN",
+  "source_job": "jobs/2026-09-06__21-46-32/I_media_dire_clean-energy-showca__Wk8SvgN",
+  "task_checksum": "6684043ea5bc799f9f71f0ceee43e48e4289cd45a760d6a1688dea933fab71a4",
+  "reward": 0.8182,
+  "deployed": 1.0,
+  "invalid": [],
+  "exception": null,
+  "started_at": "2026-09-06T21:46:33.755355Z",
+  "finished_at": "2026-09-06T22:33:05.738123Z",
+  "stage_seconds": {
+    "environment_setup": 8.1,
+    "agent_setup": 35.4,
+    "agent_execution": 2733.3,
+    "verifier": null
+  },
+  "agent": {
+    "version": "0.62.0",
+    "cost_usd": 19.16017424999999
+  },
+  "repackaged_from": "harness/repackage.py",
+  "graded_by": "verifier_fresh"
+}

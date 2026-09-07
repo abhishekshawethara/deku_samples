@@ -1,0 +1,148 @@
+{
+  "combined_score": 0.906,
+  "weights": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "weights_applied": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "components": {
+    "workflow": {
+      "score": 0.8181818181818182,
+      "passed": 9,
+      "total": 11
+    },
+    "pytest": {
+      "score": 0.9876543209876543,
+      "passed": 80,
+      "total": 81
+    },
+    "rubric": {
+      "score": 1.0,
+      "criteria": 12,
+      "passed": 3,
+      "failed": 0,
+      "unresolved": 9,
+      "coverage": 0.25,
+      "weighted_coverage": 0.147059,
+      "machine_outcomes": {
+        "PASS": 3,
+        "FAIL": 0,
+        "INSUFFICIENT_EVIDENCE": 9,
+        "EVALUATOR_ERROR": 0
+      },
+      "resolution_methods": {
+        "machine_unresolved": 9,
+        "active_acquisition": 3
+      },
+      "needs_human_eval": 0,
+      "council": null
+    }
+  },
+  "reward": 0.8182,
+  "invalid": [],
+  "degraded": [],
+  "needs_human_review": 0,
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The routes and relevant text were verified, but direct paired measurements of each route\u2019s heading and adjacent body copy (font-family, font-weight, size, and bounding boxes) were not obtainable from the exposed element references. Consequently, the evidence does not defensibly establish whether headings across all three routes are consistently heavier/more structural than running text.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the required showcase routes exist and contain distinct heading/body structures: /company (e.g. \u201cA world that can afford its own energy\u201d followed by a paragraph), /technology (\u201cThe machine, picked apart\u201d and explanatory copy), and /team (\u201cshaping the future of nuclear together\u201d and an introductory paragraph).",
+        "Available computed-style measurements showed the site uses a sans-serif system stack (`system-ui, -apple-system, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif`) with weights ranging from 400 to 650, but the measurable referenced elements were navigation, controls, and CTA links rather than the required page headings and their adjacent running text.",
+        "Viewport screenshots were captured for /company and /team, but the screenshot payload was omitted by the tool transport with an explicit warning not to judge appearance from it."
+      ]
+    },
+    {
+      "criterion": "R2",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R4",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The page copy claims the desired reversible scroll behavior, but app-authored copy alone does not prove it. The available browser observations did not expose the reactor\u2019s visual stage before, during, and after bidirectional scrolling, so I cannot distinguish scroll-linked progression from a timer-triggered sequence with defensible direct evidence.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On the home route, visible explanatory text lists the intended stages: \u201cWhole,\u201d \u201cRods out,\u201d \u201cDome off,\u201d \u201cCore bare,\u201d and \u201cDrawing,\u201d followed by \u201cScrolling back reassembles it.\u201d",
+        "I directly scrolled down and then back up on the home route, but the browser-accessible snapshot exposed no current reactor stage or other changing state, and motion capture reported no CSS/Web Animations API animations."
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R6",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R7",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations support generated/interactive artwork, but they do not directly establish the rendering primitives for every required item (logo, reactor, technical diagrams, and all portraits), nor exclude raster <img>, canvas bitmap, or CSS-backed raster resources. Because the criterion is composite and fails if any one item is raster, the available direct evidence is insufficient for a defensible yes/no result.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /technology, the reactor is interactive: a range control labeled by surrounding text \u201cTurn the diagram\u201d is present, and selecting \u201cControl rods\u201d changes the displayed component description without navigation.",
+        "On /team, the page explicitly states: \u201cThe portraits are generated plates rather than photographs, and the names are stand-ins.\u201d",
+        "After visiting /, /technology, and /team, the browser network summary showed requests only to the application origin; however, the available network summary did not expose individual resource URLs or MIME types.",
+        "Computed style on the Zettajoule header link and team bio buttons showed background-image: none, but those inspected controls were not necessarily the actual logo or portrait rendering elements."
+      ]
+    },
+    {
+      "criterion": "R8",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations directly establish keyboard reachability and a clear focus ring for the explorer filters and save-search control. However, the criterion also explicitly requires testing controls in modals, and modal focus/reachability was not observed before evidence collection ended. Therefore the complete criterion cannot be defensibly resolved as satisfied or failed.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On /solutions, the four explorer filter selects were reached sequentially by Tab: f-industry, f-output, f-band, and f-deploy.",
+        "Each observed focused filter displayed a solid 3px rgb(22, 104, 227) outline; the search field likewise showed that visible focus outline.",
+        "Tabbing continued to the \u201cName this search\u201d input and then the \u201cSave search\u201d button, which displayed a solid 3px rgb(22, 104, 227) outline.",
+        "Activating \u201cSave search\u201d with Enter worked and presented the validation message \u201cGive the search a name before saving it.\u201d"
+      ]
+    },
+    {
+      "criterion": "R9",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "layout measurements captured",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R11",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The browser navigation primitive does not provide a pre-load frame, and the transient cover\u2014if present\u2014had already disappeared by the time each navigation call returned. Therefore I could not directly verify the required white cover, its progress readout, or the ordering between cover removal and the reactor\u2019s first render. Per the evaluation instruction, this missing evidence is not treated as a failure.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Repeated first-visit navigations to / (using fresh query strings) returned only after the completed page was already visible, with the hero text \u201cPowering the World\u201d and the reactor-sequence description present.",
+        "Immediate snapshots after navigation showed the full homepage; they did not expose the transient initial loading state.",
+        "Direct waits immediately after separate reloads found no visible \u201cLoading\u201d, \u201c%\u201d, or \u201cPreparing\u201d text within 1 second.",
+        "Animation capture consistently observed one running 1700 ms infinite pulse animation, but the available evidence does not identify its element or prove that it is a white progress cover that lifts only after reactor readiness."
+      ]
+    }
+  ],
+  "rubric_coverage": 0.25,
+  "evidence_bundle": "evidence_bundle.json",
+  "note": "combined_score is a report, not a training signal; reward.json is unchanged and remains the workflow pass rate (PLAN.md 1.4)"
+}

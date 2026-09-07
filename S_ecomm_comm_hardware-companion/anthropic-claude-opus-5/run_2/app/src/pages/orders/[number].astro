@@ -1,0 +1,80 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import OrderDetail from '../../components/OrderDetail.astro';
+import {
+  orderByNumber, orderSerials, mayReadOrder, orderChip,
+} from '../../../server/lib/orders.js';
+
+const { number } = Astro.params;
+const accessToken = Astro.url.searchParams.get('access_token');
+const customer = Astro.locals.customer;
+
+const found = await orderByNumber(number);
+
+// A customer opening another customer's order number is answered as not found,
+// never as forbidden with detail.
+if (!found || !mayReadOrder(found.order, { accessToken, customer })) {
+  return new Response(null, { status: 404 });
+}
+
+const { order, lines } = found;
+const serials = await orderSerials(order.id);
+const chip = orderChip(order);
+const justPlaced = order.status === 'confirmed';
+---
+
+<Shell title={`Order ${order.number} — Vela`} current="shop">
+  <div class="head">
+    {justPlaced && (
+      <!-- Success is stated in words before it is coloured. -->
+      <p class="confirmed notice notice-done" role="status">
+        Order {order.number} is confirmed. We have emailed {order.email}.
+      </p>
+    )}
+
+    <div class="head-row">
+      <h1>Order {order.number}</h1>
+      <span class:list={['chip', `chip-${chip.tone}`]}>{chip.text}</span>
+    </div>
+
+    {customer ? (
+      <a class="button button-primary keep" href="/account/orders">Keep track of this order</a>
+    ) : (
+      <a class="button button-primary keep" href={`/sign-up?next=${encodeURIComponent('/account/orders')}`}>
+        Keep track of this order
+      </a>
+    )}
+  </div>
+
+  <OrderDetail
+    order={order}
+    lines={lines}
+    serials={serials}
+    chip={chip}
+    canRegister={!!customer && order.customer_id === customer.id}
+  />
+
+  <p class="small muted foot">
+    Keep this address to come back to your order.
+    {!customer && ' It is the only link that opens it without an account.'}
+  </p>
+</Shell>
+
+<style>
+  .head { margin-bottom: var(--u5); }
+  .confirmed {
+    font-size: var(--text-md);
+    font-weight: 600;
+    margin-bottom: var(--u4);
+  }
+  .head-row {
+    display: flex;
+    align-items: center;
+    gap: var(--u3);
+    margin-bottom: var(--u3);
+    flex-wrap: wrap;
+  }
+  .head-row h1 { font-size: var(--text-xl); }
+  .keep { margin-bottom: var(--u2); }
+  .foot { margin-top: var(--u6); }
+</style>

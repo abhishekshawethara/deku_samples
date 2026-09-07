@@ -1,0 +1,104 @@
+---
+import Shell from '../layouts/Shell.astro';
+import { query } from '../../server/lib/db.js';
+import { hashPassword, issueToken } from '../../server/lib/auth.js';
+import { SESSION_COOKIE } from '../middleware.js';
+
+const next = Astro.url.searchParams.get('next') || '/account';
+const safeNext = next.startsWith('/') && !next.startsWith('//') ? next : '/account';
+
+let errors: Record<string, string> = {};
+let email = '';
+let name = '';
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  email = String(form.get('email') ?? '').trim();
+  name = String(form.get('name') ?? '').trim();
+  const password = String(form.get('password') ?? '');
+  const target = String(form.get('next') ?? safeNext);
+
+  if (!name) errors.name = 'Name is required.';
+  if (!email) errors.email = 'Email is required.';
+  else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) errors.email = 'Email is required.';
+  if (password.length < 8) errors.password = 'Password must be at least 8 characters.';
+
+  if (Object.keys(errors).length === 0) {
+    const { rows } = await query('SELECT id FROM customer WHERE lower(email)=lower($1)', [email]);
+    // Signup refuses an address already registered.
+    if (rows.length) {
+      errors.email = 'That address already has an account. Sign in instead.';
+    } else {
+      const { rows: made } = await query(
+        'INSERT INTO customer (email,name,password_hash,status) VALUES (lower($1),$2,$3,$4) RETURNING id',
+        [email, name, hashPassword(password), 'active'],
+      );
+      const { token, expiresAt } = await issueToken(made[0].id);
+      Astro.cookies.set(SESSION_COOKIE, token, {
+        path: '/', httpOnly: true, sameSite: 'lax', expires: expiresAt,
+      });
+      return Astro.redirect(target.startsWith('/') && !target.startsWith('//') ? target : '/account', 303);
+    }
+  }
+}
+
+if (Astro.locals.customer) return Astro.redirect(safeNext, 302);
+---
+
+<Shell title="Create an account — Vela" current="">
+  <div class="auth">
+    <h1>Create an account</h1>
+    <p class="muted small">Anyone may create one. You never need one to buy.</p>
+
+    <form method="post">
+      <input type="hidden" name="next" value={safeNext} />
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value={name} autocomplete="name"
+          aria-invalid={errors.name ? 'true' : undefined} required />
+        {errors.name && <p class="field-error">{errors.name}</p>}
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value={email} autocomplete="email"
+          aria-invalid={errors.email ? 'true' : undefined} required />
+        {errors.email && <p class="field-error">{errors.email}</p>}
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="new-password"
+          aria-invalid={errors.password ? 'true' : undefined} required minlength="8" />
+        {errors.password
+          ? <p class="field-error">{errors.password}</p>
+          : <p class="field-hint">At least 8 characters.</p>}
+      </div>
+
+      <button type="submit" class="button button-primary wide">Create account</button>
+    </form>
+
+    <p class="small alt">
+      Already have one? <a href={`/sign-in?next=${encodeURIComponent(safeNext)}`}>Sign in</a>.
+    </p>
+  </div>
+</Shell>
+
+<style>
+  .auth {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: var(--u8) 0;
+  }
+  .auth h1 { font-size: var(--text-xl); margin-bottom: var(--u); }
+  .auth > p.muted { margin: 0 0 var(--u5); }
+  .field-error {
+    margin: var(--u) 0 0;
+    font-size: var(--text-xs);
+    color: var(--wrong);
+    font-weight: 600;
+  }
+  .wide { width: 100%; margin-top: var(--u2); }
+  .alt { margin-top: var(--u5); }
+</style>

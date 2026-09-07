@@ -1,0 +1,52 @@
+{
+  "posted_at": "2026-09-06T20:16:51+00:00",
+  "endpoint": "https://projects-stage.ethara.ai/api/v1/ethara_project/trajectory_usage/create",
+  "trajectory_id": "I_media_dire_clean-energy-showca__HQ6YajV",
+  "status": 200,
+  "response": {
+    "message": "Trajectory usage record created.",
+    "errors": [],
+    "data": {
+      "id": 8060,
+      "project_id": "DEKU",
+      "project_type": "technical",
+      "task_id": "I_media_dire_clean-energy-showca",
+      "trajectory_id": "I_media_dire_clean-energy-showca__HQ6YajV",
+      "team_type": "projects",
+      "budget_type": "rfp",
+      "rfp_sub_type": "sampling",
+      "production_mode": "",
+      "is_phase_based": false,
+      "phase_number": "",
+      "generated_at": "2026-09-06T19:24:32",
+      "model_name": "anthropic-claude-opus-5",
+      "trajectory_input_tokens": 30388970.0,
+      "trajectory_output_tokens": 205994.0,
+      "trajectory_input_cache_tokens": 30130532.0,
+      "trajectory_output_cache_tokens": 0.0,
+      "trajectory_cost_usd": 21.829890999999996,
+      "subscription_id": "fa34ef5a-f986-4be6-8fb6-3e6676b72ba4",
+      "judge_lines": [
+        {
+          "id": 8017,
+          "model_name": "gpt-5.6-sol",
+          "judge_input_tokens": 688414.0,
+          "judge_output_tokens": 27857.0,
+          "judge_input_cache_tokens": 1504256.0,
+          "judge_output_cache_tokens": 0.0,
+          "judge_cost_usd": 3.912498
+        },
+        {
+          "id": 8018,
+          "model_name": "gpt-5.6-sol",
+          "judge_input_tokens": 429409.0,
+          "judge_output_tokens": 26221.0,
+          "judge_input_cache_tokens": 716544.0,
+          "judge_output_cache_tokens": 0.0,
+          "judge_cost_usd": 2.528674
+        }
+      ]
+    },
+    "status_code": 200
+  }
+}

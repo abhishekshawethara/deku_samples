@@ -1,0 +1,30 @@
+{
+  "name": "zettajoule",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "dev": "vite dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "private": "true",
+  "dependencies": {
+    "@fastify/middie": "^8.3.3",
+    "fastify": "^4.29.1",
+    "nodemailer": "^6.10.1",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^5.5.7",
+    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "svelte": "^4.2.20",
+    "vite": "^5.4.21"
+  }
+}

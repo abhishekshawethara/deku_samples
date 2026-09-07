@@ -1,0 +1,107 @@
+---
+/**
+ * The footer follows the letter and is the only way out. Its main content is a
+ * canvas the width of the page inside its gutters; its bottom row is one line.
+ */
+const links = [
+  { label: 'Shop', href: '/shop' },
+  { label: 'Support', href: null },
+  { label: 'Terms', href: null },
+  { label: 'Privacy', href: null },
+  { label: 'Jobs', href: null },
+  { label: 'Contact', href: null },
+];
+---
+
+<footer class="letter-footer ground-dark">
+  <!-- Carries no information, is not keyboard operable, and is hidden from
+       assistive technology. -->
+  <canvas id="footer-field" class="field" aria-hidden="true"></canvas>
+
+  <div class="bottom-row">
+    <span class="wordmark">Vela</span>
+    <span class="rights">All rights reserved</span>
+    <nav class="links" aria-label="Footer">
+      {links.map((l) =>
+        l.href ? (
+          <a href={l.href}>{l.label}</a>
+        ) : (
+          <span class="link-text">{l.label}</span>
+        ),
+      )}
+    </nav>
+  </div>
+</footer>
+
+<script>
+  import '../scripts/footer-field.js';
+</script>
+
+<style>
+  .letter-footer {
+    position: relative;
+    z-index: 6;
+    background: var(--ground);
+    color: var(--ink);
+    padding: var(--u16) var(--u8) var(--u6);
+  }
+
+  /* The width of the page inside its gutters, and no rounding at all. */
+  .field {
+    display: block;
+    width: 100%;
+    height: 132px;
+    border-radius: 0;
+    margin-bottom: var(--u10);
+    touch-action: auto;
+  }
+
+  .bottom-row {
+    display: flex;
+    align-items: center;
+    gap: var(--u5);
+    padding-top: var(--u4);
+    border-top: 1px solid var(--rule);
+    font-size: var(--text-sm);
+  }
+  .wordmark {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .rights { color: var(--ink-2); }
+
+  /* Six links pushed to the far side. */
+  .links {
+    margin-left: auto;
+    display: flex;
+    gap: var(--u5);
+    flex-wrap: wrap;
+  }
+  .links a {
+    color: var(--ink);
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .links a:hover { text-decoration: underline; }
+  .link-text {
+    color: var(--ink-2);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @media (max-width: 760px) {
+    .letter-footer { padding: var(--u10) var(--u4) var(--u5); }
+    .bottom-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--u2);
+    }
+    .links {
+      margin-left: 0;
+      gap: var(--u4);
+    }
+  }
+</style>

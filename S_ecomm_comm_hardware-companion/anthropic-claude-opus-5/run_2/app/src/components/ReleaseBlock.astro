@@ -1,0 +1,131 @@
+---
+import { formatBytes, formatDate, NOTE_GROUPS } from '../lib/view.js';
+
+interface Props {
+  release: any;
+  open: boolean;
+}
+const { release, open } = Astro.props;
+const notes = release.notes || {};
+---
+
+<!--
+  A disclosure that works with no scripting and is keyboard operable. The whole
+  archive is present in the markup whatever the collapse state, so an in-page
+  find and a crawler both see all of it.
+-->
+<details class="release" open={open}>
+  <summary>
+    <span class="summary-face">
+      <span class="summary-main">
+        <span class="release-title">Arranger {release.version}</span>
+        <span class="release-date xsmall muted">Released on {formatDate(release.released_on)}</span>
+      </span>
+      <span class="summary-marker" aria-hidden="true"></span>
+    </span>
+  </summary>
+
+  <div class="release-body">
+    <div class="release-actions">
+      <a class="button button-quiet" href={`/downloads/${release.version}`}>
+        Download {release.artifact_name}
+      </a>
+      <span class="xsmall muted tnum">{formatBytes(release.size_bytes)}</span>
+    </div>
+
+    <p class="digest xsmall muted">{release.sha256}</p>
+
+    {release.description && <p class="small description">{release.description}</p>}
+
+    <!-- Four ordered groups only, each optional and none invented beyond those. -->
+    {NOTE_GROUPS.filter((g) => Array.isArray(notes[g]) && notes[g].length > 0).map((group) => (
+      <section class="note-group">
+        <h3>{group}</h3>
+        <ul>
+          {notes[group].map((item: string) => <li>{item}</li>)}
+        </ul>
+      </section>
+    ))}
+
+    <p class="small signoff">The Vela team.</p>
+  </div>
+</details>
+
+<style>
+  .release {
+    border: 0;
+    padding: var(--u3) 0;
+  }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+
+  .summary-face {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--u4);
+    width: 100%;
+  }
+  .summary-main {
+    display: flex;
+    align-items: baseline;
+    gap: var(--u3);
+    flex-wrap: wrap;
+  }
+  .release-title {
+    font-weight: 700;
+    font-size: var(--text-md);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A marker as well as colour, and it turns at the one speed. */
+  .summary-marker {
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--ink-2);
+    border-bottom: 1.5px solid var(--ink-2);
+    transform: rotate(45deg);
+    transition: transform var(--speed) var(--ease);
+    flex: none;
+  }
+  .release[open] .summary-marker { transform: rotate(-135deg); }
+
+  .release-body { padding-top: var(--u3); }
+
+  .release-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--u3);
+    flex-wrap: wrap;
+    margin-bottom: var(--u2);
+  }
+  .digest {
+    margin: 0 0 var(--u3);
+    font-family: var(--font-mono);
+    word-break: break-all;
+  }
+  .description { margin: 0 0 var(--u3); }
+
+  .note-group { margin-bottom: var(--u3); }
+  .note-group h3 {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-bottom: var(--u);
+  }
+  .note-group ul {
+    margin: 0;
+    padding-left: var(--u4);
+    font-size: var(--text-sm);
+  }
+  .note-group li { margin-bottom: 2px; }
+
+  .signoff { margin: var(--u4) 0 0; color: var(--ink-2); }
+</style>

@@ -1,0 +1,145 @@
+exit=0
+
+--- stdout ---
+
+--- stderr ---
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.70kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-bookworm-slim
+#2 DONE 1.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 358B done
+#3 DONE 0.0s
+
+#4 [build  1/11] FROM docker.io/library/node:20-bookworm-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#4 DONE 0.0s
+
+#5 [build  2/11] WORKDIR /app
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 124.68kB done
+#6 DONE 0.0s
+
+#7 [build  3/11] COPY package.json package-lock.json ./
+#7 DONE 0.6s
+
+#8 [build  4/11] RUN npm ci
+#8 1.858 npm warn deprecated tsconfck@3.1.6: unmaintained
+#8 3.984 
+#8 3.984 added 369 packages, and audited 370 packages in 4s
+#8 3.984 
+#8 3.984 155 packages are looking for funding
+#8 3.984   run `npm fund` for details
+#8 4.026 
+#8 4.026 6 vulnerabilities (2 moderate, 4 high)
+#8 4.026 
+#8 4.026 To address all issues (including breaking changes), run:
+#8 4.026   npm audit fix --force
+#8 4.026 
+#8 4.026 Run `npm audit` for details.
+#8 4.027 npm notice
+#8 4.027 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+#8 4.027 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+#8 4.027 npm notice To update run: npm install -g npm@12.0.2
+#8 4.027 npm notice
+#8 DONE 7.0s
+
+#9 [build  5/11] COPY astro.config.mjs ./
+#9 DONE 0.0s
+
+#10 [build  6/11] COPY src ./src
+#10 DONE 0.0s
+
+#11 [build  7/11] COPY public ./public
+#11 DONE 0.0s
+
+#12 [build  8/11] COPY server ./server
+#12 DONE 0.1s
+
+#13 [build  9/11] COPY db ./db
+#13 DONE 0.0s
+
+#14 [build 10/11] RUN npm run build
+#14 0.475 
+#14 0.475 > app@1.0.0 build
+#14 0.475 > astro build
+#14 0.475 
+#14 0.914 ▶ Astro collects anonymous usage data.
+#14 0.914   This information helps us improve Astro.
+#14 0.914   Run "astro telemetry disable" to opt-out.
+#14 0.914   https://astro.build/telemetry
+#14 0.914 
+#14 1.237 02:28:25 [types] Generated 30ms
+#14 1.237 02:28:25 [build] output: "server"
+#14 1.237 02:28:25 [build] directory: /app/dist/
+#14 1.237 02:28:25 [build] adapter: @astrojs/node
+#14 1.237 02:28:25 [build] Collecting build info...
+#14 1.238 02:28:25 [build] ✓ Completed in 40ms.
+#14 1.239 02:28:25 [build] Building server entrypoints...
+#14 2.319 02:28:26 [vite] ✓ built in 1.06s
+#14 2.320 02:28:26 [build] ✓ Completed in 1.08s.
+#14 2.320 
+#14 2.320  building client (vite) 
+#14 2.324 02:28:26 [vite] transforming...
+#14 2.348 02:28:26 [vite] ✓ 25 modules transformed.
+#14 2.355 02:28:26 [vite] rendering chunks...
+#14 2.358 02:28:27 [vite] computing gzip size...
+#14 2.359 02:28:27 [vite] dist/client/_astro/hoisted.B4Wyuh2t.js  4.80 kB │ gzip: 1.85 kB
+#14 2.359 02:28:27 [vite] ✓ built in 37ms
+#14 2.382 02:28:27 [build] Rearranging server assets...
+#14 2.383 02:28:27 [build] Server built in 1.18s
+#14 2.383 02:28:27 [build] Complete!
+#14 DONE 2.4s
+
+#15 [build 11/11] RUN npm prune --omit=dev
+#15 1.845 
+#15 1.845 up to date, audited 370 packages in 1s
+#15 1.845 
+#15 1.845 155 packages are looking for funding
+#15 1.845   run `npm fund` for details
+#15 1.883 
+#15 1.883 6 vulnerabilities (2 moderate, 4 high)
+#15 1.883 
+#15 1.883 To address all issues (including breaking changes), run:
+#15 1.883   npm audit fix --force
+#15 1.883 
+#15 1.883 Run `npm audit` for details.
+#15 DONE 1.9s
+
+#16 [runtime  3/10] COPY --from=build /app/node_modules ./node_modules
+#16 DONE 0.9s
+
+#17 [runtime  4/10] COPY --from=build /app/dist ./dist
+#17 DONE 0.0s
+
+#18 [runtime  5/10] COPY --from=build /app/package.json ./package.json
+#18 DONE 0.0s
+
+#19 [runtime  6/10] COPY server ./server
+#19 DONE 0.0s
+
+#20 [runtime  7/10] COPY db ./db
+#20 DONE 0.0s
+
+#21 [runtime  8/10] COPY USER_README.md ./USER_README.md
+#21 DONE 0.0s
+
+#22 [runtime  9/10] COPY scripts ./scripts
+#22 DONE 0.0s
+
+#23 [runtime 10/10] RUN mkdir -p /app/.browser_screenshots /app/.downloads  && chown -R node:node /app
+#23 DONE 8.0s
+
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 7.2s done
+#24 writing image sha256:b09370e4b043438cacb2a715b075bff9159ab14004f6775c0690039d21d3c107 done
+#24 naming to docker.io/library/deku-fresh-app-s_ecomm_comm_hardware-companion-storefront_20260901_123839:latest done
+#24 DONE 7.2s
+

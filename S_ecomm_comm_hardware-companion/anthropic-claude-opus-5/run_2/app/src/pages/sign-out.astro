@@ -1,0 +1,10 @@
+---
+import { revokeToken } from '../../server/lib/auth.js';
+import { SESSION_COOKIE } from '../middleware.js';
+
+// Signing out returns to /.
+const token = Astro.cookies.get(SESSION_COOKIE)?.value;
+if (token) await revokeToken(token);
+Astro.cookies.delete(SESSION_COOKIE, { path: '/' });
+return Astro.redirect('/', 303);
+---

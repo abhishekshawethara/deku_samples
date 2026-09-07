@@ -1,0 +1,7 @@
+# The agent's installed dependencies: 163k files, reproducible from package.json.
+node_modules/
+
+# Playwright traces: 3.1 GB across 17 runs, individual zips up to 87 MB.
+# Debugging artifacts for a single grading session, not part of the deliverable.
+# GitHub warns above 50 MB and refuses above 100 MB.
+traces/

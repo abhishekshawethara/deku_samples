@@ -1,0 +1,1 @@
+import{F as a}from"./DMoS_FMk.js";a();

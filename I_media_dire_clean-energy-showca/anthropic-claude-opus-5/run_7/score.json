@@ -1,0 +1,151 @@
+{
+  "combined_score": 0.8075,
+  "weights": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "weights_applied": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "components": {
+    "workflow": {
+      "score": 0.7272727272727273,
+      "passed": 8,
+      "total": 11
+    },
+    "pytest": {
+      "score": 0.9753086419753086,
+      "passed": 79,
+      "total": 81
+    },
+    "rubric": {
+      "score": 0.799999,
+      "criteria": 12,
+      "passed": 2,
+      "failed": 1,
+      "unresolved": 9,
+      "coverage": 0.25,
+      "weighted_coverage": 0.147059,
+      "machine_outcomes": {
+        "PASS": 2,
+        "FAIL": 1,
+        "INSUFFICIENT_EVIDENCE": 9,
+        "EVALUATOR_ERROR": 0
+      },
+      "resolution_methods": {
+        "machine_unresolved": 9,
+        "active_acquisition": 3
+      },
+      "needs_human_eval": 0,
+      "council": null
+    }
+  },
+  "reward": 0.7273,
+  "invalid": [],
+  "degraded": [],
+  "needs_human_review": 0,
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The required conclusion depends on measured font family/weight for hero headings and running body copy on all three routes. Those text nodes were not exposed as directly measurable refs, and the screenshots were unavailable for visual inspection in the returned transport. Existing measurements only establish weight contrast in unrelated interactive controls, so they cannot defensibly prove or disprove the composite criterion.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified that the required showcase routes exist and contain distinct hero headings and running text: /company ('clean heat and electricity to power a world of industrial applications'), /technology ('Helium at 750 degrees, out of a core that cannot melt.'), and /team ('shaping the future of nuclear together' plus an explanatory paragraph).",
+        "Full-page screenshots were captured for /company and /team and a viewport screenshot for the starting route, but the tool transport omitted the image pixels, so their typography could not be judged from the returned evidence.",
+        "Measured /team interactive text shows the shared sans-serif stack ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, with a 'View bio' button at 14px/600 and adjacent 'Profile' link at 14px/400; these are not the required hero-heading-versus-running-copy elements and therefore do not settle the criterion."
+      ]
+    },
+    {
+      "criterion": "R2",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R4",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations establish that the home page contains a scroll-associated reactor sequence, but they do not directly establish whether its opening progress remains bound to scroll position and reverses through the same stages when scrolling upward, rather than running on a timer. Therefore the criterion cannot be defensibly resolved.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On the home route, visible text stated: \u201cScroll to take the reactor apart. The same sequence is written out below.\u201d",
+        "The reactor labels \u201cControl rods,\u201d \u201cDome,\u201d \u201cCore,\u201d and \u201cBase\u201d were present on the home route.",
+        "A PageDown interaction produced no animation records in the motion capture, and the available browser output did not expose the reactor\u2019s visual stage before and after scrolling in both directions."
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R6",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "active evaluator failed: HTTPStatusError: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "LLM error: Client error '400 Bad Request' for url 'http://host.docker.internal:8790/responses'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+      ]
+    },
+    {
+      "criterion": "R7",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations strongly suggest generated/drawn presentation, especially for the interactive reactor and stated generated portraits, but they do not directly inspect the reactor/diagram/portrait rendering nodes or establish their element types, image sources, MIME types, or sharpness under zoom. Because the evaluation rule requires all logos, reactor and technical diagrams, and team portraits to avoid raster rendering, the collected evidence does not defensibly settle the full composite criterion.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /technology, the reactor is presented as an interactive drawing with named parts (Control rods, Dome, Core, Base), a rotation range control, and live text reading \u201cRotation 5 degrees,\u201d which is consistent with a generated diagram rather than a static picture.",
+        "On /team, the page explicitly states: \u201cThe portraits are generated plates rather than photographs, and the names are stand-ins.\u201d",
+        "Computed style checks on the visible Zettajoule brand link and team bio controls returned `background-image: none`.",
+        "The browser network summary showed requests only to the app origin, but the available summary did not expose request URLs or MIME types, so it could not prove that no raster assets were fetched."
+      ]
+    },
+    {
+      "criterion": "R8",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The sampled filters and save control were keyboard reachable with an easy-to-see focus ring, but the criterion covers every explorer control and the modals. Since modal focus and the remainder of the tab sequence were not observed, the available evidence cannot defensibly settle the full requirement.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On /solutions, keyboard Tab reached all five explorer filters in order: industry select, output select, temperature select, deployment select, and search input.",
+        "Each tested filter showed an explicit visible focus indicator measured as a solid 3px rgb(31, 111, 235) outline.",
+        "Continuing with Tab reached the Oil and Gas solution link and then its Saved control; both showed the same solid 3px blue outline.",
+        "The interactive inventory included additional Save/Saved controls and Open links, but evidence collection ended before the complete explorer sequence and any modal controls could be keyboard-tested."
+      ]
+    },
+    {
+      "criterion": "R9",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations establish responsive reflow and directly rule out horizontal overflow only for the home route at phone width. They do not include direct scroll-width/overflow measurements for the solutions explorer and account routes at all three widths, nor for the home route at tablet and desktop widths. Since screenshots were unavailable for visual inspection, overlap or sideways scrolling cannot be conclusively excluded across every required route-width combination.",
+      "evidence": [
+        "layout measurements captured",
+        "At 390\u00d7844, the supplied deterministic measurement for the home route reports bodyScrollWidth=390 and horizontalOverflow=false; its measured content generally collapses to viewport-width rows.",
+        "Fresh snapshots at 390\u00d7844 and 768\u00d71024 showed responsive navigation replacing the desktop link row with an \u201cOpen the menu\u201d button on the home, solutions explorer, and account routes.",
+        "Fresh snapshots confirmed the home, solutions explorer, and account route content remained present and traversable after resizing, including after vertical scrolling.",
+        "At 1440\u00d7900, the three routes loaded with desktop navigation and complete route content."
+      ]
+    },
+    {
+      "criterion": "R11",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The browser navigation tool completes only after the page has loaded, so it did not expose the initial paint interval needed to directly verify whether a plain white progress cover appeared and lifted at the correct moment. The fully rendered screen and absence of a post-load progress readout do not prove that no transient cover existed. Therefore the criterion cannot be defensibly marked yes or no from the available observations.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On repeated direct navigations to unique variants of `/`, the first browser snapshot available after navigation already showed the complete home screen, including \u201cPowering the World\u201d and the reactor labels \u201cControl rods,\u201d \u201cDome,\u201d \u201cCore,\u201d and \u201cBase.\u201d",
+        "No progress readout was present in any available post-navigation snapshot or visible-text capture.",
+        "CDP animation capture around multiple navigations detected only one running animation named `svelte-1uha8ag-zj-hint` (1600 ms), with no independently captured loader/cover transition."
+      ]
+    }
+  ],
+  "rubric_coverage": 0.25,
+  "evidence_bundle": "evidence_bundle.json",
+  "note": "combined_score is a report, not a training signal; reward.json is unchanged and remains the workflow pass rate (PLAN.md 1.4)"
+}

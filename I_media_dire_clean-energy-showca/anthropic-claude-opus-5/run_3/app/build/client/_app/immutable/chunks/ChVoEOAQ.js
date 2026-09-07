@@ -1,0 +1,1 @@
+async function u(n,r,{headers:l}={}){var e;const t=await n(`/api${r}`,{headers:l});if(!t.ok){let a=`Request failed (${t.status})`;try{a=((e=await t.clone().json())==null?void 0:e.message)||a}catch{}const o=new Error(a);throw o.status=t.status,o}const s=t.headers.get("x-total-count");return{data:await t.json(),total:s===null?null:Number(s)}}export{u as l};

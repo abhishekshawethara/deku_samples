@@ -1,0 +1,123 @@
+{
+  "combined_score": 0.9484,
+  "weights": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "weights_applied": {
+    "workflow": 0.5,
+    "pytest": 0.25,
+    "rubric": 0.25
+  },
+  "components": {
+    "workflow": {
+      "score": 0.9090909090909091,
+      "passed": 10,
+      "total": 11
+    },
+    "pytest": {
+      "score": 0.9753086419753086,
+      "passed": 79,
+      "total": 81
+    },
+    "rubric": {
+      "score": 1.0,
+      "criteria": 12,
+      "passed": 6,
+      "failed": 0,
+      "unresolved": 6,
+      "coverage": 0.5,
+      "weighted_coverage": 0.529412,
+      "machine_outcomes": {
+        "PASS": 6,
+        "FAIL": 0,
+        "INSUFFICIENT_EVIDENCE": 6,
+        "EVALUATOR_ERROR": 0
+      },
+      "resolution_methods": {
+        "machine_unresolved": 6,
+        "active_acquisition": 6
+      },
+      "needs_human_eval": 0,
+      "council": null
+    }
+  },
+  "reward": 0.9091,
+  "invalid": [],
+  "degraded": [],
+  "needs_human_review": 0,
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion requires screenshots plus measured styles and bounding boxes showing that headings on all three routes use a heavier grotesque than their running text. Although all routes and candidate text pairs were verified, direct computed-style and bounding-box measurements for those heading/body pairs were not obtained before the browser budget ended. Measurements from navigation and CTA controls cannot establish typography of the route content. Therefore the available evidence does not defensibly settle the criterion.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the required showcase routes exist and loaded successfully: /company, /technology, and /team.",
+        "Route snapshots identify heading/body pairs on each route, including \u201cclean heat and electricity\u2026\u201d above company running copy, \u201cA modernised high-temperature gas-cooled reactor\u201d above technology running copy, and \u201cshaping the future of nuclear together\u201d above team running copy.",
+        "The only successful typography measurements were for navigation/CTA elements, not the required route headings and running text: ordinary navigation measured system-ui at weight 400/600, while a CTA measured Helvetica Neue/Arial Black fallback at weight 800.",
+        "Full-page screenshots were captured, but their image content was unavailable in the evidence transport, so they cannot support a defensible visual comparison."
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The measurements establish use of the same base blue rgb(31, 95, 208) in several link treatments, but they do not establish the required pointer state. Evidence collection ended before any link could be hovered and re-measured, so it is not defensible to determine whether links deepen to a darker shade of the same hue or change hue on hover. The presence of neutral text/card links does not by itself resolve the hue requirement without the intended hover behavior.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /company, the measured \u201cSee what it powers\u201d link had white text rgb(255, 255, 255) on blue rgb(31, 95, 208), with bounding box x=334, y=2297, 177\u00d746.",
+        "On /news, the measured featured story link had text rgb(36, 31, 28), background rgb(244, 244, 242), and blue border rgb(31, 95, 208), with bounding box x=124, y=343, 1192\u00d7383; another story link also measured rgb(36, 31, 28).",
+        "On /account, the saved-solution link \u201cSteel\u201d measured blue rgb(31, 95, 208), transparent background, and matching blue decoration/border, with bounding box x=139, y=462, 48\u00d718. The \u201cOpen the room\u201d link was white on blue rgb(31, 95, 208).",
+        "The authenticated account was verified as visitor@example.com."
+      ]
+    },
+    {
+      "criterion": "R6",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations identify the intended home section, but they do not directly establish that its ground is near-black, nor do they verify that every section across every other route remains light. Because the evaluation rule is site-wide and the available visual screenshots were not inspectable in the tool output, the criterion cannot be defensibly resolved.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On the home route, the unmatched-heat statement was directly identified as the section headed \u201cNothing else runs this hot,\u201d with supporting copy comparing a 750\u00b0C outlet against water-cooled reactors.",
+        "The home route also exposed all primary route links: /company, /technology, /solutions, /edge, /team, /investors, /news, /careers, and /contact.",
+        "The /company route was visited and its visible content appeared as ordinary company sections, but no direct background-color measurement of its section containers was obtained."
+      ]
+    },
+    {
+      "criterion": "R8",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "Direct evidence supports keyboard reachability and a visible focus ring for the explorer filters and search controls. However, the criterion explicitly requires the save control and modals as well. Since those were not exercised before evidence collection ended, there is not enough evidence to resolve whether every required control satisfies the criterion.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On /solutions, keyboard Tab moved sequentially through the four explorer filter selects (Industry, Output, Temperature, Deployment), then the search input, then the Search button; none of these controls was skipped.",
+        "For every tested focused control, computed styles showed a prominent two-layer focus indicator: box-shadow rgb(221, 232, 250) 0 0 0 3px plus rgb(31, 95, 208) 0 0 0 5px. Focus identity was independently confirmed after each Tab step.",
+        "The page inventory included additional required controls such as Compare saves, the saved-search name input, Save search, and per-solution Save buttons, but evidence collection ended before their keyboard focus indicators or any resulting modals could be tested."
+      ]
+    },
+    {
+      "criterion": "R9",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The evaluation rule requires the explorer, account route, and home route each to reflow cleanly at all three widths with no horizontal scrollbar. Home and account have supporting responsive observations, but the explorer was not measured at any required width. This missing required route evidence prevents a defensible yes/no determination rather than establishing failure.",
+      "evidence": [
+        "layout measurements captured",
+        "Home route `/` was directly observed at 1280\u00d7800 and 768\u00d71024; its full desktop navigation reflowed to a compact route-menu header at tablet width without visible overlap. Supplied deterministic measurements at 390\u00d7844 reported bodyScrollWidth=390 and horizontalOverflow=false.",
+        "Account route `/account` was directly observed at 390\u00d7844, 768\u00d71024, and 1280\u00d7800. At phone width the header reflowed to a menu button, account actions remained within the 390px viewport (right edges at 152, 282, and 368px), and saved-item controls remained within it (right edge 359px). Desktop restored the full navigation. The page was also scrolled to its end at phone width.",
+        "The explorer candidate was identified as `/calculator`, but evidence collection ended immediately after navigating there; no geometry, overflow, or reflow observations were captured for that route at phone, tablet, and desktop widths."
+      ]
+    },
+    {
+      "criterion": "R12",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "Two of the three required empty lists were directly verified to name what is absent and offer a way onward. However, the empty Saved searches state was not reached and observed, so there is insufficient direct evidence to determine the composite criterion for all three lists.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /account, after removing the final saved solution, the Saved solutions list showed count 0 and explicit empty-state content: \u201cNo saved solutions\u201d, \u201cYou have not kept any of the eight yet.\u201d, plus the onward link \u201cOpen the explorer\u201d.",
+        "The Job applications list showed count 0 and explicit empty-state content: \u201cNo applications\u201d, \u201cYou have not applied for a role from this account.\u201d, plus the onward link \u201cSee the three open jobs\u201d.",
+        "Saved searches still showed count 1 (\u201cHydrogen sites\u201d). Clicking Remove opened a confirmation dialog stating it would remove that search, but evidence collection ended before the final confirmation and resulting zero-search state could be observed."
+      ]
+    }
+  ],
+  "rubric_coverage": 0.5,
+  "evidence_bundle": "evidence_bundle.json",
+  "note": "combined_score is a report, not a training signal; reward.json is unchanged and remains the workflow pass rate (PLAN.md 1.4)"
+}

@@ -1,0 +1,75 @@
+---
+import Shell from '../../../layouts/Shell.astro';
+import { formatMoney, formatDateTime } from '../../../lib/view.js';
+import { query } from '../../../../server/lib/db.js';
+import { orderLines, orderChip } from '../../../../server/lib/orders.js';
+
+const customer = Astro.locals.customer;
+
+// Newest first.
+const { rows } = await query(
+  'SELECT * FROM "order" WHERE customer_id = $1 ORDER BY id DESC LIMIT 100',
+  [customer.id],
+);
+
+const orders = await Promise.all(
+  rows.map(async (o) => {
+    const lines = await orderLines(o.id);
+    return {
+      ...o,
+      chip: orderChip(o),
+      // The first line title with "and <count> more".
+      summary:
+        lines.length > 1
+          ? `${lines[0].title_snapshot} and ${lines.length - 1} more`
+          : (lines[0]?.title_snapshot ?? ''),
+    };
+  }),
+);
+---
+
+<Shell title="Orders — Vela" current="orders">
+  <header class="head">
+    <h1>Orders</h1>
+    <p class="muted small">Everything bought with this account.</p>
+  </header>
+
+  {orders.length === 0 ? (
+    <div class="empty-state">
+      <p>No orders yet.</p>
+      <p><a href="/shop">Shop</a></p>
+    </div>
+  ) : (
+    <table class="data orders">
+      <thead>
+        <tr>
+          <th scope="col">Number</th>
+          <th scope="col">Placed</th>
+          <th scope="col">What</th>
+          <th scope="col" class="num">Total</th>
+          <th scope="col">State</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((o) => (
+          <tr>
+            <td><a class="number tnum" href={`/account/orders/${o.number}`}>{o.number}</a></td>
+            <td>{formatDateTime(o.placed_at)}</td>
+            <td>{o.summary}</td>
+            <!-- The total in the order's own currency. -->
+            <td class="num money">{formatMoney(o.total_minor)} {String(o.currency).toUpperCase()}</td>
+            <!-- One chip combining the order, payment and fulfilment states. -->
+            <td><span class:list={['chip', `chip-${o.chip.tone}`]}>{o.chip.text}</span></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )}
+</Shell>
+
+<style>
+  .head { margin-bottom: var(--u4); }
+  .head h1 { font-size: var(--text-xl); margin-bottom: var(--u); }
+  .head p { margin: 0; }
+  .number { font-weight: 600; }
+</style>

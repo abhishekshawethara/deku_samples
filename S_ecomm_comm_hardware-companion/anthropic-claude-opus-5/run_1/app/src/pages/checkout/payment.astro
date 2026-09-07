@@ -1,0 +1,180 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import CheckoutSteps from '../../components/CheckoutSteps.astro';
+import CheckoutSummary from '../../components/CheckoutSummary.astro';
+import { cartByToken, readCart, shippingMethod } from '../../../server/lib/cart.js';
+import { placeOrder } from '../../../server/lib/orders.js';
+import { formatMoney } from '../../lib/view.js';
+
+const cart = Astro.locals.cart;
+if (!cart || cart.lines.length === 0) return Astro.redirect('/cart', 302);
+if (!cart.draft?.email || !cart.draft?.shipping_address?.line1) {
+  return Astro.redirect('/checkout/where-it-goes', 302);
+}
+if (!cart.draft?.shipping_method) {
+  return Astro.redirect('/checkout/how-it-gets-there', 302);
+}
+
+let error = '';
+
+// The page works with no scripting: the same placement runs on a plain POST.
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const raw = await cartByToken(Astro.locals.cartToken);
+  if (raw) {
+    try {
+      const view = await readCart(raw);
+      const result = await placeOrder({
+        cart: raw,
+        cartView: view,
+        customer: Astro.locals.customer,
+        idempotencyKey: String(form.get('idempotency_key') || '') || null,
+        expectedTotalMinor: Number(form.get('expected_total_minor') || 0) || null,
+      });
+      const token = result.accessToken
+        ? `?access_token=${encodeURIComponent(result.accessToken)}`
+        : '';
+      return Astro.redirect(`/orders/${result.order.number}${token}`, 303);
+    } catch (err: any) {
+      if (err?.code === 'price_changed' || err?.code === 'total_changed') {
+        return Astro.redirect('/cart?repriced=1', 303);
+      }
+      error = err?.message || 'That did not work.';
+    }
+  }
+}
+
+const fresh = await cartByToken(Astro.locals.cartToken);
+const view = fresh ? await readCart(fresh) : cart;
+const method = await shippingMethod(view.draft.shipping_method);
+const address = view.draft.shipping_address;
+// A key that survives a reload of this page, for the no-scripting path.
+const formKey = `${view.token}:${view.total_minor}`;
+---
+
+<Shell title="Payment — Vela" current="shop">
+  <h1 class="page-title">Checkout</h1>
+  <CheckoutSteps step={3} />
+
+  <div class="layout">
+    <section class="panel">
+      <h2>Payment</h2>
+
+      {error && <p class="notice notice-wrong" role="alert">{error}</p>}
+
+      <div class="review card">
+        <div class="review-row">
+          <h3>Where it goes</h3>
+          <a class="review-edit" href="/checkout/where-it-goes">Change</a>
+        </div>
+        <p class="review-body small">
+          {address.name}<br />
+          {address.line1}{address.line2 ? <>, {address.line2}</> : null}<br />
+          {address.city}, {address.region} <span class="tnum">{address.postal_code}</span><br />
+          {address.country}<br />
+          <span class="muted">{view.draft.email}</span>
+        </p>
+      </div>
+
+      <div class="review card">
+        <div class="review-row">
+          <h3>How it gets there</h3>
+          <a class="review-edit" href="/checkout/how-it-gets-there">Change</a>
+        </div>
+        <p class="review-body small">
+          {method?.label} · <span class="muted">{method?.window_text}</span> ·
+          <span class="money">{formatMoney(view.shipping_minor)}</span>
+        </p>
+      </div>
+
+      <!-- The final total, and one control to place the order. -->
+      <div class="final">
+        <dl class="final-totals">
+          <div><dt>Subtotal</dt><dd class="money">{formatMoney(view.subtotal_minor)}</dd></div>
+          <div><dt>Delivery</dt><dd class="money">{formatMoney(view.shipping_minor)}</dd></div>
+          <div><dt>Tax</dt><dd class="money">{formatMoney(view.tax_minor)}</dd></div>
+          <div class="final-total"><dt>Total</dt><dd class="money">{formatMoney(view.total_minor)}</dd></div>
+        </dl>
+
+        <form method="post" data-place-order data-expected-total={view.total_minor}
+          data-cart-token={view.token}>
+          <input type="hidden" name="idempotency_key" value={formKey} />
+          <input type="hidden" name="expected_total_minor" value={view.total_minor} />
+          <button type="submit" class="button button-primary place" data-place-submit>Place order</button>
+          <p class="place-status" data-place-status role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="xsmall muted pay-note">
+          We raise an invoice for this order and email it to {view.draft.email}. There is no card to enter.
+        </p>
+      </div>
+    </section>
+
+    <CheckoutSummary cart={view} exact />
+  </div>
+
+  <script>
+    import '../../scripts/place-order.js';
+  </script>
+</Shell>
+
+<style>
+  .page-title { font-size: var(--text-xl); margin-bottom: var(--u4); }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: var(--u6);
+    align-items: start;
+  }
+  .panel h2 { font-size: var(--text-md); margin-bottom: var(--u4); }
+
+  .review { padding: var(--u3); margin-bottom: var(--u3); }
+  .review-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--u3);
+    margin-bottom: var(--u2);
+  }
+  .review-row h3 {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .review-edit { font-size: var(--text-sm); color: var(--ink-2); }
+  .review-body { margin: 0; line-height: 1.5; }
+
+  .final {
+    border-top: 1px solid var(--rule);
+    margin-top: var(--u5);
+    padding-top: var(--u4);
+  }
+  .final-totals { margin: 0 0 var(--u4); max-width: 320px; }
+  .final-totals div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--u4);
+    padding: var(--u) 0;
+    font-size: var(--text-sm);
+  }
+  .final-totals dt { color: var(--ink-2); }
+  .final-totals dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .final-total {
+    border-top: 1px solid var(--rule);
+    margin-top: var(--u2);
+    padding-top: var(--u2) !important;
+    font-weight: 700;
+    font-size: var(--text-md) !important;
+  }
+  .final-total dt { color: var(--ink) !important; }
+
+  .place { min-width: 200px; }
+  .place-status:empty { display: none; }
+  .place-status { margin: var(--u3) 0 0; max-width: 420px; }
+  .pay-note { margin: var(--u3) 0 0; max-width: 52ch; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

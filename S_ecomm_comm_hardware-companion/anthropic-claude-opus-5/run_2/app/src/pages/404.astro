@@ -1,0 +1,28 @@
+---
+import Shell from '../layouts/Shell.astro';
+---
+
+<Shell title="Not found — Vela" current="">
+  <div class="missing">
+    <h1>That page does not exist.</h1>
+    <p class="muted">Check the address, or start from one of these.</p>
+    <ul class="ways">
+      <li><a href="/shop">Shop</a></li>
+      <li><a href="/downloads">Downloads</a></li>
+      <li><a href="/">The letter</a></li>
+    </ul>
+  </div>
+</Shell>
+
+<style>
+  .missing { max-width: 44ch; padding: var(--u12) 0; }
+  h1 { font-size: var(--text-lg); margin-bottom: var(--u2); }
+  .ways {
+    list-style: none;
+    margin: var(--u4) 0 0;
+    padding: 0;
+    display: flex;
+    gap: var(--u4);
+    flex-wrap: wrap;
+  }
+</style>

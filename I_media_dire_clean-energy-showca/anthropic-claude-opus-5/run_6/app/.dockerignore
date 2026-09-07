@@ -1,0 +1,12 @@
+node_modules
+build
+.svelte-kit
+*.log
+verify.sh
+restart.sh
+walkthrough.py
+npm-debug.log*
+.browser_screenshots
+.downloads
+.git
+.gitignore

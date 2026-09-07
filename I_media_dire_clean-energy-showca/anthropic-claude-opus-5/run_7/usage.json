@@ -1,0 +1,41 @@
+{
+  "input_tokens": 1465719,
+  "output_tokens": 267746,
+  "cache_read_tokens": 19776696,
+  "cache_write_tokens": 0,
+  "total_tokens": 21510161,
+  "request_count": 909,
+  "cost_usd": 22.368407,
+  "sources": {
+    "agent": {
+      "model": "anthropic-claude-opus-5",
+      "input_tokens": 226843,
+      "output_tokens": 198871,
+      "cache_read_tokens": 17354808,
+      "cache_write_tokens": 0,
+      "total_tokens": 17780522,
+      "request_count": 120,
+      "cost_usd": 15.066647750000003
+    },
+    "browser_grader": {
+      "model": "gpt-5.6-sol",
+      "input_tokens": 738894,
+      "output_tokens": 37728,
+      "cache_read_tokens": 1811456,
+      "cache_write_tokens": 0,
+      "total_tokens": 2588078,
+      "request_count": 539,
+      "cost_usd": 4.434718
+    },
+    "rubric_judge": {
+      "model": "gpt-5.6-sol",
+      "input_tokens": 499982,
+      "output_tokens": 31147,
+      "cache_read_tokens": 610432,
+      "cache_write_tokens": 0,
+      "total_tokens": 1141561,
+      "request_count": 250,
+      "cost_usd": 2.867041
+    }
+  }
+}

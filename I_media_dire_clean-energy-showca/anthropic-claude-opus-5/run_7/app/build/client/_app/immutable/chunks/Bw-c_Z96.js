@@ -1,0 +1,1 @@
+import{c as l,h as d,a as m}from"./DpEWzmlc.js";import{a as c}from"./Df3J8pHS.js";function v(a,t,r,n,h){var f,i;if(d&&m(),(f=t.$$host)!=null&&f.$$shadowRoot){const o=l("slot");c(a,o);return}var e=(i=t.$$slots)==null?void 0:i[r],s=!1;e===!0&&(e=t.children,s=!0),e===void 0||e(a,s?()=>n:n)}export{v as s};

@@ -1,0 +1,549 @@
+exit=0
+
+--- stdout ---
+
+--- stderr ---
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.03kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker.io/docker/dockerfile:1
+#2 DONE 1.0s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32
+#3 CACHED
+
+#4 [internal] load build definition from Dockerfile
+#4 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/node:20-bookworm-slim
+#5 DONE 1.0s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 445B done
+#6 DONE 0.0s
+
+#7 [build 1/8] FROM docker.io/library/node:20-bookworm-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#7 DONE 0.0s
+
+#8 [build 2/8] WORKDIR /app
+#8 CACHED
+
+#9 [internal] load build context
+#9 transferring context: 348.72kB done
+#9 DONE 0.0s
+
+#10 [build 3/8] COPY package.json package-lock.json ./
+#10 DONE 0.0s
+
+#11 [runtime 4/9] RUN npm ci --omit=dev && npm cache clean --force
+#11 2.058 
+#11 2.058 added 63 packages, and audited 64 packages in 1s
+#11 2.058 
+#11 2.058 19 packages are looking for funding
+#11 2.058   run `npm fund` for details
+#11 2.058 
+#11 2.058 found 0 vulnerabilities
+#11 2.059 npm notice
+#11 2.059 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+#11 2.059 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+#11 2.059 npm notice To update run: npm install -g npm@12.0.2
+#11 2.059 npm notice
+#11 2.133 npm warn using --force Recommended protections disabled.
+#11 DONE 3.5s
+
+#12 [build 4/8] RUN npm ci
+#12 4.327 
+#12 4.327 added 128 packages, and audited 129 packages in 3s
+#12 4.327 
+#12 4.327 27 packages are looking for funding
+#12 4.327   run `npm fund` for details
+#12 4.342 
+#12 4.342 7 vulnerabilities (3 low, 3 moderate, 1 high)
+#12 4.342 
+#12 4.342 To address all issues (including breaking changes), run:
+#12 4.342   npm audit fix --force
+#12 4.342 
+#12 4.342 Run `npm audit` for details.
+#12 4.343 npm notice
+#12 4.343 npm notice New major version of npm available! 10.8.2 -> 12.0.2
+#12 4.343 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+#12 4.343 npm notice To update run: npm install -g npm@12.0.2
+#12 4.343 npm notice
+#12 DONE 4.4s
+
+#13 [build 5/8] COPY svelte.config.js vite.config.js ./
+#13 DONE 0.0s
+
+#14 [build 6/8] COPY static ./static
+#14 DONE 0.2s
+
+#15 [build 7/8] COPY src ./src
+#15 DONE 0.0s
+
+#16 [build 8/8] RUN npm run build
+#16 0.611 
+#16 0.611 > zettajoule@1.0.0 build
+#16 0.611 > vite build
+#16 0.611 
+#16 1.148 vite v5.4.21 building SSR bundle for production...
+#16 1.167 transforming...
+#16 1.270 10:33:24 PM [vite-plugin-svelte] src/routes/+layout.svelte:143:1 Elements with the 'dialog' interactive role must have a tabindex value
+#16 1.270 https://svelte.dev/e/a11y_interactive_supports_focus
+#16 1.270 141: 
+#16 1.270 142: {#if menuOpen}
+#16 1.270 143:   <div
+#16 1.270            ^
+#16 1.270 144:     class="panel"
+#16 1.270 145:     id="route-panel"
+#16 1.390 10:33:24 PM [vite-plugin-svelte] src/routes/company/+page.svelte:120:1 Unused CSS selector ".office[data-revealed='true']"
+#16 1.390 https://svelte.dev/e/css_unused_selector
+#16 1.390 118:     transition-delay: calc(var(--i) * 110ms);
+#16 1.390 119:   }
+#16 1.390 120:   .office[data-revealed='true'] {
+#16 1.390                                     ^
+#16 1.390 121:     opacity: 1;
+#16 1.390 122:     transform: none;
+#16 1.421 10:33:24 PM [vite-plugin-svelte] src/routes/faq/+page.svelte:8:23 This reference only captures the initial value of `data`. Did you mean to reference it inside a derived instead?
+#16 1.421 https://svelte.dev/e/state_referenced_locally
+#16 1.421  6:   let query = $state('');
+#16 1.421  7:   let category = $state('');
+#16 1.421  8:   let rows = $state([...data.faqs]);
+#16 1.421                                 ^
+#16 1.421  9:   let busy = $state(false);
+#16 1.421 10: 
+#16 1.446 10:33:24 PM [vite-plugin-svelte] src/routes/news/+page.svelte:10:23 This reference only captures the initial value of `data`. Did you mean to reference it inside a derived instead?
+#16 1.446 https://svelte.dev/e/state_referenced_locally
+#16 1.446  8:   let { data } = $props();
+#16 1.446  9: 
+#16 1.446 10:   let wall = $state([...data.wall]);
+#16 1.446                                 ^
+#16 1.446 11:   let loading = $state(false);
+#16 1.446 12:   let failure = $state('');
+#16 1.482 10:33:24 PM [vite-plugin-svelte] src/routes/solutions/+page.svelte:31:27 This reference only captures the initial value of `data`. Did you mean to reference it inside a derived instead?
+#16 1.482 https://svelte.dev/e/state_referenced_locally
+#16 1.482 29:   const industries = $derived([...new Set(data.all.map((s) => s.industry))].sort());
+#16 1.482 30: 
+#16 1.482 31:   let filters = $state({ ...data.filters });
+#16 1.482                                     ^
+#16 1.482 32:   let busy = $state(false);
+#16 1.482 33:   let banner = $state(null);
+#16 1.604 10:33:24 PM [vite-plugin-svelte] src/lib/Logo.svelte:5:16 This reference only captures the initial value of `tone`. Did you mean to reference it inside a closure instead?
+#16 1.604 https://svelte.dev/e/state_referenced_locally
+#16 1.604 3:   // shapes, next to the company name spelled in letters. No asset file.
+#16 1.604 4:   let { size = 26, showName = true, tone = 'ink' } = $props();
+#16 1.604 5:   const stroke = tone === 'light' ? '#ffffff' : 'var(--accent)';
+#16 1.604                         ^
+#16 1.604 6:   const core = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 1.604 7:   const word = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 1.604 10:33:24 PM [vite-plugin-svelte] src/lib/Logo.svelte:6:14 This reference only captures the initial value of `tone`. Did you mean to reference it inside a closure instead?
+#16 1.604 https://svelte.dev/e/state_referenced_locally
+#16 1.604 4:   let { size = 26, showName = true, tone = 'ink' } = $props();
+#16 1.604 5:   const stroke = tone === 'light' ? '#ffffff' : 'var(--accent)';
+#16 1.604 6:   const core = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 1.604                       ^
+#16 1.604 7:   const word = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 1.604 8: </script>
+#16 1.604 10:33:24 PM [vite-plugin-svelte] src/lib/Logo.svelte:7:14 This reference only captures the initial value of `tone`. Did you mean to reference it inside a closure instead?
+#16 1.604 https://svelte.dev/e/state_referenced_locally
+#16 1.604  5:   const stroke = tone === 'light' ? '#ffffff' : 'var(--accent)';
+#16 1.604  6:   const core = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 1.604  7:   const word = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 1.604                        ^
+#16 1.604  8: </script>
+#16 1.604  9: 
+#16 1.625 10:33:24 PM [vite-plugin-svelte] src/lib/Reactor.svelte:108:2 noninteractive element cannot have nonnegative tabIndex value
+#16 1.625 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 1.625 106: 
+#16 1.625 107:     <!-- base -->
+#16 1.625 108:     <g
+#16 1.625            ^
+#16 1.625 109:       class="part"
+#16 1.625 110:       class:part--live={interactive}
+#16 1.625 10:33:24 PM [vite-plugin-svelte] src/lib/Reactor.svelte:163:2 noninteractive element cannot have nonnegative tabIndex value
+#16 1.625 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 1.625 161: 
+#16 1.625 162:     <!-- helium loop: outlet piping to the customer -->
+#16 1.625 163:     <g
+#16 1.625            ^
+#16 1.625 164:       class="part"
+#16 1.625 165:       class:part--live={interactive}
+#16 1.625 10:33:24 PM [vite-plugin-svelte] src/lib/Reactor.svelte:206:2 noninteractive element cannot have nonnegative tabIndex value
+#16 1.625 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 1.625 204: 
+#16 1.625 205:     <!-- pressure vessel -->
+#16 1.625 206:     <g
+#16 1.625            ^
+#16 1.625 207:       class="part"
+#16 1.625 208:       class:part--live={interactive}
+#16 1.625 10:33:24 PM [vite-plugin-svelte] src/lib/Reactor.svelte:262:2 noninteractive element cannot have nonnegative tabIndex value
+#16 1.625 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 1.625 260: 
+#16 1.625 261:     <!-- fuel core, revealed once the dome is off -->
+#16 1.625 262:     <g
+#16 1.625            ^
+#16 1.625 263:       class="part"
+#16 1.625 264:       class:part--live={interactive}
+#16 1.625 10:33:24 PM [vite-plugin-svelte] src/lib/Reactor.svelte:301:2 noninteractive element cannot have nonnegative tabIndex value
+#16 1.625 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 1.625 299: 
+#16 1.625 300:     <!-- control rods lift first -->
+#16 1.625 301:     <g
+#16 1.625            ^
+#16 1.625 302:       class="part"
+#16 1.625 303:       class:part--live={interactive}
+#16 1.625 10:33:24 PM [vite-plugin-svelte] src/lib/Reactor.svelte:349:2 noninteractive element cannot have nonnegative tabIndex value
+#16 1.625 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 1.625 347: 
+#16 1.625 348:     <!-- the dome rises off -->
+#16 1.625 349:     <g
+#16 1.625            ^
+#16 1.625 350:       class="part"
+#16 1.625 351:       class:part--live={interactive}
+#16 1.649 10:33:24 PM [vite-plugin-svelte] src/lib/EnquiryForm.svelte:26:2 This reference only captures the initial value of `topic`. Did you mean to reference it inside a derived instead?
+#16 1.649 https://svelte.dev/e/state_referenced_locally
+#16 1.649 24:     phone_country: '+31',
+#16 1.649 25:     phone: '',
+#16 1.649 26:     topic,
+#16 1.649              ^
+#16 1.649 27:     message: presetMessage
+#16 1.649 28:   });
+#16 1.649 10:33:24 PM [vite-plugin-svelte] src/lib/EnquiryForm.svelte:27:11 This reference only captures the initial value of `presetMessage`. Did you mean to reference it inside a derived instead?
+#16 1.649 https://svelte.dev/e/state_referenced_locally
+#16 1.650 25:     phone: '',
+#16 1.650 26:     topic,
+#16 1.650 27:     message: presetMessage
+#16 1.650                               ^
+#16 1.650 28:   });
+#16 1.650 29:   let touched = $state({});
+#16 2.245 ✓ 215 modules transformed.
+#16 2.345 rendering chunks...
+#16 2.777 vite v5.4.21 building for production...
+#16 2.780 transforming...
+#16 2.828 10:33:26 PM [vite-plugin-svelte] src/routes/+layout.svelte:143:1 Elements with the 'dialog' interactive role must have a tabindex value
+#16 2.828 https://svelte.dev/e/a11y_interactive_supports_focus
+#16 2.828 141: 
+#16 2.828 142: {#if menuOpen}
+#16 2.828 143:   <div
+#16 2.828            ^
+#16 2.828 144:     class="panel"
+#16 2.828 145:     id="route-panel"
+#16 2.909 10:33:26 PM [vite-plugin-svelte] src/routes/company/+page.svelte:120:1 Unused CSS selector ".office[data-revealed='true']"
+#16 2.909 https://svelte.dev/e/css_unused_selector
+#16 2.909 118:     transition-delay: calc(var(--i) * 110ms);
+#16 2.909 119:   }
+#16 2.909 120:   .office[data-revealed='true'] {
+#16 2.909                                     ^
+#16 2.909 121:     opacity: 1;
+#16 2.909 122:     transform: none;
+#16 2.939 10:33:26 PM [vite-plugin-svelte] src/routes/faq/+page.svelte:8:23 This reference only captures the initial value of `data`. Did you mean to reference it inside a derived instead?
+#16 2.939 https://svelte.dev/e/state_referenced_locally
+#16 2.939  6:   let query = $state('');
+#16 2.939  7:   let category = $state('');
+#16 2.939  8:   let rows = $state([...data.faqs]);
+#16 2.939                                 ^
+#16 2.939  9:   let busy = $state(false);
+#16 2.939 10: 
+#16 2.967 10:33:26 PM [vite-plugin-svelte] src/routes/news/+page.svelte:10:23 This reference only captures the initial value of `data`. Did you mean to reference it inside a derived instead?
+#16 2.967 https://svelte.dev/e/state_referenced_locally
+#16 2.967  8:   let { data } = $props();
+#16 2.967  9: 
+#16 2.967 10:   let wall = $state([...data.wall]);
+#16 2.967                                 ^
+#16 2.967 11:   let loading = $state(false);
+#16 2.967 12:   let failure = $state('');
+#16 3.003 10:33:26 PM [vite-plugin-svelte] src/routes/solutions/+page.svelte:31:27 This reference only captures the initial value of `data`. Did you mean to reference it inside a derived instead?
+#16 3.003 https://svelte.dev/e/state_referenced_locally
+#16 3.003 29:   const industries = $derived([...new Set(data.all.map((s) => s.industry))].sort());
+#16 3.003 30: 
+#16 3.003 31:   let filters = $state({ ...data.filters });
+#16 3.003                                     ^
+#16 3.003 32:   let busy = $state(false);
+#16 3.003 33:   let banner = $state(null);
+#16 3.106 10:33:26 PM [vite-plugin-svelte] src/lib/Logo.svelte:5:16 This reference only captures the initial value of `tone`. Did you mean to reference it inside a closure instead?
+#16 3.106 https://svelte.dev/e/state_referenced_locally
+#16 3.106 3:   // shapes, next to the company name spelled in letters. No asset file.
+#16 3.106 4:   let { size = 26, showName = true, tone = 'ink' } = $props();
+#16 3.106 5:   const stroke = tone === 'light' ? '#ffffff' : 'var(--accent)';
+#16 3.106                         ^
+#16 3.106 6:   const core = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 3.106 7:   const word = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 3.106 10:33:26 PM [vite-plugin-svelte] src/lib/Logo.svelte:6:14 This reference only captures the initial value of `tone`. Did you mean to reference it inside a closure instead?
+#16 3.106 https://svelte.dev/e/state_referenced_locally
+#16 3.106 4:   let { size = 26, showName = true, tone = 'ink' } = $props();
+#16 3.106 5:   const stroke = tone === 'light' ? '#ffffff' : 'var(--accent)';
+#16 3.106 6:   const core = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 3.106                       ^
+#16 3.106 7:   const word = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 3.106 8: </script>
+#16 3.106 10:33:26 PM [vite-plugin-svelte] src/lib/Logo.svelte:7:14 This reference only captures the initial value of `tone`. Did you mean to reference it inside a closure instead?
+#16 3.106 https://svelte.dev/e/state_referenced_locally
+#16 3.106  5:   const stroke = tone === 'light' ? '#ffffff' : 'var(--accent)';
+#16 3.106  6:   const core = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 3.106  7:   const word = tone === 'light' ? '#ffffff' : 'var(--ink)';
+#16 3.106                        ^
+#16 3.106  8: </script>
+#16 3.106  9: 
+#16 3.133 10:33:26 PM [vite-plugin-svelte] src/lib/Reactor.svelte:108:2 noninteractive element cannot have nonnegative tabIndex value
+#16 3.133 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 3.133 106: 
+#16 3.133 107:     <!-- base -->
+#16 3.133 108:     <g
+#16 3.133            ^
+#16 3.133 109:       class="part"
+#16 3.133 110:       class:part--live={interactive}
+#16 3.133 10:33:26 PM [vite-plugin-svelte] src/lib/Reactor.svelte:163:2 noninteractive element cannot have nonnegative tabIndex value
+#16 3.133 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 3.133 161: 
+#16 3.133 162:     <!-- helium loop: outlet piping to the customer -->
+#16 3.133 163:     <g
+#16 3.133            ^
+#16 3.133 164:       class="part"
+#16 3.133 165:       class:part--live={interactive}
+#16 3.133 10:33:26 PM [vite-plugin-svelte] src/lib/Reactor.svelte:206:2 noninteractive element cannot have nonnegative tabIndex value
+#16 3.133 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 3.133 204: 
+#16 3.133 205:     <!-- pressure vessel -->
+#16 3.133 206:     <g
+#16 3.133            ^
+#16 3.133 207:       class="part"
+#16 3.133 208:       class:part--live={interactive}
+#16 3.133 10:33:26 PM [vite-plugin-svelte] src/lib/Reactor.svelte:262:2 noninteractive element cannot have nonnegative tabIndex value
+#16 3.133 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 3.133 260: 
+#16 3.133 261:     <!-- fuel core, revealed once the dome is off -->
+#16 3.133 262:     <g
+#16 3.133            ^
+#16 3.133 263:       class="part"
+#16 3.133 264:       class:part--live={interactive}
+#16 3.133 10:33:26 PM [vite-plugin-svelte] src/lib/Reactor.svelte:301:2 noninteractive element cannot have nonnegative tabIndex value
+#16 3.133 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 3.133 299: 
+#16 3.133 300:     <!-- control rods lift first -->
+#16 3.133 301:     <g
+#16 3.133            ^
+#16 3.133 302:       class="part"
+#16 3.133 303:       class:part--live={interactive}
+#16 3.133 10:33:26 PM [vite-plugin-svelte] src/lib/Reactor.svelte:349:2 noninteractive element cannot have nonnegative tabIndex value
+#16 3.133 https://svelte.dev/e/a11y_no_noninteractive_tabindex
+#16 3.133 347: 
+#16 3.133 348:     <!-- the dome rises off -->
+#16 3.133 349:     <g
+#16 3.133            ^
+#16 3.133 350:       class="part"
+#16 3.133 351:       class:part--live={interactive}
+#16 3.168 10:33:26 PM [vite-plugin-svelte] src/lib/EnquiryForm.svelte:26:2 This reference only captures the initial value of `topic`. Did you mean to reference it inside a derived instead?
+#16 3.168 https://svelte.dev/e/state_referenced_locally
+#16 3.168 24:     phone_country: '+31',
+#16 3.168 25:     phone: '',
+#16 3.168 26:     topic,
+#16 3.168              ^
+#16 3.168 27:     message: presetMessage
+#16 3.168 28:   });
+#16 3.168 10:33:26 PM [vite-plugin-svelte] src/lib/EnquiryForm.svelte:27:11 This reference only captures the initial value of `presetMessage`. Did you mean to reference it inside a derived instead?
+#16 3.168 https://svelte.dev/e/state_referenced_locally
+#16 3.168 25:     phone: '',
+#16 3.168 26:     topic,
+#16 3.168 27:     message: presetMessage
+#16 3.168                               ^
+#16 3.168 28:   });
+#16 3.168 29:   let touched = $state({});
+#16 3.670 ✓ 246 modules transformed.
+#16 3.750 rendering chunks...
+#16 3.781 computing gzip size...
+#16 3.790 .svelte-kit/output/client/_app/version.json                                0.03 kB │ gzip:  0.05 kB
+#16 3.790 .svelte-kit/output/client/.vite/manifest.json                             19.77 kB │ gzip:  2.18 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/1.CnZIZUAW.css             0.08 kB │ gzip:  0.10 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/15.ZEE3EOl5.css            0.15 kB │ gzip:  0.14 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/16.DpUxsJFu.css            0.15 kB │ gzip:  0.14 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/EnquiryForm.XyP91pOh.css   0.21 kB │ gzip:  0.16 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/14.Cn-qangW.css            0.38 kB │ gzip:  0.22 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/Reactor.BeCMvy8w.css       0.41 kB │ gzip:  0.23 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/Reveal.D_xQPw9d.css        0.45 kB │ gzip:  0.24 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/8.bLBJyLCJ.css             0.61 kB │ gzip:  0.32 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/19.D__NOJGu.css            0.78 kB │ gzip:  0.42 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/5.B85MWPmY.css             0.78 kB │ gzip:  0.38 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/7.BAjbzLFf.css             0.78 kB │ gzip:  0.36 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/12.CDRheOqt.css            0.83 kB │ gzip:  0.38 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/6.D3fb2zSL.css             1.04 kB │ gzip:  0.50 kB
+#16 3.790 .svelte-kit/output/client/_app/immutable/assets/11.DlbqOhMa.css            1.13 kB │ gzip:  0.52 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/10.C0M1OLmu.css            1.14 kB │ gzip:  0.49 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/3.oj4Wp7iR.css             1.25 kB │ gzip:  0.50 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/18.BaTCJ-na.css            1.25 kB │ gzip:  0.53 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/Modal.DSW3qcQT.css         1.25 kB │ gzip:  0.52 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/13.D9cjj_Z8.css            1.36 kB │ gzip:  0.53 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/Plate.snX31VUA.css         1.40 kB │ gzip:  0.54 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/9.CVo1-US_.css             1.50 kB │ gzip:  0.62 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/20.Ded8s5VF.css            1.71 kB │ gzip:  0.64 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/4.IIB8JX4D.css             2.15 kB │ gzip:  0.76 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/17.qlR-iGaa.css            2.87 kB │ gzip:  0.91 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/2.2RSUwYif.css             5.31 kB │ gzip:  1.55 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/assets/0.DoFN8roF.css            13.15 kB │ gzip:  3.58 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/VQk4GYSo.js                0.04 kB │ gzip:  0.06 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/entry/start.CkGITohI.js           0.08 kB │ gzip:  0.09 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BPko0QoU.js                0.19 kB │ gzip:  0.19 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BFeH_y4T.js                0.32 kB │ gzip:  0.25 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/ChVoEOAQ.js                0.36 kB │ gzip:  0.26 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/B5xt5P0_.js                0.48 kB │ gzip:  0.33 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/DJH43Nr9.js                0.50 kB │ gzip:  0.35 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BygkoruP.js                0.54 kB │ gzip:  0.35 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/dcaxs4tM.js                0.57 kB │ gzip:  0.37 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BXaKSeVG.js                0.64 kB │ gzip:  0.40 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/OA8UcISh.js                0.64 kB │ gzip:  0.39 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/CvBslT6Z.js                0.66 kB │ gzip:  0.41 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/CaY4daPF.js                0.79 kB │ gzip:  0.47 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BGK9WhD8.js                0.99 kB │ gzip:  0.59 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/wbPk3Yxo.js                1.37 kB │ gzip:  0.66 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/Cd4c6SN9.js                1.44 kB │ gzip:  0.65 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BN7gVfim.js                1.49 kB │ gzip:  0.86 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/hRC_TiHd.js                1.54 kB │ gzip:  0.83 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/DcycrcRk.js                1.63 kB │ gzip:  0.85 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/1.B0b027Qt.js               1.98 kB │ gzip:  1.13 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/xtJI4oso.js                2.13 kB │ gzip:  1.20 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/14.BJgwGaqU.js              2.52 kB │ gzip:  1.38 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/8.D2jbvtrx.js               2.62 kB │ gzip:  1.40 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/Dad6VynF.js                2.71 kB │ gzip:  1.40 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/CT-nrVeB.js                2.77 kB │ gzip:  1.37 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/15.5-n_N11K.js              3.54 kB │ gzip:  1.76 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/12.BbgV-UGL.js              4.03 kB │ gzip:  1.98 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/19.DhbmrPSy.js              4.22 kB │ gzip:  2.11 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/10.C_Cxn3uh.js              4.28 kB │ gzip:  2.18 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/6.Bc4PwqLh.js               4.66 kB │ gzip:  2.27 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BUD8SJWW.js                4.82 kB │ gzip:  2.27 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/13.RAaDPgg3.js              5.13 kB │ gzip:  2.38 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/16.BpbyOnhh.js              5.46 kB │ gzip:  2.37 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/9.DhOcaI3r.js               5.57 kB │ gzip:  2.53 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/18.BRYL5PJ4.js              6.62 kB │ gzip:  3.07 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/7.BrjV6pW-.js               6.74 kB │ gzip:  3.00 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/CsV_kyIB.js                7.68 kB │ gzip:  3.21 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/4.DMqLE1Pb.js               8.34 kB │ gzip:  3.38 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/20.bNZlUBDq.js              8.56 kB │ gzip:  3.79 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/pSLkFpAv.js                8.65 kB │ gzip:  3.87 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/Bk7KpAK2.js                9.34 kB │ gzip:  2.85 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/11.B65i8U2I.js              9.65 kB │ gzip:  4.29 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/5.B_3mCA8H.js              10.55 kB │ gzip:  4.61 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/entry/app.d1D3yq5i.js            11.64 kB │ gzip:  4.62 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/0.ChsCsMQ-.js              11.83 kB │ gzip:  4.43 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/2.CHHXBZYl.js              13.02 kB │ gzip:  5.05 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/17.Xiii-6Hh.js             13.14 kB │ gzip:  5.23 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/nodes/3.7NA72xHu.js              14.06 kB │ gzip:  4.77 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/BIrHEK8A.js               14.39 kB │ gzip:  5.91 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/C75zGkK8.js               35.46 kB │ gzip: 13.79 kB
+#16 3.791 .svelte-kit/output/client/_app/immutable/chunks/DydPrq9V.js               43.10 kB │ gzip: 16.30 kB
+#16 3.792 ✓ built in 1.01s
+#16 4.176 .svelte-kit/output/server/.vite/manifest.json                              15.01 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_error.CnZIZUAW.css         0.08 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.ZEE3EOl5.css          0.15 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.DpUxsJFu.css          0.15 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/EnquiryForm.XyP91pOh.css    0.21 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.Cn-qangW.css          0.38 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/Reactor.BeCMvy8w.css        0.41 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/Reveal.D_xQPw9d.css         0.45 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.bLBJyLCJ.css          0.61 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.D__NOJGu.css          0.78 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.B85MWPmY.css          0.78 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.BAjbzLFf.css          0.78 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.CDRheOqt.css          0.83 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.D3fb2zSL.css          1.04 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.DlbqOhMa.css          1.13 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.C0M1OLmu.css          1.14 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/Modal.DG4hpaB2.css          1.17 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.oj4Wp7iR.css          1.25 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.BaTCJ-na.css          1.25 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/Plate.C19J_dzu.css          1.27 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.D9cjj_Z8.css          1.36 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.CVo1-US_.css          1.50 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.Ded8s5VF.css          1.71 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.IIB8JX4D.css          2.15 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.qlR-iGaa.css          2.87 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_page.DtE2k9he.css          5.29 kB
+#16 4.176 .svelte-kit/output/server/_app/immutable/assets/_layout.CfKyEFzV.css       13.00 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/_layout.js                          0.07 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/careers/_page.js                    0.19 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/faq/_page.js                        0.19 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/team/_page.js                       0.19 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/company/_page.js                    0.19 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/contact/_page.js                    0.19 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/_page.js                            0.19 kB
+#16 4.176 .svelte-kit/output/server/chunks/scroll.js                                  0.21 kB
+#16 4.176 .svelte-kit/output/server/env.js                                            0.23 kB
+#16 4.176 .svelte-kit/output/server/internal.js                                       0.35 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/news/_slug_/_page.js                0.37 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/solutions/_slug_/_page.js           0.37 kB
+#16 4.176 .svelte-kit/output/server/chunks/saves.js                                   0.37 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/news/_page.js                       0.47 kB
+#16 4.176 .svelte-kit/output/server/chunks/auth.js                                    0.58 kB
+#16 4.176 .svelte-kit/output/server/chunks/server.js                                  0.62 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/solutions/_page.js                  0.78 kB
+#16 4.176 .svelte-kit/output/server/chunks/client.js                                  0.92 kB
+#16 4.176 .svelte-kit/output/server/chunks/load.js                                    0.97 kB
+#16 4.176 .svelte-kit/output/server/chunks/utils2.js                                  1.09 kB
+#16 4.176 .svelte-kit/output/server/chunks/stores.js                                  1.11 kB
+#16 4.176 .svelte-kit/output/server/entries/pages/investors/room/_page.svelte.js      1.63 kB
+#16 4.177 .svelte-kit/output/server/chunks/Reveal.js                                  1.96 kB
+#16 4.177 .svelte-kit/output/server/chunks/Plate.js                                   2.38 kB
+#16 4.177 .svelte-kit/output/server/chunks/SaveButton.js                              2.42 kB
+#16 4.177 .svelte-kit/output/server/chunks/index2.js                                  2.65 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/_error.svelte.js                    2.69 kB
+#16 4.177 .svelte-kit/output/server/chunks/Modal.js                                   3.09 kB
+#16 4.177 .svelte-kit/output/server/chunks/internal.js                                3.84 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/news/_slug_/_page.svelte.js         3.94 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/signin/_page.svelte.js              4.71 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/contact/_page.svelte.js             4.97 kB
+#16 4.177 .svelte-kit/output/server/chunks/exports.js                                 5.54 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/team/_page.svelte.js                6.67 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/news/_page.svelte.js                7.24 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/signup/_page.svelte.js              7.36 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/company/_page.svelte.js             7.81 kB
+#16 4.177 .svelte-kit/output/server/chunks/dev.js                                     7.92 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/faq/_page.svelte.js                 8.94 kB
+#16 4.177 .svelte-kit/output/server/chunks/EnquiryForm.js                             9.72 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/compare/_page.svelte.js            10.52 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/edge/_page.svelte.js               10.58 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/calculator/_page.svelte.js         10.59 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/investors/_page.svelte.js          10.64 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/solutions/_slug_/_page.svelte.js   11.42 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/technology/_page.svelte.js         15.23 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/careers/_page.svelte.js            15.27 kB
+#16 4.177 .svelte-kit/output/server/chunks/Reactor.js                                17.11 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/_layout.svelte.js                  17.60 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/account/_page.svelte.js            20.25 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/_page.svelte.js                    21.95 kB
+#16 4.177 .svelte-kit/output/server/entries/pages/solutions/_page.svelte.js          22.06 kB
+#16 4.177 .svelte-kit/output/server/chunks/root.js                                   30.08 kB
+#16 4.177 .svelte-kit/output/server/chunks/utils.js                                  37.56 kB
+#16 4.177 .svelte-kit/output/server/remote-entry.js                                  38.11 kB
+#16 4.177 .svelte-kit/output/server/chunks/index.js                                 119.52 kB
+#16 4.177 .svelte-kit/output/server/index.js                                        138.71 kB
+#16 4.177 ✓ built in 3.03s
+#16 4.177 
+#16 4.177 Run npm run preview to preview your production build locally.
+#16 4.179 
+#16 4.179 > Using @sveltejs/adapter-node
+#16 5.102   ✔ done
+#16 DONE 5.2s
+
+#17 [runtime 5/9] COPY --from=build /app/build ./build
+#17 DONE 0.1s
+
+#18 [runtime 6/9] COPY server ./server
+#18 DONE 0.0s
+
+#19 [runtime 7/9] COPY USER_README.md ./USER_README.md
+#19 DONE 0.0s
+
+#20 [runtime 8/9] RUN mkdir -p /app/.browser_screenshots /app/.downloads
+#20 DONE 0.6s
+
+#21 [runtime 9/9] RUN chown -R node:node /app
+#21 DONE 2.4s
+
+#22 exporting to image
+#22 exporting layers
+#22 exporting layers 0.6s done
+#22 writing image sha256:7ee324b0cd79c4da708302204d610cc7771300a6f8ad7b8c5abd6c1e666b5d10 done
+#22 naming to docker.io/library/deku-fresh-app-i_media_dire_clean-energy-showcase_20260906_052930:latest done
+#22 DONE 0.6s
+

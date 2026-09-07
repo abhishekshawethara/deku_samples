@@ -1,0 +1,534 @@
+{
+  "judge_score": 1.0,
+  "advisory": true,
+  "note": "Diagnostic only. PLAN.md 1.4: judge_score never drives training. A judge-only reward is trivially gamed. The binary substep grader owns the RL reward; this score is for human review only.",
+  "dimensions": {
+    "R1_ui_visual": {
+      "number": "R1",
+      "criterion": "Headings across the showcase routes are set in a heavy grotesque against body copy in a plainer face.",
+      "evaluation_rule": "A GROTESQUE is a sans-serif face with an even stroke. Answer yes when headings on the company route, the technology route and the team route read as a heavier, more structural face than the running text under them. Answer no when headings and running text read as one face at one thickness.",
+      "dimension": "ui_visual",
+      "importance": "important",
+      "satisfied": null,
+      "passed": null,
+      "is_positive": true,
+      "score": null,
+      "confidence": 0.0,
+      "weight": 0.088235,
+      "rationale": "The criterion requires screenshots plus measured styles and bounding boxes showing that headings on all three routes use a heavier grotesque than their running text. Although all routes and candidate text pairs were verified, direct computed-style and bounding-box measurements for those heading/body pairs were not obtained before the browser budget ended. Measurements from navigation and CTA controls cannot establish typography of the route content. Therefore the available evidence does not defensibly settle the criterion.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the required showcase routes exist and loaded successfully: /company, /technology, and /team.",
+        "Route snapshots identify heading/body pairs on each route, including \u201cclean heat and electricity\u2026\u201d above company running copy, \u201cA modernised high-temperature gas-cooled reactor\u201d above technology running copy, and \u201cshaping the future of nuclear together\u201d above team running copy.",
+        "The only successful typography measurements were for navigation/CTA elements, not the required route headings and running text: ordinary navigation measured system-ui at weight 400/600, while a CTA measured Helvetica Neue/Arial Black fallback at weight 800.",
+        "Full-page screenshots were captured, but their image content was unavailable in the evidence transport, so they cannot support a defensible visual comparison."
+      ],
+      "human_eval": "no",
+      "machine_status": "INSUFFICIENT_EVIDENCE",
+      "resolved_by": "machine_unresolved",
+      "voters": 1
+    },
+    "R2_ux_flow": {
+      "number": "R2",
+      "criterion": "The solutions explorer packs its cards tighter than the company route packs its sections.",
+      "evaluation_rule": "Answer yes when a full filtered set of solution cards fits one screen while the company route leaves generous space around each block. Answer no when the two routes share one spacing rhythm.",
+      "dimension": "ux_flow",
+      "importance": "important",
+      "satisfied": true,
+      "passed": true,
+      "is_positive": true,
+      "score": 1.0,
+      "confidence": 0.93,
+      "weight": 0.088235,
+      "rationale": "The required contrast is observed: a fully filtered two-card solution result fits within one screen in a tight side-by-side layout, whereas the company route spreads a small number of content blocks across roughly 2.3\u20132.7k vertical pixels before the footer. The two routes therefore do not share one spacing rhythm.",
+      "evidence": [
+        "On /solutions, selecting the Output filter \u201cHydrogen\u201d produced the complete matching set: \u201cShowing 2 of 8 solutions,\u201d namely Transport and Steel.",
+        "At a 1440\u00d71200 viewport, both filtered solution cards and the subsequent \u201cRead the matching solutions as a plain list\u201d / \u201cTell us what you need to power\u201d content were present in the same viewport snapshot, establishing that the full filtered card set fits one screen.",
+        "Direct card measurements at 1440px width showed each filtered card at about 267\u00d7249 px, positioned side-by-side at x=135 and x=436 (about a 34 px inter-card gap), demonstrating a compact card grid.",
+        "On /company, the page\u2019s primary CTA \u201cSee what it powers\u201d was measured near y=2297, the next CTA near y=2546, and footer navigation began near y=2750. This long vertical progression accompanies only a few major narrative blocks (\u201cThe vision,\u201d \u201cThe mission,\u201d \u201cThe name,\u201d \u201cWhere we work,\u201d and operations copy), directly evidencing substantially more space around company sections than around solution cards."
+      ],
+      "human_eval": "no",
+      "machine_status": "PASS",
+      "resolved_by": "active_acquisition",
+      "voters": 1
+    },
+    "R3_motion": {
+      "number": "R3",
+      "criterion": "A filter result on the solutions explorer lands at once, with the focus ring as the one animated element.",
+      "evaluation_rule": "Answer yes when choosing a filter replaces the grid immediately, with no fade, slide or stagger, while a focused control still animates its ring. Answer no when the grid eases, fades or staggers into place.",
+      "dimension": "motion",
+      "importance": "somewhat_important",
+      "satisfied": true,
+      "passed": true,
+      "is_positive": true,
+      "score": 1.0,
+      "confidence": 0.95,
+      "weight": 0.029412,
+      "rationale": "Direct motion captures show that choosing a Solutions Explorer filter replaces the result grid without any animation, while keyboard focus still produces a short animated box-shadow focus ring. This matches the criterion's required distinction between immediate grid updates and an animated focus ring.",
+      "evidence": [
+        "On /solutions?output_kind=hydrogen, changing the Output filter to Electricity immediately replaced the two Hydrogen results (Transport and Steel) with Mining and Data Centres; CDP motion capture over the filter action and settle period reported animation_count: 0.",
+        "The resulting solution cards had opacity: 1, transform: none, transition-duration: 0s, animation-name: none, and animation-duration: 0s, directly excluding fade, slide, and stagger behavior.",
+        "A separate CDP capture while keyboard-focusing a control recorded exactly one animation: box-shadow, duration 140 ms, easing ease-out, iterations 1. The focused Skip to content control computed a two-layer box-shadow and transition-property: box-shadow with transition-duration: 0.14s.",
+        "A repeat filter change from Electricity back to Hydrogen also reported animation_count: 0, confirming the grid replacement remains static across filter choices."
+      ],
+      "human_eval": "no",
+      "machine_status": "PASS",
+      "resolved_by": "active_acquisition",
+      "voters": 1
+    },
+    "R4_instruction_following": {
+      "number": "R4",
+      "criterion": "The reactor on the home route tracks the scroll position in both directions.",
+      "evaluation_rule": "Answer yes when scrolling down opens the reactor progressively and scrolling back up returns it through the same stages to whole. Answer no when the sequence runs on a timer once triggered, leaving the reactor mid-stage on the way back up.",
+      "dimension": "instruction_following",
+      "importance": "critically_important",
+      "satisfied": true,
+      "passed": true,
+      "is_positive": true,
+      "score": 1.0,
+      "confidence": 0.98,
+      "weight": 0.147059,
+      "rationale": "The reactor traversed observable stages as the page moved downward and reversed through the same intermediate stage to whole when moved upward. This directly satisfies the bidirectional scroll-tracking requirement and contradicts the timer-once-triggered failure case.",
+      "evidence": [
+        "On the home route `/`, at the top of the page the visible reactor sequence state was `Whole and metallic`.",
+        "Successive downward PageDown scrolls changed the sequence state first to `Control rods lifting free` and then to `Resolved into a technical drawing`, directly showing progressive opening tied to downward scroll position.",
+        "Scrolling upward from `Resolved into a technical drawing` changed the state back to `Control rods lifting free`; a further PageUp returned it to `Whole and metallic`.",
+        "The down/up cycle was repeated after changing the viewport: top was again `Whole and metallic`, one PageDown gave `Control rods lifting free`, and the next gave `Resolved into a technical drawing`, corroborating scroll-position control rather than a one-shot timer."
+      ],
+      "human_eval": "no",
+      "machine_status": "PASS",
+      "resolved_by": "active_acquisition",
+      "voters": 1
+    },
+    "R5_ui_visual": {
+      "number": "R5",
+      "criterion": "Links on the company route, the newsroom, the account route all carry one blue hue with a deeper shade of that hue under the pointer.",
+      "evaluation_rule": "Answer yes when links on the company route, the newsroom and the account route all read as one blue, deepening on hover. Answer no when links appear in two unrelated hues, or when the hover state changes hue rather than shade.",
+      "dimension": "ui_visual",
+      "importance": "important",
+      "satisfied": null,
+      "passed": null,
+      "is_positive": true,
+      "score": null,
+      "confidence": 0.0,
+      "weight": 0.088235,
+      "rationale": "The measurements establish use of the same base blue rgb(31, 95, 208) in several link treatments, but they do not establish the required pointer state. Evidence collection ended before any link could be hovered and re-measured, so it is not defensible to determine whether links deepen to a darker shade of the same hue or change hue on hover. The presence of neutral text/card links does not by itself resolve the hue requirement without the intended hover behavior.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /company, the measured \u201cSee what it powers\u201d link had white text rgb(255, 255, 255) on blue rgb(31, 95, 208), with bounding box x=334, y=2297, 177\u00d746.",
+        "On /news, the measured featured story link had text rgb(36, 31, 28), background rgb(244, 244, 242), and blue border rgb(31, 95, 208), with bounding box x=124, y=343, 1192\u00d7383; another story link also measured rgb(36, 31, 28).",
+        "On /account, the saved-solution link \u201cSteel\u201d measured blue rgb(31, 95, 208), transparent background, and matching blue decoration/border, with bounding box x=139, y=462, 48\u00d718. The \u201cOpen the room\u201d link was white on blue rgb(31, 95, 208).",
+        "The authenticated account was verified as visitor@example.com."
+      ],
+      "human_eval": "no",
+      "machine_status": "INSUFFICIENT_EVIDENCE",
+      "resolved_by": "machine_unresolved",
+      "voters": 1
+    },
+    "R6_instruction_following": {
+      "number": "R6",
+      "criterion": "A single section of the home route sits on a near-black ground.",
+      "evaluation_rule": "Answer yes when one section of the home route inverts to near-black for the unmatched-heat statement while every other section on every route stays light. Answer no when the site inverts in more than one place, or when the home route stays light throughout. The inversion is the single darkest beat on the whole site.",
+      "dimension": "instruction_following",
+      "importance": "critically_important",
+      "satisfied": null,
+      "passed": null,
+      "is_positive": true,
+      "score": null,
+      "confidence": 0.0,
+      "weight": 0.147059,
+      "rationale": "The observations identify the intended home section, but they do not directly establish that its ground is near-black, nor do they verify that every section across every other route remains light. Because the evaluation rule is site-wide and the available visual screenshots were not inspectable in the tool output, the criterion cannot be defensibly resolved.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On the home route, the unmatched-heat statement was directly identified as the section headed \u201cNothing else runs this hot,\u201d with supporting copy comparing a 750\u00b0C outlet against water-cooled reactors.",
+        "The home route also exposed all primary route links: /company, /technology, /solutions, /edge, /team, /investors, /news, /careers, and /contact.",
+        "The /company route was visited and its visible content appeared as ordinary company sections, but no direct background-color measurement of its section containers was obtained."
+      ],
+      "human_eval": "no",
+      "machine_status": "INSUFFICIENT_EVIDENCE",
+      "resolved_by": "machine_unresolved",
+      "voters": 1
+    },
+    "R7_functionality": {
+      "number": "R7",
+      "criterion": "The reactor diagram on the technology route renders as drawn shapes rather than as a fetched picture.",
+      "evaluation_rule": "Answer yes when the logo, the reactor, the technical diagrams and the team portraits all render as vector shapes or generated gradients that stay sharp when the page is zoomed. Answer no when any of them renders as a raster image that blurs on zoom.",
+      "dimension": "functionality",
+      "importance": "critically_important",
+      "satisfied": true,
+      "passed": true,
+      "is_positive": true,
+      "score": 1.0,
+      "confidence": 0.9,
+      "weight": 0.147059,
+      "rationale": "The inspected technology route exposes the reactor as manipulable, separately named geometry, while the team page directly identifies portraits and every mark/plate as code-drawn with no asset files shipped. Together with the logo having no background image and no observed external media origin, the evidence supports that the logo, reactor, technical diagrams, and portraits are rendered from scalable code-generated shapes/gradients rather than fetched raster pictures.",
+      "evidence": [
+        "On /technology, the reactor is an interactive diagram with three range controls labeled in the page as TURN, ZOOM, and TAKE APART, plus separately selectable drawn components: Control rods, The dome, The core, The vessel, The helium circuit, and The base. This is direct behavioral evidence of generated/drawn geometry rather than a fetched static picture.",
+        "On /team, the rendered page explicitly states: \u201cNames, portraits and stories on this site are stand-ins; every mark and plate is drawn from code and no asset file is shipped.\u201d The opened Mira Halvorsen bio also states: \u201cthe portrait is drawn from code.\u201d",
+        "The network log across the inspected workflow showed requests only to the application origin and no observed external image/CDN origin.",
+        "The Zettajoule logo link\u2019s computed style reported background-image: none, consistent with a text/vector-drawn mark rather than a CSS raster background."
+      ],
+      "human_eval": "no",
+      "machine_status": "PASS",
+      "resolved_by": "active_acquisition",
+      "voters": 1
+    },
+    "R8_accessibility": {
+      "number": "R8",
+      "criterion": "Every control on the solutions explorer is reachable from the keyboard with a visible focus ring.",
+      "evaluation_rule": "Answer yes when tabbing through the explorer filters, the save control and the modals reaches each one in turn with a ring that is easy to see. Answer no when tabbing skips a control or leaves the focused element unmarked.",
+      "dimension": "accessibility",
+      "importance": "somewhat_important",
+      "satisfied": null,
+      "passed": null,
+      "is_positive": true,
+      "score": null,
+      "confidence": 0.0,
+      "weight": 0.029412,
+      "rationale": "Direct evidence supports keyboard reachability and a visible focus ring for the explorer filters and search controls. However, the criterion explicitly requires the save control and modals as well. Since those were not exercised before evidence collection ended, there is not enough evidence to resolve whether every required control satisfies the criterion.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On /solutions, keyboard Tab moved sequentially through the four explorer filter selects (Industry, Output, Temperature, Deployment), then the search input, then the Search button; none of these controls was skipped.",
+        "For every tested focused control, computed styles showed a prominent two-layer focus indicator: box-shadow rgb(221, 232, 250) 0 0 0 3px plus rgb(31, 95, 208) 0 0 0 5px. Focus identity was independently confirmed after each Tab step.",
+        "The page inventory included additional required controls such as Compare saves, the saved-search name input, Save search, and per-solution Save buttons, but evidence collection ended before their keyboard focus indicators or any resulting modals could be tested."
+      ],
+      "human_eval": "no",
+      "machine_status": "INSUFFICIENT_EVIDENCE",
+      "resolved_by": "machine_unresolved",
+      "voters": 1
+    },
+    "R9_responsiveness": {
+      "number": "R9",
+      "criterion": "The layout holds at a phone width, a tablet width and a desktop width.",
+      "evaluation_rule": "Answer yes when the explorer, the account route and the home route each reflow cleanly at the three widths with no horizontal scrollbar. Answer no when any width produces overlapping content or a sideways scroll.",
+      "dimension": "responsiveness",
+      "importance": "somewhat_important",
+      "satisfied": null,
+      "passed": null,
+      "is_positive": true,
+      "score": null,
+      "confidence": 0.0,
+      "weight": 0.029412,
+      "rationale": "The evaluation rule requires the explorer, account route, and home route each to reflow cleanly at all three widths with no horizontal scrollbar. Home and account have supporting responsive observations, but the explorer was not measured at any required width. This missing required route evidence prevents a defensible yes/no determination rather than establishing failure.",
+      "evidence": [
+        "layout measurements captured",
+        "Home route `/` was directly observed at 1280\u00d7800 and 768\u00d71024; its full desktop navigation reflowed to a compact route-menu header at tablet width without visible overlap. Supplied deterministic measurements at 390\u00d7844 reported bodyScrollWidth=390 and horizontalOverflow=false.",
+        "Account route `/account` was directly observed at 390\u00d7844, 768\u00d71024, and 1280\u00d7800. At phone width the header reflowed to a menu button, account actions remained within the 390px viewport (right edges at 152, 282, and 368px), and saved-item controls remained within it (right edge 359px). Desktop restored the full navigation. The page was also scrolled to its end at phone width.",
+        "The explorer candidate was identified as `/calculator`, but evidence collection ended immediately after navigating there; no geometry, overflow, or reflow observations were captured for that route at phone, tablet, and desktop widths."
+      ],
+      "human_eval": "no",
+      "machine_status": "INSUFFICIENT_EVIDENCE",
+      "resolved_by": "machine_unresolved",
+      "voters": 1
+    },
+    "R10_ui_visual": {
+      "number": "R10",
+      "criterion": "The fixed top bar carries the logo lockup, the route labels and one Get in Touch action.",
+      "evaluation_rule": "Answer yes when a slim bar across the top of every route holds the stacked-band logo beside the company name, the route labels and a single Get in Touch action. Answer no when the bar is missing one of the three, or when navigation sits in a side rail instead.",
+      "dimension": "ui_visual",
+      "importance": "somewhat_important",
+      "satisfied": true,
+      "passed": true,
+      "is_positive": true,
+      "score": 1.0,
+      "confidence": 0.97,
+      "weight": 0.029412,
+      "rationale": "The observed fixed horizontal top bar contains all three required groups: the Zettajoule logo lockup, route labels, and one header Get in Touch action. Its horizontal geometry rules out side-rail navigation, and unchanged top coordinates after an End scroll establish fixed/sticky behavior. Although another Get in Touch exists lower in the page, the criterion concerns the single action carried by the top bar, where exactly one was observed.",
+      "evidence": [
+        "At 1920\u00d71200 on route '/', the top-row elements were directly measured at y=12\u201348: Zettajoule logo lockup x=364\u2013473, first route label Company x=507\u2013581, last route label Contact x=1171\u20131244, and Get in Touch x=1451\u20131556. This demonstrates a horizontal top bar rather than side-rail navigation.",
+        "The accessibility snapshot showed the logo/company link 'Zettajoule', nine route labels in the header (Company, Technology, Solutions, Our Edge, Our Team, Investors, News, Careers, Contact), and one header 'Get in Touch' action.",
+        "Direct href checks confirmed the nine labels target distinct routes (/company, /technology, /solutions, /edge, /team, /investors, /news, /careers, /contact), while the header Get in Touch action targets /contact.",
+        "After scrolling to the end of the page, the same header elements retained their measured viewport coordinates at y=12\u201348, directly demonstrating that the top bar remains fixed/sticky.",
+        "Supplied deterministic geometry identifies the header container '.bar-inner' as a three-child flex row spanning x=364 onward, with a nine-child flex list for routes and a right-side actions group; no horizontal overflow was present."
+      ],
+      "human_eval": "no",
+      "machine_status": "PASS",
+      "resolved_by": "active_acquisition",
+      "voters": 1
+    },
+    "R11_functionality": {
+      "number": "R11",
+      "criterion": "The first load holds a plain white cover until the reactor is ready to draw.",
+      "evaluation_rule": "Answer yes when a first visit shows a white cover carrying a progress readout that lifts once the first screen is ready. Answer no when the first screen appears half-drawn, or when the cover lifts before the reactor can render.",
+      "dimension": "functionality",
+      "importance": "important",
+      "satisfied": true,
+      "passed": true,
+      "is_positive": true,
+      "score": 1.0,
+      "confidence": 0.86,
+      "weight": 0.088235,
+      "rationale": "The first-load workflow directly showed a progress-bearing preparation cover at both the start and completion of loading, followed by its removal into a fully populated reactor hero rather than a half-drawn screen. This satisfies the required cover/readiness/lift sequence.",
+      "evidence": [
+        "On an immediate capture during a fresh navigation to `/`, the temporary loading state exposed the readout `0%` with `Preparing the reactor`.",
+        "On another immediate fresh-navigation capture, the same loading state reached `100%` while still showing `Preparing the reactor`.",
+        "Subsequent snapshots after each navigation no longer contained the progress readout, and the completed first screen was present with `Powering the World`, reactor labels `core`, `He`, and `750 C`, plus the complete reactor-sequence content.",
+        "The document title was briefly `Zettajoule` during the initial state and became `Zettajoule, Powering the World` after readiness, corroborating that the cover persisted through a distinct preparation phase and lifted only into the completed hero."
+      ],
+      "human_eval": "no",
+      "machine_status": "PASS",
+      "resolved_by": "active_acquisition",
+      "voters": 1
+    },
+    "R12_ux_flow": {
+      "number": "R12",
+      "criterion": "Every empty list on the account route states what is absent.",
+      "evaluation_rule": "Answer yes when an account with no saves, no searches and no applications sees a message on each list naming what is missing and offering a way onward. Answer no when an empty list renders as blank space.",
+      "dimension": "ux_flow",
+      "importance": "important",
+      "satisfied": null,
+      "passed": null,
+      "is_positive": true,
+      "score": null,
+      "confidence": 0.0,
+      "weight": 0.088235,
+      "rationale": "Two of the three required empty lists were directly verified to name what is absent and offer a way onward. However, the empty Saved searches state was not reached and observed, so there is insufficient direct evidence to determine the composite criterion for all three lists.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /account, after removing the final saved solution, the Saved solutions list showed count 0 and explicit empty-state content: \u201cNo saved solutions\u201d, \u201cYou have not kept any of the eight yet.\u201d, plus the onward link \u201cOpen the explorer\u201d.",
+        "The Job applications list showed count 0 and explicit empty-state content: \u201cNo applications\u201d, \u201cYou have not applied for a role from this account.\u201d, plus the onward link \u201cSee the three open jobs\u201d.",
+        "Saved searches still showed count 1 (\u201cHydrogen sites\u201d). Clicking Remove opened a confirmation dialog stating it would remove that search, but evidence collection ended before the final confirmation and resulting zero-search state could be observed."
+      ],
+      "human_eval": "no",
+      "machine_status": "INSUFFICIENT_EVIDENCE",
+      "resolved_by": "machine_unresolved",
+      "voters": 1
+    }
+  },
+  "missing_features": [
+    "/account",
+    "/calculator",
+    "/compare",
+    "/contact",
+    "/faq",
+    "/investors/room",
+    "/news/<slug>",
+    "/signin",
+    "/signin?next=<current>",
+    "/signin?next=<path>",
+    "/signup",
+    "/solutions/<slug>"
+  ],
+  "console_errors": [],
+  "screenshots": [
+    "/logs/verifier/shots/00_root_1920x1200.png",
+    "/logs/verifier/shots/00_root_768x1024.png",
+    "/logs/verifier/shots/00_root_390x844.png",
+    "/logs/verifier/shots/01_company_1920x1200.png",
+    "/logs/verifier/shots/01_company_768x1024.png",
+    "/logs/verifier/shots/01_company_390x844.png",
+    "/logs/verifier/shots/02_technology_1920x1200.png",
+    "/logs/verifier/shots/02_technology_768x1024.png",
+    "/logs/verifier/shots/02_technology_390x844.png",
+    "/logs/verifier/shots/03_solutions_1920x1200.png",
+    "/logs/verifier/shots/03_solutions_768x1024.png",
+    "/logs/verifier/shots/03_solutions_390x844.png",
+    "/logs/verifier/shots/04_edge_1920x1200.png",
+    "/logs/verifier/shots/04_edge_768x1024.png",
+    "/logs/verifier/shots/04_edge_390x844.png",
+    "/logs/verifier/shots/05_team_1920x1200.png",
+    "/logs/verifier/shots/05_team_768x1024.png",
+    "/logs/verifier/shots/05_team_390x844.png",
+    "/logs/verifier/shots/06_investors_1920x1200.png",
+    "/logs/verifier/shots/06_investors_768x1024.png",
+    "/logs/verifier/shots/06_investors_390x844.png",
+    "/logs/verifier/shots/07_news_1920x1200.png",
+    "/logs/verifier/shots/07_news_768x1024.png",
+    "/logs/verifier/shots/07_news_390x844.png",
+    "/logs/verifier/shots/08_careers_1920x1200.png",
+    "/logs/verifier/shots/08_careers_768x1024.png",
+    "/logs/verifier/shots/08_careers_390x844.png"
+  ],
+  "meta": {
+    "grader_model": "gpt-5.6-sol",
+    "url": "http://deku-fresh-i_media_dire_clean-energy-showca__hq6yajv-app:4173",
+    "viewports": [
+      "1920x1200",
+      "768x1024",
+      "390x844"
+    ],
+    "instruction": "/tests/instruction.md",
+    "started_at": "2026-09-06T19:56:54+00:00",
+    "harness": "run_rubric.py",
+    "rubric_source": "/tests/rubric.json",
+    "rubric_criteria": 12,
+    "evidence_first": true,
+    "probe_login_status": "logged in as visitor@example.com",
+    "routing_plan": {
+      "total_criteria": 12,
+      "by_resolution": {
+        "active_acquisition": 12
+      },
+      "by_specialist": {
+        "visual": 3,
+        "forms": 4,
+        "motion": 1,
+        "navigation": 2,
+        "accessibility": 1,
+        "responsive": 1
+      },
+      "needs_active": 12,
+      "probe_settled": 0
+    },
+    "active_acquisition": {
+      "steps_spent": 345,
+      "total_budget": 750,
+      "remaining": 405,
+      "circuit_broken": false,
+      "criteria_acquired": 12
+    },
+    "resolution_breakdown": {
+      "machine_unresolved": 6,
+      "active_acquisition": 6
+    },
+    "machine_resolution": {
+      "counts": {
+        "PASS": 6,
+        "FAIL": 0,
+        "INSUFFICIENT_EVIDENCE": 6,
+        "EVALUATOR_ERROR": 0
+      },
+      "criteria_total": 12,
+      "criteria_resolved": 6,
+      "criteria_unresolved": 6,
+      "coverage": 0.5,
+      "weighted_coverage": 0.529412
+    },
+    "finished_at": "2026-09-06T20:16:46+00:00",
+    "routes_visited": [
+      "/",
+      "/?firstvisit=R11-final",
+      "/?firstvisit=R11-probe-2",
+      "/?firstvisit=R11-probe-3",
+      "/?firstvisit=R11-probe-4",
+      "/?firstvisit=R11-probe-5",
+      "/?fresh=1741287111",
+      "/?r11=firstload",
+      "/account",
+      "/account.",
+      "/calculator",
+      "/careers",
+      "/company",
+      "/contact",
+      "/edge",
+      "/investors",
+      "/investors/room",
+      "/news",
+      "/signup",
+      "/solutions",
+      "/solutions?output=hydrogen",
+      "/solutions?output_kind=electricity",
+      "/solutions?output_kind=hydrogen",
+      "/team",
+      "/technology"
+    ],
+    "login_status": "logged in as visitor@example.com",
+    "judge_panel": [
+      "evidence_first_specialists",
+      "machine_adjudicator"
+    ],
+    "judge_panel_source": "evidence_first_pipeline",
+    "usage": {
+      "calls": 237,
+      "model_name": "gpt-5.6-sol",
+      "input_tokens": 429409,
+      "output_tokens": 26221,
+      "cache_read_input_tokens": 716544,
+      "cache_creation_input_tokens": 0
+    }
+  },
+  "criteria_total": 12,
+  "criteria_passed": 6,
+  "criteria_failed": 0,
+  "criteria_unresolved": 6,
+  "machine_resolution": {
+    "counts": {
+      "PASS": 6,
+      "FAIL": 0,
+      "INSUFFICIENT_EVIDENCE": 6,
+      "EVALUATOR_ERROR": 0
+    },
+    "criteria_total": 12,
+    "criteria_resolved": 6,
+    "criteria_unresolved": 6,
+    "coverage": 0.5,
+    "weighted_coverage": 0.529412
+  },
+  "machine_unresolved": [
+    {
+      "criterion": "R1",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The criterion requires screenshots plus measured styles and bounding boxes showing that headings on all three routes use a heavier grotesque than their running text. Although all routes and candidate text pairs were verified, direct computed-style and bounding-box measurements for those heading/body pairs were not obtained before the browser budget ended. Measurements from navigation and CTA controls cannot establish typography of the route content. Therefore the available evidence does not defensibly settle the criterion.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "Verified the required showcase routes exist and loaded successfully: /company, /technology, and /team.",
+        "Route snapshots identify heading/body pairs on each route, including \u201cclean heat and electricity\u2026\u201d above company running copy, \u201cA modernised high-temperature gas-cooled reactor\u201d above technology running copy, and \u201cshaping the future of nuclear together\u201d above team running copy.",
+        "The only successful typography measurements were for navigation/CTA elements, not the required route headings and running text: ordinary navigation measured system-ui at weight 400/600, while a CTA measured Helvetica Neue/Arial Black fallback at weight 800.",
+        "Full-page screenshots were captured, but their image content was unavailable in the evidence transport, so they cannot support a defensible visual comparison."
+      ]
+    },
+    {
+      "criterion": "R5",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The measurements establish use of the same base blue rgb(31, 95, 208) in several link treatments, but they do not establish the required pointer state. Evidence collection ended before any link could be hovered and re-measured, so it is not defensible to determine whether links deepen to a darker shade of the same hue or change hue on hover. The presence of neutral text/card links does not by itself resolve the hue requirement without the intended hover behavior.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /company, the measured \u201cSee what it powers\u201d link had white text rgb(255, 255, 255) on blue rgb(31, 95, 208), with bounding box x=334, y=2297, 177\u00d746.",
+        "On /news, the measured featured story link had text rgb(36, 31, 28), background rgb(244, 244, 242), and blue border rgb(31, 95, 208), with bounding box x=124, y=343, 1192\u00d7383; another story link also measured rgb(36, 31, 28).",
+        "On /account, the saved-solution link \u201cSteel\u201d measured blue rgb(31, 95, 208), transparent background, and matching blue decoration/border, with bounding box x=139, y=462, 48\u00d718. The \u201cOpen the room\u201d link was white on blue rgb(31, 95, 208).",
+        "The authenticated account was verified as visitor@example.com."
+      ]
+    },
+    {
+      "criterion": "R6",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The observations identify the intended home section, but they do not directly establish that its ground is near-black, nor do they verify that every section across every other route remains light. Because the evaluation rule is site-wide and the available visual screenshots were not inspectable in the tool output, the criterion cannot be defensibly resolved.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On the home route, the unmatched-heat statement was directly identified as the section headed \u201cNothing else runs this hot,\u201d with supporting copy comparing a 750\u00b0C outlet against water-cooled reactors.",
+        "The home route also exposed all primary route links: /company, /technology, /solutions, /edge, /team, /investors, /news, /careers, and /contact.",
+        "The /company route was visited and its visible content appeared as ordinary company sections, but no direct background-color measurement of its section containers was obtained."
+      ]
+    },
+    {
+      "criterion": "R8",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "Direct evidence supports keyboard reachability and a visible focus ring for the explorer filters and search controls. However, the criterion explicitly requires the save control and modals as well. Since those were not exercised before evidence collection ended, there is not enough evidence to resolve whether every required control satisfies the criterion.",
+      "evidence": [
+        "accessibility inventory captured; criterion needs specialist scope",
+        "On /solutions, keyboard Tab moved sequentially through the four explorer filter selects (Industry, Output, Temperature, Deployment), then the search input, then the Search button; none of these controls was skipped.",
+        "For every tested focused control, computed styles showed a prominent two-layer focus indicator: box-shadow rgb(221, 232, 250) 0 0 0 3px plus rgb(31, 95, 208) 0 0 0 5px. Focus identity was independently confirmed after each Tab step.",
+        "The page inventory included additional required controls such as Compare saves, the saved-search name input, Save search, and per-solution Save buttons, but evidence collection ended before their keyboard focus indicators or any resulting modals could be tested."
+      ]
+    },
+    {
+      "criterion": "R9",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "The evaluation rule requires the explorer, account route, and home route each to reflow cleanly at all three widths with no horizontal scrollbar. Home and account have supporting responsive observations, but the explorer was not measured at any required width. This missing required route evidence prevents a defensible yes/no determination rather than establishing failure.",
+      "evidence": [
+        "layout measurements captured",
+        "Home route `/` was directly observed at 1280\u00d7800 and 768\u00d71024; its full desktop navigation reflowed to a compact route-menu header at tablet width without visible overlap. Supplied deterministic measurements at 390\u00d7844 reported bodyScrollWidth=390 and horizontalOverflow=false.",
+        "Account route `/account` was directly observed at 390\u00d7844, 768\u00d71024, and 1280\u00d7800. At phone width the header reflowed to a menu button, account actions remained within the 390px viewport (right edges at 152, 282, and 368px), and saved-item controls remained within it (right edge 359px). Desktop restored the full navigation. The page was also scrolled to its end at phone width.",
+        "The explorer candidate was identified as `/calculator`, but evidence collection ended immediately after navigating there; no geometry, overflow, or reflow observations were captured for that route at phone, tablet, and desktop widths."
+      ]
+    },
+    {
+      "criterion": "R12",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "rationale": "Two of the three required empty lists were directly verified to name what is absent and offer a way onward. However, the empty Saved searches state was not reached and observed, so there is insufficient direct evidence to determine the composite criterion for all three lists.",
+      "evidence": [
+        "no deterministic probe for composite; browser specialist required",
+        "On /account, after removing the final saved solution, the Saved solutions list showed count 0 and explicit empty-state content: \u201cNo saved solutions\u201d, \u201cYou have not kept any of the eight yet.\u201d, plus the onward link \u201cOpen the explorer\u201d.",
+        "The Job applications list showed count 0 and explicit empty-state content: \u201cNo applications\u201d, \u201cYou have not applied for a role from this account.\u201d, plus the onward link \u201cSee the three open jobs\u201d.",
+        "Saved searches still showed count 1 (\u201cHydrogen sites\u201d). Clicking Remove opened a confirmation dialog stating it would remove that search, but evidence collection ended before the final confirmation and resulting zero-search state could be observed."
+      ]
+    }
+  ],
+  "needs_human_eval": 0,
+  "evidence_first": true,
+  "review_queue": {
+    "count": 0,
+    "criteria": []
+  },
+  "needs_review": []
+}

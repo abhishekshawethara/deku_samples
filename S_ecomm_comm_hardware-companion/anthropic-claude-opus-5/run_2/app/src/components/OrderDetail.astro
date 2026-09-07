@@ -1,0 +1,161 @@
+---
+import { formatMoney, formatDateTime } from '../lib/view.js';
+
+interface Props {
+  order: any;
+  lines: any[];
+  serials?: any[];
+  chip?: { tone: string; text: string };
+  canRegister?: boolean;
+}
+const { order, lines, serials = [], chip, canRegister = false } = Astro.props;
+const address = order.shipping_address || {};
+---
+
+<div class="order-detail">
+  <table class="data lines">
+    <caption class="visually-hidden">Order lines</caption>
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">SKU</th>
+        <th scope="col" class="num">Qty</th>
+        <th scope="col" class="num">Unit</th>
+        <th scope="col" class="num">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {lines.map((l) => (
+        <tr>
+          <!-- The snapshot columns mean an order still reads correctly after a
+               product is renamed. -->
+          <td>{l.title_snapshot}</td>
+          <td class="serial xsmall">{l.sku_snapshot}</td>
+          <td class="num">{l.quantity}</td>
+          <td class="num money">{formatMoney(l.unit_price_minor)}</td>
+          <td class="num money">{formatMoney(l.total_minor)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="under">
+    <!-- The totals, each labelled. -->
+    <dl class="totals">
+      <div><dt>Subtotal</dt><dd class="money">{formatMoney(order.subtotal_minor)}</dd></div>
+      <div><dt>Delivery</dt><dd class="money">{formatMoney(order.shipping_minor)}</dd></div>
+      <div><dt>Tax</dt><dd class="money">{formatMoney(order.tax_minor)}</dd></div>
+      {order.discount_minor > 0 && (
+        <div><dt>Discount</dt><dd class="money">-{formatMoney(order.discount_minor)}</dd></div>
+      )}
+      <div class="totals-final">
+        <dt>Total</dt>
+        <dd class="money">{formatMoney(order.total_minor)} {String(order.currency).toUpperCase()}</dd>
+      </div>
+    </dl>
+
+    <div class="facts">
+      <h3>Delivery</h3>
+      <!-- The addresses as captured. -->
+      <p class="small">
+        {address.name}<br />
+        {address.line1}{address.line2 ? <>, {address.line2}</> : null}<br />
+        {address.city}, {address.region} <span class="tnum">{address.postal_code}</span><br />
+        {address.country}
+      </p>
+      <table class="data facts-table">
+        <tbody>
+          <tr><th scope="row">Method</th><td>{order.shipping_method}</td></tr>
+          <tr><th scope="row">Placed</th><td>{formatDateTime(order.placed_at)}</td></tr>
+          <tr><th scope="row">Email</th><td>{order.email}</td></tr>
+          {chip && <tr><th scope="row">State</th><td><span class:list={['chip', `chip-${chip.tone}`]}>{chip.text}</span></td></tr>}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {serials.length > 0 && (
+    <section class="serials">
+      <h3>Serial numbers</h3>
+      <!-- The only place a person finds these without the camera in hand. -->
+      <table class="data">
+        <thead>
+          <tr>
+            <th scope="col">Camera</th>
+            <th scope="col">Serial</th>
+            <th scope="col">On your account</th>
+          </tr>
+        </thead>
+        <tbody>
+          {serials.map((s) => (
+            <tr>
+              <td>{s.model}</td>
+              <td class="serial">{s.serial}</td>
+              <td>
+                {s.registered ? (
+                  <span class="chip chip-done">Registered</span>
+                ) : canRegister ? (
+                  <form method="post" action="/account/cameras" class="register-inline">
+                    <input type="hidden" name="serial" value={s.serial} />
+                    <input type="hidden" name="return_to" value={Astro.url.pathname} />
+                    <button type="submit" class="button button-quiet tiny">Register to my account</button>
+                  </form>
+                ) : (
+                  <span class="chip">Not registered</span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  )}
+</div>
+
+<style>
+  .lines { margin-bottom: var(--u5); }
+  .lines caption { text-align: left; }
+
+  .under {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--u6);
+    align-items: start;
+  }
+
+  .totals { margin: 0; max-width: 300px; }
+  .totals div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--u4);
+    padding: var(--u) 0;
+    font-size: var(--text-sm);
+  }
+  .totals dt { color: var(--ink-2); }
+  .totals dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .totals-final {
+    border-top: 1px solid var(--rule);
+    margin-top: var(--u2);
+    padding-top: var(--u2) !important;
+    font-weight: 700;
+  }
+  .totals-final dt { color: var(--ink) !important; }
+
+  h3 {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-bottom: var(--u2);
+  }
+  .facts p { margin: 0 0 var(--u3); line-height: 1.5; }
+  .facts-table { max-width: 340px; }
+
+  .serials { margin-top: var(--u6); }
+  .register-inline { margin: 0; }
+  .tiny { min-height: 32px; font-size: var(--text-xs); padding: 0 var(--u2); }
+
+  @media (max-width: 760px) {
+    .under { grid-template-columns: minmax(0, 1fr); gap: var(--u4); }
+  }
+</style>

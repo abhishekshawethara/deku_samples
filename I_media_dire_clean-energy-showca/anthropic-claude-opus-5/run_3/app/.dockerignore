@@ -1,0 +1,23 @@
+node_modules
+build
+.svelte-kit
+
+# Evidence and scratch space from the authoring session; not part of the image.
+.browser_screenshots
+.downloads
+verify_api.py
+verify_mail.py
+verify_concurrency.py
+verify_seed.py
+verify_fresh_db.sh
+walk_journeys.py
+dev-restart.sh
+
+.git
+.gitignore
+*.log
+npm-debug.log*
+.env
+.env.*
+.DS_Store
+verify_image_layout.sh

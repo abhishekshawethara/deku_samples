@@ -1,0 +1,284 @@
+exit=0
+
+--- stdout ---
+
+--- stderr ---
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.10kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-bookworm-slim
+#2 DONE 1.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 231B done
+#3 DONE 0.0s
+
+#4 [build 1/9] FROM docker.io/library/node:20-bookworm-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+#4 DONE 0.0s
+
+#5 [build 2/9] WORKDIR /app
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 338.06kB done
+#6 DONE 0.0s
+
+#7 [build 3/9] COPY package.json package-lock.json ./
+#7 DONE 0.2s
+
+#8 [build 4/9] RUN npm ci --no-audit --no-fund
+#8 1.772 
+#8 1.772 added 137 packages in 1s
+#8 DONE 2.3s
+
+#9 [build 5/9] COPY svelte.config.js vite.config.js ./
+#9 DONE 0.0s
+
+#10 [build 6/9] COPY src ./src
+#10 DONE 0.0s
+
+#11 [build 7/9] COPY static ./static
+#11 DONE 0.0s
+
+#12 [build 8/9] RUN npm run build
+#12 0.517 
+#12 0.517 > zettajoule@1.0.0 build
+#12 0.517 > vite build
+#12 0.517 
+#12 1.202 vite v5.4.21 building SSR bundle for production...
+#12 1.219 transforming...
+#12 1.693 12:01:31 AM [vite-plugin-svelte] /app/src/lib/components/Modal.svelte:77:2 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+#12 1.693 75: {#if open}
+#12 1.693 76:   <div class="scrim" role="presentation" on:click={close}>
+#12 1.693 77:     <div
+#12 1.693         ^
+#12 1.693 78:       class="dialog"
+#12 1.693 79:       role="dialog"
+#12 1.693 12:01:31 AM [vite-plugin-svelte] /app/src/lib/components/Modal.svelte:77:2 A11y: Non-interactive element <div> should not be assigned mouse or keyboard event listeners.
+#12 1.693 75: {#if open}
+#12 1.693 76:   <div class="scrim" role="presentation" on:click={close}>
+#12 1.693 77:     <div
+#12 1.693         ^
+#12 1.693 78:       class="dialog"
+#12 1.693 79:       role="dialog"
+#12 1.916 node_modules/@sveltejs/kit/src/runtime/client/client.js (6:23): "untrack" is not exported by "node_modules/svelte/src/runtime/ssr.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+#12 1.917 node_modules/@sveltejs/kit/src/runtime/client/client.js (389:26): "fork" is not exported by "node_modules/svelte/src/runtime/ssr.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+#12 1.919 node_modules/@sveltejs/kit/src/runtime/client/client.js (1310:30): "settled" is not exported by "node_modules/svelte/src/runtime/ssr.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+#12 2.087 ✓ 172 modules transformed.
+#12 2.155 rendering chunks...
+#12 2.604 vite v5.4.21 building for production...
+#12 2.609 transforming...
+#12 3.528 12:01:32 AM [vite-plugin-svelte] /app/src/lib/components/Modal.svelte:77:2 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+#12 3.528 75: {#if open}
+#12 3.528 76:   <div class="scrim" role="presentation" on:click={close}>
+#12 3.528 77:     <div
+#12 3.528         ^
+#12 3.528 78:       class="dialog"
+#12 3.528 79:       role="dialog"
+#12 3.528 12:01:32 AM [vite-plugin-svelte] /app/src/lib/components/Modal.svelte:77:2 A11y: Non-interactive element <div> should not be assigned mouse or keyboard event listeners.
+#12 3.528 75: {#if open}
+#12 3.528 76:   <div class="scrim" role="presentation" on:click={close}>
+#12 3.528 77:     <div
+#12 3.528         ^
+#12 3.528 78:       class="dialog"
+#12 3.528 79:       role="dialog"
+#12 3.693 node_modules/@sveltejs/kit/src/runtime/client/client.js (5:23): "untrack" is not exported by "node_modules/svelte/src/runtime/index.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+#12 3.694 node_modules/@sveltejs/kit/src/runtime/client/client.js (388:26): "fork" is not exported by "node_modules/svelte/src/runtime/index.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+#12 3.695 node_modules/@sveltejs/kit/src/runtime/client/client.js (1309:30): "settled" is not exported by "node_modules/svelte/src/runtime/index.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+#12 4.074 ✓ 150 modules transformed.
+#12 4.144 rendering chunks...
+#12 4.169 computing gzip size...
+#12 4.177 .svelte-kit/output/client/_app/version.json                                0.03 kB │ gzip:  0.05 kB
+#12 4.177 .svelte-kit/output/client/.vite/manifest.json                             14.38 kB │ gzip:  1.62 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/Reactor.CcZTiho-.css       0.07 kB │ gzip:  0.09 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/SaveButton.BBVSedFK.css    0.14 kB │ gzip:  0.13 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/15.DXW_043d.css            0.17 kB │ gzip:  0.15 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/1.CeIpSbJn.css             0.18 kB │ gzip:  0.13 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/EnquiryForm.VPVeMEXP.css   0.40 kB │ gzip:  0.26 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/6.DUZXFNdT.css             0.59 kB │ gzip:  0.30 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/14.D6KJEYv7.css            0.60 kB │ gzip:  0.28 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/19.B9J-ZtRB.css            0.70 kB │ gzip:  0.34 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/8.DPz4SSUd.css             0.76 kB │ gzip:  0.35 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/5.DFdIbqdK.css             0.83 kB │ gzip:  0.35 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/12.rylKMOx7.css            0.88 kB │ gzip:  0.39 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/10.CdGo_6gC.css            0.92 kB │ gzip:  0.38 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/Plate.YJftP4hM.css         1.03 kB │ gzip:  0.49 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/Modal.DxAV7qFr.css         1.14 kB │ gzip:  0.44 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/7.D2Aqnklk.css             1.19 kB │ gzip:  0.44 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/9.CmCFdsWM.css             1.36 kB │ gzip:  0.52 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/13.CP9xy71X.css            1.36 kB │ gzip:  0.50 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/18.C6kWwbwP.css            1.38 kB │ gzip:  0.50 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/11.DIB6BAJu.css            1.45 kB │ gzip:  0.51 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/20.BVPEe3vg.css            1.66 kB │ gzip:  0.55 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/3.8Vqb9-LJ.css             1.70 kB │ gzip:  0.53 kB
+#12 4.177 .svelte-kit/output/client/_app/immutable/assets/4.1iKHeDCA.css             2.10 kB │ gzip:  0.69 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/assets/17.BHraJu3t.css            3.36 kB │ gzip:  0.88 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/assets/2.CM-T16sz.css             5.05 kB │ gzip:  1.43 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/assets/0.CTF4MkMP.css            13.72 kB │ gzip:  3.51 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/entry/start.BcukLj4D.js           0.08 kB │ gzip:  0.09 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/D_4IfPLl.js                0.29 kB │ gzip:  0.18 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/CXvUZxP3.js                0.90 kB │ gzip:  0.55 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/XEzInn0f.js                1.35 kB │ gzip:  0.68 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/wbPk3Yxo.js                1.37 kB │ gzip:  0.66 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/CcVEBxji.js                1.39 kB │ gzip:  0.64 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/1.DqSO0BQ0.js               2.26 kB │ gzip:  1.13 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/Bw0Jt73y.js                2.29 kB │ gzip:  1.19 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/CjGqZul0.js                2.82 kB │ gzip:  1.33 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/D0cicg5Y.js                3.02 kB │ gzip:  1.52 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/C7g5wmrJ.js                3.92 kB │ gzip:  1.91 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/8.Dbk3oEx8.js               4.19 kB │ gzip:  1.98 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/14.D_33Na3F.js              5.44 kB │ gzip:  2.36 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/CrFGXutW.js                6.98 kB │ gzip:  2.79 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/6.Bo27svmM.js               7.37 kB │ gzip:  3.23 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/15.DTR1_z0C.js              7.46 kB │ gzip:  3.09 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/19.8vMKn8bA.js              7.81 kB │ gzip:  3.45 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/12.BnFO79TK.js              7.83 kB │ gzip:  3.06 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/10.De3qhXgb.js              8.17 kB │ gzip:  3.54 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/9.ClRuInCQ.js               8.36 kB │ gzip:  3.55 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/13.CG2h6SZ5.js              9.02 kB │ gzip:  3.74 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/16.OPn_5D1Z.js              9.30 kB │ gzip:  3.60 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/entry/app.yYqSEsVn.js            10.13 kB │ gzip:  3.71 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/20.cUqrvaxq.js             11.78 kB │ gzip:  4.94 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/4.CW_RSHIo.js              12.30 kB │ gzip:  4.83 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/BcI5nvpi.js               12.68 kB │ gzip:  4.55 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/18.Dlc5XhY8.js             13.01 kB │ gzip:  5.02 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/7.FMuFYH8h.js              13.22 kB │ gzip:  4.82 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/5.BIpjdx4g.js              14.54 kB │ gzip:  5.86 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/DI9NH8qF.js               14.57 kB │ gzip:  4.15 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/2.3DDQYJjT.js              18.13 kB │ gzip:  6.74 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/0.B63xqSu4.js              19.80 kB │ gzip:  6.78 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/11.Cvzh5hme.js             20.76 kB │ gzip:  7.37 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/17.Dc0ZeNz7.js             25.57 kB │ gzip:  8.84 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/nodes/3.fJvmkURk.js              26.07 kB │ gzip:  7.92 kB
+#12 4.178 .svelte-kit/output/client/_app/immutable/chunks/3fpBIXcy.js               35.24 kB │ gzip: 13.34 kB
+#12 4.178 ✓ built in 1.57s
+#12 4.589 .svelte-kit/output/server/.vite/manifest.json                              14.00 kB
+#12 4.589 .svelte-kit/output/server/_app/immutable/assets/Reactor.CcZTiho-.css        0.07 kB
+#12 4.589 .svelte-kit/output/server/_app/immutable/assets/SaveButton.BBVSedFK.css     0.14 kB
+#12 4.589 .svelte-kit/output/server/_app/immutable/assets/_page.DXW_043d.css          0.17 kB
+#12 4.589 .svelte-kit/output/server/_app/immutable/assets/_error.CeIpSbJn.css         0.18 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/EnquiryForm.VPVeMEXP.css    0.40 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.DUZXFNdT.css          0.59 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.D6KJEYv7.css          0.60 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.B9J-ZtRB.css          0.70 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.DPz4SSUd.css          0.76 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.DFdIbqdK.css          0.83 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.rylKMOx7.css          0.88 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.CdGo_6gC.css          0.92 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/Plate.YJftP4hM.css          1.03 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/Modal.DinRGatz.css          1.12 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.D2Aqnklk.css          1.19 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.CmCFdsWM.css          1.36 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.CP9xy71X.css          1.36 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.C6kWwbwP.css          1.38 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.DIB6BAJu.css          1.45 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.BVPEe3vg.css          1.66 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.8Vqb9-LJ.css          1.70 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.1iKHeDCA.css          2.10 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.BHraJu3t.css          3.36 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_page.Dsd3CysV.css          5.00 kB
+#12 4.590 .svelte-kit/output/server/_app/immutable/assets/_layout.DZ-SfnTv.css       13.60 kB
+#12 4.590 .svelte-kit/output/server/chunks/ssr2.js                                    0.10 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/careers/_page.server.js             0.17 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/faq/_page.server.js                 0.17 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/team/_page.server.js                0.17 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/company/_page.server.js             0.18 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/contact/_page.server.js             0.18 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/edge/_page.server.js                0.18 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/_page.server.js                     0.20 kB
+#12 4.590 .svelte-kit/output/server/env.js                                            0.23 kB
+#12 4.590 .svelte-kit/output/server/internal.js                                       0.32 kB
+#12 4.590 .svelte-kit/output/server/chunks/session.js                                 0.38 kB
+#12 4.590 .svelte-kit/output/server/chunks/state.svelte.js                            0.42 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/news/_slug_/_page.server.js         0.45 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/solutions/_slug_/_page.server.js    0.47 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/news/_page.server.js                0.52 kB
+#12 4.590 .svelte-kit/output/server/chunks/server.js                                  0.62 kB
+#12 4.590 .svelte-kit/output/server/chunks/stores.js                                  0.81 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/solutions/_page.server.js           0.81 kB
+#12 4.590 .svelte-kit/output/server/chunks/utils2.js                                  1.09 kB
+#12 4.590 .svelte-kit/output/server/chunks/server-load.js                             1.14 kB
+#12 4.590 .svelte-kit/output/server/chunks/index.js                                   1.33 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/_error.svelte.js                    2.43 kB
+#12 4.590 .svelte-kit/output/server/chunks/SaveButton.js                              4.40 kB
+#12 4.590 .svelte-kit/output/server/chunks/ssr.js                                     4.77 kB
+#12 4.590 .svelte-kit/output/server/chunks/exports.js                                 5.54 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/news/_slug_/_page.svelte.js         5.62 kB
+#12 4.590 .svelte-kit/output/server/chunks/internal.js                                6.34 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/contact/_page.svelte.js             6.45 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/signin/_page.svelte.js              7.76 kB
+#12 4.590 .svelte-kit/output/server/chunks/Plate.js                                   8.18 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/investors/room/_page.svelte.js      8.61 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/team/_page.svelte.js                9.11 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/faq/_page.svelte.js                 9.11 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/signup/_page.svelte.js              9.60 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/news/_page.svelte.js               11.38 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/company/_page.svelte.js            11.39 kB
+#12 4.590 .svelte-kit/output/server/chunks/Modal.js                                  11.75 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/compare/_page.svelte.js            12.34 kB
+#12 4.590 .svelte-kit/output/server/chunks/EnquiryForm.js                            12.76 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/solutions/_slug_/_page.svelte.js   14.85 kB
+#12 4.590 .svelte-kit/output/server/chunks/Reactor.js                                15.14 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/edge/_page.svelte.js               15.39 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/careers/_page.svelte.js            15.79 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/calculator/_page.svelte.js         17.04 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/technology/_page.svelte.js         20.91 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/account/_page.svelte.js            21.09 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/investors/_page.svelte.js          22.23 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/solutions/_page.svelte.js          30.36 kB
+#12 4.590 .svelte-kit/output/server/chunks/utils.js                                  34.21 kB
+#12 4.590 .svelte-kit/output/server/remote-entry.js                                  36.81 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/_layout.svelte.js                  36.85 kB
+#12 4.590 .svelte-kit/output/server/entries/pages/_page.svelte.js                    37.77 kB
+#12 4.590 .svelte-kit/output/server/index.js                                        130.91 kB
+#12 4.591 ✓ built in 3.39s
+#12 4.591 
+#12 4.591 Run npm run preview to preview your production build locally.
+#12 4.593 
+#12 4.593 > Using @sveltejs/adapter-node
+#12 5.437   ✔ done
+#12 DONE 5.5s
+
+#13 [build 9/9] RUN npm prune --omit=dev
+#13 1.822 
+#13 1.822 up to date, audited 67 packages in 1s
+#13 1.822 
+#13 1.822 4 packages are looking for funding
+#13 1.822   run `npm fund` for details
+#13 1.829 
+#13 1.829 4 vulnerabilities (3 high, 1 critical)
+#13 1.829 
+#13 1.829 To address all issues (including breaking changes), run:
+#13 1.829   npm audit fix --force
+#13 1.829 
+#13 1.829 Run `npm audit` for details.
+#13 DONE 1.9s
+
+#14 [runtime 3/8] COPY --from=build /app/node_modules ./node_modules
+#14 DONE 0.2s
+
+#15 [runtime 4/8] COPY --from=build /app/build ./build
+#15 DONE 0.1s
+
+#16 [runtime 5/8] COPY package.json ./
+#16 DONE 0.0s
+
+#17 [runtime 6/8] COPY server ./server
+#17 DONE 0.0s
+
+#18 [runtime 7/8] COPY USER_README.md ./USER_README.md
+#18 DONE 0.0s
+
+#19 [runtime 8/8] RUN mkdir -p /app/.browser_screenshots /app/.downloads
+#19 DONE 0.4s
+
+#20 exporting to image
+#20 exporting layers
+#20 exporting layers 1.4s done
+#20 writing image sha256:3c7b3636089281b716fc17b3d1f9ac20fde7a53574335035dea2d1b6aa5fd6d7 done
+#20 naming to docker.io/library/deku-fresh-app-i_media_dire_clean-energy-showcase_20260906_052930:latest done
+#20 DONE 1.5s
+

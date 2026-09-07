@@ -1,0 +1,155 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import ProductMedia from '../../components/ProductMedia.astro';
+import { formatMoney } from '../../lib/view.js';
+import { query } from '../../../server/lib/db.js';
+
+// The catalogue is ordered by the editorial position and never by price or name.
+const { rows } = await query(
+  `SELECT p.id, p.handle, p.title, p.subtitle, p.kind, p.status, p.position,
+          v.sku, v.option_value, v.price_minor, COALESCE(i.available,0) AS available
+     FROM product p
+     JOIN variant v ON v.product_id = p.id
+     LEFT JOIN inventory_level i ON i.variant_id = v.id
+    WHERE p.kind != 'protection'
+    ORDER BY p.position, p.id, v.position, v.id`,
+);
+
+const byId = new Map();
+for (const r of rows) {
+  if (!byId.has(r.id)) {
+    byId.set(r.id, {
+      handle: r.handle, title: r.title, subtitle: r.subtitle, kind: r.kind,
+      status: r.status, variants: [],
+    });
+  }
+  byId.get(r.id).variants.push(r);
+}
+
+const products = [...byId.values()].map((p) => {
+  const prices = p.variants.map((v) => v.price_minor);
+  const lowest = Math.min(...prices);
+  const total = p.variants.reduce((s, v) => s + v.available, 0);
+  // A state chip only when the product is not simply available.
+  let chip = null;
+  if (p.status === 'discontinued') chip = { text: 'Discontinued', tone: '' };
+  else if (total === 0) chip = { text: 'Sold out', tone: '' };
+  else if (total <= 10) chip = { text: `Only ${total} left`, tone: 'progress' };
+  return {
+    ...p,
+    // A product whose variants differ in price reads "From " and the lowest.
+    price_display: `${new Set(prices).size > 1 ? 'From ' : ''}${formatMoney(lowest)}`,
+    chip,
+    firstOption: p.variants[0]?.option_value ?? '',
+  };
+});
+
+// Cameras render at full width, accessories in a denser row beneath them.
+const cameras = products.filter((p) => p.kind === 'camera');
+const rest = products.filter((p) => p.kind !== 'camera');
+---
+
+<Shell title="Shop — Vela" current="shop">
+  <header class="head">
+    <h1>Shop</h1>
+    <p class="muted">Two cameras, and the few things that go with them.</p>
+  </header>
+
+  {products.length === 0 ? (
+    <div class="empty-state">
+      <p>Nothing is on the table right now.</p>
+      <p><a href="/downloads">Downloads</a></p>
+    </div>
+  ) : (
+    <>
+      <ul class="grid grid-cameras">
+        {cameras.map((p) => (
+          <li class="card cell">
+            <a class="cell-link" href={`/shop/${p.handle}`}>
+              <ProductMedia handle={p.handle} option={p.firstOption} ratio="16 / 9" />
+              <div class="cell-body">
+                <div class="cell-head">
+                  <h2>{p.title}</h2>
+                  {p.chip && <span class:list={['chip', p.chip.tone && `chip-${p.chip.tone}`]}>{p.chip.text}</span>}
+                </div>
+                <p class="subtitle muted">{p.subtitle}</p>
+                <p class="price money">{p.price_display}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <ul class="grid grid-rest">
+        {rest.map((p) => (
+          <li class="card cell">
+            <a class="cell-link" href={`/shop/${p.handle}`}>
+              <ProductMedia handle={p.handle} option={p.firstOption} ratio="4 / 3" />
+              <div class="cell-body">
+                <div class="cell-head">
+                  <h2>{p.title}</h2>
+                  {p.chip && <span class:list={['chip', p.chip.tone && `chip-${p.chip.tone}`]}>{p.chip.text}</span>}
+                </div>
+                <p class="subtitle muted">{p.subtitle}</p>
+                <p class="price money">{p.price_display}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</Shell>
+
+<style>
+  .head { margin-bottom: var(--u6); }
+  .head h1 { font-size: var(--text-xl); margin-bottom: var(--u); }
+  .head p { margin: 0; }
+
+  .grid {
+    list-style: none;
+    margin: 0 0 var(--u6);
+    padding: 0;
+    display: grid;
+    gap: var(--u4);
+  }
+  .grid-cameras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-rest { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .cell { overflow: hidden; }
+  .cell-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+  .cell-link:hover .cell-head h2 { text-decoration: underline; }
+
+  .cell-body { padding: var(--u3); }
+  .cell-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--u2);
+  }
+  .cell-head h2 { font-size: var(--text-md); }
+  .subtitle {
+    margin: var(--u) 0 var(--u2);
+    font-size: var(--text-sm);
+    line-height: 1.4;
+  }
+  .price {
+    margin: 0;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The whole grid falls to one column on a narrow viewport. */
+  @media (max-width: 900px) {
+    .grid-rest { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .grid-cameras,
+    .grid-rest { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

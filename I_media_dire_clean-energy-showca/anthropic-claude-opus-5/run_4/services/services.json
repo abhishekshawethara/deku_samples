@@ -1,0 +1,13 @@
+{
+  "declared": {
+    "backend": "postgres",
+    "email": "mailpit"
+  },
+  "images": {
+    "postgres": "postgres:16.4-bookworm",
+    "mailpit": "axllent/mailpit:v1.30.6"
+  },
+  "seed_files": [
+    "postgres-init.sql"
+  ]
+}
